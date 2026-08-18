@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "experiment_id": "EXP-54CD8F9137F2",
+  "project_id": "jds-3d-reconstruction",
+  "title": "P0 Waymo 五类组件数据与渲染合约 smoke test",
+  "type": "contract-test",
+  "status": "blocked",
+  "objective": "验证一个 8–16 帧 Waymo 序列可以按统一 manifest 导出五类组件层与 composite。",
+  "protocol": {
+    "scope": "只验证数据、坐标、颜色和组件接口，不用于方法质量结论。",
+    "success_criteria": [
+      "manifest schema 通过",
+      "五类组件输出存在或显式为空",
+      "分层合成与直接合成在容差内一致"
+    ],
+    "failure_criteria": [
+      "代码/数据版本不明",
+      "坐标或曝光不一致",
+      "存在无法追溯的硬编码对象 ID"
+    ],
+    "expected_outputs": [
+      "resolved manifest",
+      "component renders",
+      "contract metrics"
+    ]
+  },
+  "traceability": {
+    "idea_ids": [
+      "IDEA-93F257E3E556"
+    ],
+    "task_ids": [
+      "TASK-9A7AF40BC2",
+      "TASK-DD540CF915",
+      "TASK-C0D73ED316"
+    ],
+    "lit_ids": [],
+    "claim_ids": [],
+    "parent_experiment_ids": []
+  },
+  "execution": {
+    "executor_id": null,
+    "cwd": {
+      "connection": null,
+      "relative_path": null
+    },
+    "command_argv": [],
+    "required_commands": [],
+    "required_connections": [],
+    "watchdog_policy": null
+  },
+  "code": {
+    "repository": null,
+    "commit": null,
+    "dirty": null,
+    "patch_uri": null
+  },
+  "data": {
+    "datasets": []
+  },
+  "environment": {
+    "os": null,
+    "runtime": null,
+    "lockfile": null,
+    "seeds": {}
+  },
+  "resources": {
+    "accelerator": {
+      "vendor": "unknown",
+      "count": 1,
+      "min_vram_gb": null,
+      "cuda": null,
+      "driver": null
+    },
+    "min_disk_gb": null
+  },
+  "blockers": [
+    {
+      "code": "CODE_UNPINNED",
+      "description": "OmniRe/DriveStudio 实际代码 commit、环境与补丁顺序尚未锁定",
+      "resolution": "登记仓库、immutable commit、环境锁与补丁顺序"
+    },
+    {
+      "code": "DATA_UNPINNED",
+      "description": "Waymo smoke sequence 与数据 manifest 尚未确定",
+      "resolution": "选择 8–16 帧序列并登记不可变 manifest"
+    }
+  ],
+  "preflight": {
+    "latest_status": "not-run",
+    "reports": []
+  },
+  "results": {
+    "metrics": [],
+    "artifacts": [],
+    "output_validation": "not-run",
+    "conclusion": null,
+    "idea_effects": [],
+    "limitations": [],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  "events": [
+    {
+      "event_id": "EVT-D6EB16E973",
+      "timestamp": "2026-08-18T08:44:36Z",
+      "type": "created",
+      "from_status": null,
+      "to_status": "blocked",
+      "reason": "Created from an experiment specification.",
+      "evidence": null
+    }
+  ],
+  "provenance": {
+    "source": "sources/2026-08-18_fastrelight_qe_and_presentation_intake.md",
+    "source_sha256": null,
+    "created_by": "Codex"
+  },
+  "created_at": "2026-08-18T08:44:36Z",
+  "updated_at": "2026-08-18T08:44:36Z"
+}

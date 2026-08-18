@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "experiments": [
+    {
+      "experiment_id": "EXP-1584B0636795",
+      "title": "P1 FastRelight 组件重建基线",
+      "type": "benchmark",
+      "status": "blocked",
+      "objective": "分别测量背景/天空、刚性车辆、行人和通用形变体的几何、渲染、时序与效率。",
+      "idea_ids": [
+        "IDEA-93F257E3E556"
+      ],
+      "record_path": "records/EXP-1584B0636795.json",
+      "note_path": "notes/EXP-1584B0636795.md",
+      "updated_at": "2026-08-18T08:44:36Z"
+    },
+    {
+      "experiment_id": "EXP-4C2A9AD4C3D2",
+      "title": "P4 全局/空间光照、材质与可见性消融",
+      "type": "ablation",
+      "status": "blocked",
+      "objective": "检验空间光照残差、材质先验和显式阴影可见性是否各自改善跨光照与编辑后真实性。",
+      "idea_ids": [
+        "IDEA-DC38D8C3CC41",
+        "IDEA-132F2E720420"
+      ],
+      "record_path": "records/EXP-4C2A9AD4C3D2.json",
+      "note_path": "notes/EXP-4C2A9AD4C3D2.md",
+      "updated_at": "2026-08-18T08:44:36Z"
+    },
+    {
+      "experiment_id": "EXP-54CD8F9137F2",
+      "title": "P0 Waymo 五类组件数据与渲染合约 smoke test",
+      "type": "contract-test",
+      "status": "blocked",
+      "objective": "验证一个 8–16 帧 Waymo 序列可以按统一 manifest 导出五类组件层与 composite。",
+      "idea_ids": [
+        "IDEA-93F257E3E556"
+      ],
+      "record_path": "records/EXP-54CD8F9137F2.json",
+      "note_path": "notes/EXP-54CD8F9137F2.md",
+      "updated_at": "2026-08-18T08:44:36Z"
+    },
+    {
+      "experiment_id": "EXP-C4E8F5217892",
+      "title": "P3 CARLA 跨光照真值与全局环境光基线",
+      "type": "benchmark",
+      "status": "blocked",
+      "objective": "建立同几何跨光照 paired GT，并量化 baked、per-component 与 global-light baselines。",
+      "idea_ids": [
+        "IDEA-DC38D8C3CC41"
+      ],
+      "record_path": "records/EXP-C4E8F5217892.json",
+      "note_path": "notes/EXP-C4E8F5217892.md",
+      "updated_at": "2026-08-18T08:44:36Z"
+    }
+  ]
+}

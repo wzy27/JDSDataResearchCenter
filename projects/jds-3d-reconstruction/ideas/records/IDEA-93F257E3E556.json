@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "idea_id": "IDEA-93F257E3E556",
+  "project_id": "jds-3d-reconstruction",
+  "title": "组件化可编辑 4D Gaussian 场景图",
+  "kind": "system-design",
+  "status": "active",
+  "statement": "将驾驶场景拆为天空、静态背景、刚性车辆、骨骼驱动行人和通用形变体，并让所有组件遵循统一的几何、运动、材质、可见性与光照响应接口。",
+  "motivation": "显式前景/背景与运动类型分解是对象级编辑和跨组件一致重打光的前提。",
+  "assumptions": [
+    "多视角 RGB 与 LiDAR 足以在首版建立统一坐标和组件监督。"
+  ],
+  "alternatives": [
+    "沿用单一时变场表示，不提供对象级编辑边界。"
+  ],
+  "validation": {
+    "success_criteria": [
+      "同一 Waymo 短序列可独立导出、移除、替换并重组人、车、背景和天空层。"
+    ],
+    "failure_signals": [
+      "组件拆分导致明显边界泄漏、身份混合或组合后几何错位。"
+    ],
+    "experiment_ids": ["EXP-54CD8F9137F2", "EXP-1584B0636795"]
+  },
+  "evolution": [
+    {
+      "event_id": "EVT-B53B87B38E",
+      "timestamp": "2026-08-18T08:39:59Z",
+      "type": "captured",
+      "summary": "Initial capture",
+      "reason": "Captured from supplied research material.",
+      "source": "D:\\Workspace\\QE_main.pdf"
+    }
+  ],
+  "tags": [
+    "fastrelight",
+    "scene-decomposition"
+  ],
+  "provenance": {
+    "sources": [
+      {
+        "location": "D:\\Workspace\\QE_main.pdf",
+        "sha256": "671fa520fa1d8e61ac6da556682b559e37358d466daf1182a33d9a87132084c1",
+        "anchor": "Chapter 4, physical pages 45-49 (report pages 34-38)",
+        "role": "researcher-provided"
+      }
+    ]
+  },
+  "traceability": {
+    "lit_ids": [],
+    "task_ids": ["TASK-9A7AF40BC2", "TASK-DD540CF915", "TASK-C0D73ED316", "TASK-84E68643E9", "TASK-E5886BDB18", "TASK-9C662E26DC", "TASK-C844EE4497", "TASK-56ED48CC9E"],
+    "experiment_ids": ["EXP-54CD8F9137F2", "EXP-1584B0636795"],
+    "claim_ids": [],
+    "parent_idea_ids": [],
+    "supersedes": [],
+    "superseded_by": []
+  },
+  "created_at": "2026-08-18T08:39:59Z",
+  "updated_at": "2026-08-18T08:39:59Z"
+}

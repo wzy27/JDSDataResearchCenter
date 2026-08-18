@@ -1,0 +1,23 @@
+{
+  "title": "P1 FastRelight 组件重建基线",
+  "type": "benchmark",
+  "status": "blocked",
+  "objective": "分别测量背景/天空、刚性车辆、行人和通用形变体的几何、渲染、时序与效率。",
+  "protocol": {
+    "scope": "组件独立验收，不包含联合重打光。",
+    "success_criteria": ["三条必选组件均有锁定 checkpoint 与指标", "行人覆盖至少 3 subjects × 3 motions", "结果可由统一 evaluator 重现"],
+    "failure_criteria": ["只有视频无配置/指标", "组件依赖不同坐标或颜色约定", "checkpoint selection 未预注册"],
+    "expected_outputs": ["per-component metrics", "component checkpoints", "failure taxonomy"]
+  },
+  "traceability": {"idea_ids": ["IDEA-93F257E3E556"], "task_ids": ["TASK-84E68643E9", "TASK-E5886BDB18", "TASK-9C662E26DC", "TASK-C844EE4497"], "lit_ids": [], "claim_ids": [], "parent_experiment_ids": []},
+  "execution": {"executor_id": null, "cwd": {"connection": null, "relative_path": null}, "command_argv": [], "required_commands": [], "required_connections": [], "watchdog_policy": null},
+  "code": {"repository": null, "commit": null, "dirty": null, "patch_uri": null},
+  "data": {"datasets": []},
+  "environment": {"os": null, "runtime": null, "lockfile": null, "seeds": {}},
+  "resources": {"accelerator": {"vendor": "unknown", "count": 1, "min_vram_gb": null, "cuda": null, "driver": null}, "min_disk_gb": null},
+  "blockers": [
+    {"code": "P0_GATE", "description": "依赖 P0 合约 smoke test 通过", "resolution": "关闭 G0 并关联父实验"},
+    {"code": "COMPONENTS_UNRECOVERED", "description": "各组件代码与 checkpoint 尚未恢复", "resolution": "分别登记背景、车辆、行人与形变体的代码和 checkpoint"}
+  ],
+  "source": "plans/2026-08-18_fastrelight_research_program_v1.md"
+}

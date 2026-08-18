@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "ideas": [
+    {
+      "idea_id": "IDEA-132F2E720420",
+      "title": "时序一致的前景背景分解监督",
+      "kind": "hypothesis",
+      "status": "proposed",
+      "statement": "实例持续性约束、时序一致的背景补全和显式阴影/可见性建模，比逐帧掩码加独立修复更能减少动态实例混合、背景污染与光照泄漏。",
+      "record_path": "records/IDEA-132F2E720420.json",
+      "note_path": "notes/IDEA-132F2E720420.md",
+      "updated_at": "2026-08-18T08:39:59Z"
+    },
+    {
+      "idea_id": "IDEA-93F257E3E556",
+      "title": "组件化可编辑 4D Gaussian 场景图",
+      "kind": "system-design",
+      "status": "active",
+      "statement": "将驾驶场景拆为天空、静态背景、刚性车辆、骨骼驱动行人和通用形变体，并让所有组件遵循统一的几何、运动、材质、可见性与光照响应接口。",
+      "record_path": "records/IDEA-93F257E3E556.json",
+      "note_path": "notes/IDEA-93F257E3E556.md",
+      "updated_at": "2026-08-18T08:39:59Z"
+    },
+    {
+      "idea_id": "IDEA-DC38D8C3CC41",
+      "title": "共享环境光与空间光照残差的统一重打光",
+      "kind": "hypothesis",
+      "status": "proposed",
+      "statement": "共享环境光参数提供跨组件的全局一致性，空间分区光照残差与材质先验补充建筑阴影和局部光源，可在不重建几何的情况下提升编辑后重打光真实性。",
+      "record_path": "records/IDEA-DC38D8C3CC41.json",
+      "note_path": "notes/IDEA-DC38D8C3CC41.md",
+      "updated_at": "2026-08-18T08:39:59Z"
+    }
+  ]
+}

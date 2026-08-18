@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "experiment_id": "EXP-C4E8F5217892",
+  "project_id": "jds-3d-reconstruction",
+  "title": "P3 CARLA 跨光照真值与全局环境光基线",
+  "type": "benchmark",
+  "status": "blocked",
+  "objective": "建立同几何跨光照 paired GT，并量化 baked、per-component 与 global-light baselines。",
+  "protocol": {
+    "scope": "先用固定几何隔离光照建模，再加入预测几何。",
+    "success_criteria": [
+      "scene/light split 无泄漏",
+      "材质、深度、normal、shadow 和 light metadata 可审计",
+      "global-only baseline 可复现"
+    ],
+    "failure_criteria": [
+      "同一场景/光照泄漏到 train/test",
+      "相机成像变化与场景光照混淆",
+      "无 shadow 或 material GT"
+    ],
+    "expected_outputs": [
+      "dataset manifest",
+      "relight metrics",
+      "shadow metrics",
+      "baseline renders"
+    ]
+  },
+  "traceability": {
+    "idea_ids": [
+      "IDEA-DC38D8C3CC41"
+    ],
+    "task_ids": [
+      "TASK-C020D3B4C2",
+      "TASK-C312DFAB8F"
+    ],
+    "lit_ids": [],
+    "claim_ids": [],
+    "parent_experiment_ids": []
+  },
+  "execution": {
+    "executor_id": null,
+    "cwd": {
+      "connection": null,
+      "relative_path": null
+    },
+    "command_argv": [],
+    "required_commands": [],
+    "required_connections": [],
+    "watchdog_policy": null
+  },
+  "code": {
+    "repository": null,
+    "commit": null,
+    "dirty": null,
+    "patch_uri": null
+  },
+  "data": {
+    "datasets": []
+  },
+  "environment": {
+    "os": null,
+    "runtime": null,
+    "lockfile": null,
+    "seeds": {}
+  },
+  "resources": {
+    "accelerator": {
+      "vendor": "unknown",
+      "count": 1,
+      "min_vram_gb": null,
+      "cuda": null,
+      "driver": null
+    },
+    "min_disk_gb": null
+  },
+  "blockers": [
+    {
+      "code": "CARLA_PROTOCOL_UNPINNED",
+      "description": "CARLA capture pipeline、版本与场景/光照矩阵尚未锁定",
+      "resolution": "锁定 CARLA 版本、capture commit、split 和光照矩阵"
+    },
+    {
+      "code": "EXECUTION_UNRESOLVED",
+      "description": "重打光代码仓和执行器尚未确定",
+      "resolution": "登记 immutable commit、executor、命令和输出边界"
+    }
+  ],
+  "preflight": {
+    "latest_status": "not-run",
+    "reports": []
+  },
+  "results": {
+    "metrics": [],
+    "artifacts": [],
+    "output_validation": "not-run",
+    "conclusion": null,
+    "idea_effects": [],
+    "limitations": [],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  "events": [
+    {
+      "event_id": "EVT-F1F4460BEB",
+      "timestamp": "2026-08-18T08:44:36Z",
+      "type": "created",
+      "from_status": null,
+      "to_status": "blocked",
+      "reason": "Created from an experiment specification.",
+      "evidence": null
+    }
+  ],
+  "provenance": {
+    "source": "D:\\Workspace\\QE_main.pdf#physical-pages-52-53",
+    "source_sha256": null,
+    "created_by": "Codex"
+  },
+  "created_at": "2026-08-18T08:44:36Z",
+  "updated_at": "2026-08-18T08:44:36Z"
+}

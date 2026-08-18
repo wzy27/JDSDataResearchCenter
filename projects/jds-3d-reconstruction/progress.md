@@ -1,4 +1,19 @@
-# 项目进度审计（2026-08-18）
+# FastRelight 项目进度审计（2026-08-18）
+
+## 文档级总判定
+
+Presentation 已给出 FastRelight 的问题、组件图、损失方向与评估设想；QE report §6.2.3 则明确说明系统当前只完成总体 pipeline design，完整实现和规模验证仍是未来工作。因此，本页此前从 S3 得到的“人体原型、背景产物线索”应视为可复用的局部资产，而不是 FastRelight 实现完成度。
+
+| FastRelight 层级 | 状态 | 判定依据 |
+|---|---|---|
+| 研究问题与总体架构 | 设计完成 | PPT 25–32；QE Chapter 4 |
+| 组件/监督/损失草案 | 设计完成但未充分指定 | QE pp.45–51 |
+| 完整代码和统一接口 | 未见证据 | QE §6.2.3 明列为未来实现 |
+| 联合重建与重打光 | 未见证据 | 无代码 commit、命令、checkpoint 或指标 |
+| CARLA/真实数据主实验 | 未见证据 | 只有评估计划，无结果表 |
+| 论文贡献验证 | 未完成 | 材料使用 proposed/aims/expected 表述 |
+
+材料摘录与矛盾项见 [`sources/2026-08-18_fastrelight_qe_and_presentation_intake.md`](sources/2026-08-18_fastrelight_qe_and_presentation_intake.md)，执行路线见 [`plans/2026-08-18_fastrelight_research_program_v1.md`](plans/2026-08-18_fastrelight_research_program_v1.md)。
 
 状态定义：
 

@@ -1,13 +1,26 @@
 project_id: jds-3d-reconstruction
-title: 基于 OmniRe 的可编辑城市重建与重打光
+title: FastRelight：可编辑、可重打光的 4D 驾驶场景重建
 status: active
 scope: >-
-  以 OmniRe 动态 Gaussian scene graph 为基线，分别完成行人/人体、车辆和静态场景重建，
-  再加入统一重打光模块，使各实体能够独立编辑、重新组合，并在新光照下保持真实一致。
-  原始归档、视频、数据集、模型权重和个人资料保留在外部对象存储，不进入本仓库。
+  基于 OmniRe 的显式前景/背景分解，从同步多视角 RGB 与 LiDAR 构建天空、静态背景、
+  刚性车辆、骨骼驱动行人和通用形变体五类 Gaussian 组件；以共享环境光、空间光照残差、
+  材质先验和可见性/阴影建模支持对象级编辑与光照一致的重新组合。
 created_at: 2026-08-18
 updated_at: 2026-08-18
-current_phase: human-prototype-scene-evidence-recovery
+current_phase: p0-contract-and-reproducible-baseline
+current_plan: plans/2026-08-18_fastrelight_research_program_v1.md
+primary_inputs:
+  - synchronized-multiview-rgb
+  - calibrated-cameras
+  - lidar
+deferred_inputs:
+  - radar
+component_scope:
+  - sky
+  - static-background
+  - rigid-vehicle
+  - articulated-pedestrian
+  - generic-deformable
 external_links:
   - kind: project
     title: OmniRe project page
@@ -28,7 +41,7 @@ external_links:
     url: https://arxiv.org/abs/2503.10625
 connections:
   - kind: external-data
-    title: JDS OBS source prefix
+    title: JDS S3 source prefix
     connection: jds-obs
     uri: s3://bucket-2622-guiyang/w84400451/jds_data/
   - kind: local-cache

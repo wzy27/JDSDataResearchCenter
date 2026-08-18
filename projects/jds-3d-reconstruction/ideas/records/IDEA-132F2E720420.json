@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "idea_id": "IDEA-132F2E720420",
+  "project_id": "jds-3d-reconstruction",
+  "title": "时序一致的前景背景分解监督",
+  "kind": "hypothesis",
+  "status": "proposed",
+  "statement": "实例持续性约束、时序一致的背景补全和显式阴影/可见性建模，比逐帧掩码加独立修复更能减少动态实例混合、背景污染与光照泄漏。",
+  "motivation": "演示材料已明确指出背景补全跨时不一致、重叠动态实例混合以及阴影区域难以分割。",
+  "assumptions": [
+    "可获得实例轨迹、光流或等价的跨帧对应监督。"
+  ],
+  "alternatives": [
+    "只使用逐帧 Grounded SAM2 掩码和 DiffuEraser 背景。"
+  ],
+  "validation": {
+    "success_criteria": [
+      "相对逐帧基线降低 ID switch、背景时序误差和阴影泄漏。"
+    ],
+    "failure_signals": [
+      "增加时序约束后仍不能分开遮挡实例，或静态背景出现更强拖影。"
+    ],
+    "experiment_ids": ["EXP-54CD8F9137F2", "EXP-4C2A9AD4C3D2"]
+  },
+  "evolution": [
+    {
+      "event_id": "EVT-0E17DE5213",
+      "timestamp": "2026-08-18T08:39:59Z",
+      "type": "captured",
+      "summary": "Initial capture",
+      "reason": "Captured from supplied research material.",
+      "source": "D:\\Workspace\\Presentation_0413_v3.pptx"
+    }
+  ],
+  "tags": [
+    "fastrelight",
+    "decomposition"
+  ],
+  "provenance": {
+    "sources": [
+      {
+        "location": "D:\\Workspace\\Presentation_0413_v3.pptx",
+        "sha256": "df2202e92d58e760cea21023cda62e40280aac703a5d7356d843f77e147a30ab",
+        "anchor": "Slides 29 and 49",
+        "role": "researcher-provided"
+      }
+    ]
+  },
+  "traceability": {
+    "lit_ids": [],
+    "task_ids": ["TASK-56ED48CC9E", "TASK-BA65540608", "TASK-31CE2EFAFC"],
+    "experiment_ids": ["EXP-54CD8F9137F2", "EXP-4C2A9AD4C3D2"],
+    "claim_ids": [],
+    "parent_idea_ids": [],
+    "supersedes": [],
+    "superseded_by": []
+  },
+  "created_at": "2026-08-18T08:39:59Z",
+  "updated_at": "2026-08-18T08:39:59Z"
+}

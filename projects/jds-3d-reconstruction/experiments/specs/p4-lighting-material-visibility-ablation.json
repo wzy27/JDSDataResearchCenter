@@ -1,0 +1,23 @@
+{
+  "title": "P4 全局/空间光照、材质与可见性消融",
+  "type": "ablation",
+  "status": "blocked",
+  "objective": "检验空间光照残差、材质先验和显式阴影可见性是否各自改善跨光照与编辑后真实性。",
+  "protocol": {
+    "scope": "三随机种子；固定数据切分和 checkpoint selection；同时报告重建退化。",
+    "success_criteria": ["完整模型优于 global-only", "关键改善的置信区间不跨 0", "albedo stability 和 shadow 指标不因视觉指标提升而恶化"],
+    "failure_criteria": ["空间残差吸收材质", "阴影与遮挡关系错误", "只有定性案例无统计证据"],
+    "expected_outputs": ["ablation table", "confidence intervals", "failure cases", "edit-and-relight videos"]
+  },
+  "traceability": {"idea_ids": ["IDEA-DC38D8C3CC41", "IDEA-132F2E720420"], "task_ids": ["TASK-BA65540608", "TASK-31CE2EFAFC"], "lit_ids": [], "claim_ids": [], "parent_experiment_ids": []},
+  "execution": {"executor_id": null, "cwd": {"connection": null, "relative_path": null}, "command_argv": [], "required_commands": [], "required_connections": [], "watchdog_policy": null},
+  "code": {"repository": null, "commit": null, "dirty": null, "patch_uri": null},
+  "data": {"datasets": []},
+  "environment": {"os": null, "runtime": null, "lockfile": null, "seeds": {"train": [11, 23, 47]}},
+  "resources": {"accelerator": {"vendor": "unknown", "count": 1, "min_vram_gb": null, "cuda": null, "driver": null}, "min_disk_gb": null},
+  "blockers": [
+    {"code": "UPSTREAM_GATES", "description": "依赖 P1–P3 阶段门通过", "resolution": "组件、编辑和 CARLA baseline 实验完成并关联"},
+    {"code": "METHOD_UNPINNED", "description": "材质、区域光照和 visibility 参数化尚未由 probe 锁定", "resolution": "用小规模 probe 锁定表示、容量和损失"}
+  ],
+  "source": "D:\\Workspace\\QE_main.pdf#physical-pages-50-51"
+}

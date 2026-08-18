@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "idea_id": "IDEA-DC38D8C3CC41",
+  "project_id": "jds-3d-reconstruction",
+  "title": "共享环境光与空间光照残差的统一重打光",
+  "kind": "hypothesis",
+  "status": "proposed",
+  "statement": "共享环境光参数提供跨组件的全局一致性，空间分区光照残差与材质先验补充建筑阴影和局部光源，可在不重建几何的情况下提升编辑后重打光真实性。",
+  "motivation": "单一全局光照无法表达街区阴影，完全独立的组件光照又容易产生曝光和色调不一致。",
+  "assumptions": [
+    "合成数据能够提供可控的光照和阴影真值。"
+  ],
+  "alternatives": [
+    "仅学习每个组件的外观变换。"
+  ],
+  "validation": {
+    "success_criteria": [
+      "在 CARLA 跨光照测试上优于仅全局环境光和仅外观变换基线，并保持跨组件曝光一致。"
+    ],
+    "failure_signals": [
+      "空间残差吸收材质/几何，或编辑后阴影位置与遮挡关系不一致。"
+    ],
+    "experiment_ids": ["EXP-C4E8F5217892", "EXP-4C2A9AD4C3D2"]
+  },
+  "evolution": [
+    {
+      "event_id": "EVT-94440CB1D9",
+      "timestamp": "2026-08-18T08:39:59Z",
+      "type": "captured",
+      "summary": "Initial capture",
+      "reason": "Captured from supplied research material.",
+      "source": "D:\\Workspace\\QE_main.pdf"
+    }
+  ],
+  "tags": [
+    "fastrelight",
+    "relighting"
+  ],
+  "provenance": {
+    "sources": [
+      {
+        "location": "D:\\Workspace\\QE_main.pdf",
+        "sha256": "671fa520fa1d8e61ac6da556682b559e37358d466daf1182a33d9a87132084c1",
+        "anchor": "Chapter 4, physical pages 50-51 (report pages 39-40)",
+        "role": "researcher-provided"
+      }
+    ]
+  },
+  "traceability": {
+    "lit_ids": [],
+    "task_ids": ["TASK-C020D3B4C2", "TASK-C312DFAB8F", "TASK-BA65540608", "TASK-31CE2EFAFC"],
+    "experiment_ids": ["EXP-C4E8F5217892", "EXP-4C2A9AD4C3D2"],
+    "claim_ids": [],
+    "parent_idea_ids": [],
+    "supersedes": [],
+    "superseded_by": []
+  },
+  "created_at": "2026-08-18T08:39:59Z",
+  "updated_at": "2026-08-18T08:39:59Z"
+}
