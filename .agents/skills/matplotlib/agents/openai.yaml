@@ -1,4 +1,0 @@
-interface:
-  display_name: "科研绘图"
-  short_description: "生成适合论文发表的统计图并执行可访问性与视觉质量检查"
-  default_prompt: "使用 $matplotlib 根据实验数据生成可复现、适合论文使用的统计图。"

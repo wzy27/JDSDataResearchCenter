@@ -1,14 +1,24 @@
 project_id: jds-3d-reconstruction
-title: JDS 三维人体重建与自动驾驶场景研究
+title: 基于 OmniRe 的可编辑城市重建与重打光
 status: active
 scope: >-
-  管理单图人体三维重建、LHM 人体 Avatar、动态服装 Gaussian/LBS、光照估计，
-  以及人体与自动驾驶 3DGS 场景融合相关的研究来源、代码版本、实验和结论。
+  以 OmniRe 动态 Gaussian scene graph 为基线，分别完成行人/人体、车辆和静态场景重建，
+  再加入统一重打光模块，使各实体能够独立编辑、重新组合，并在新光照下保持真实一致。
   原始归档、视频、数据集、模型权重和个人资料保留在外部对象存储，不进入本仓库。
 created_at: 2026-08-18
 updated_at: 2026-08-18
-current_phase: source-intake-and-privacy-triage
+current_phase: human-prototype-scene-evidence-recovery
 external_links:
+  - kind: project
+    title: OmniRe project page
+    url: https://ziyc.github.io/omnire/
+  - kind: code
+    title: DriveStudio / OmniRe official implementation
+    url: https://github.com/ziyc/drivestudio
+  - kind: paper
+    title: "OmniRe: Omni Urban Scene Reconstruction"
+    identifier: arXiv:2408.16760
+    url: https://arxiv.org/abs/2408.16760
   - kind: code
     title: LHM official implementation
     url: https://github.com/aigc3d/LHM
