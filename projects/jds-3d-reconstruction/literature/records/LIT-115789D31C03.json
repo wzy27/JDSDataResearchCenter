@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "record_id": "LIT-115789D31C03",
+  "project_id": "jds-3d-reconstruction",
+  "status": "screened",
+  "bibliographic": {
+    "title": "HorizonForge: Driving Scene Editing with Any Trajectories and Any Vehicles",
+    "authors": [
+      {
+        "name": "Yifan Wang",
+        "orcid": null
+      },
+      {
+        "name": "Francesco Pittaluga",
+        "orcid": null
+      },
+      {
+        "name": "Zaid Tasneem",
+        "orcid": null
+      },
+      {
+        "name": "Chenyu You",
+        "orcid": null
+      },
+      {
+        "name": "Manmohan Chandraker",
+        "orcid": null
+      },
+      {
+        "name": "Ziyu Jiang",
+        "orcid": null
+      }
+    ],
+    "year": 2026,
+    "publication_date": "2026-02-24T20:03:47Z",
+    "venue": "arXiv",
+    "publisher": "arXiv",
+    "type": "preprint",
+    "language": null,
+    "abstract": "Controllable driving scene generation is critical for realistic and scalable autonomous driving simulation, yet existing approaches struggle to jointly achieve photorealism and precise control. We introduce HorizonForge, a unified framework that reconstructs scenes as editable Gaussian Splats and Meshes, enabling fine-grained 3D manipulation and language-driven vehicle insertion. Edits are rendered through a noise-aware video diffusion process that enforces spatial and temporal consistency, producing diverse scene variations in a single feed-forward pass without per-trajectory optimization. To standardize evaluation, we further propose HorizonSuite, a comprehensive benchmark spanning ego- and agent-level editing tasks such as trajectory modifications and object manipulation. Extensive experiments show that Gaussian-Mesh representation delivers substantially higher fidelity than alternative 3D representations, and that temporal priors from video diffusion are essential for coherent synthesis. Combining these findings, HorizonForge establishes a simple yet powerful paradigm for photorealistic, controllable driving simulation, achieving an 83.4% user-preference gain and a 25.19% FID improvement over the second best state-of-the-art method. Project page: https://horizonforge.github.io/.",
+    "topics": [
+      "cs.CV"
+    ],
+    "citation_count": null
+  },
+  "external_ids": {
+    "doi": null,
+    "openalex": null,
+    "arxiv": "2602.21333",
+    "pmid": null,
+    "zotero": null
+  },
+  "access": {
+    "canonical_url": "https://arxiv.org/abs/2602.21333",
+    "open_access_url": "https://arxiv.org/pdf/2602.21333v2",
+    "fulltext_urls": [
+      "https://arxiv.org/pdf/2602.21333v2"
+    ],
+    "license_urls": []
+  },
+  "provenance": {
+    "input": "2602.21333",
+    "canonical_identity": "arxiv:2602.21333",
+    "retrievals": [
+      {
+        "source": "arxiv",
+        "url": "https://export.arxiv.org/api/query?id_list=2602.21333",
+        "retrieved_at": "2026-08-18T08:50:20Z"
+      },
+      {
+        "source": "arxiv",
+        "url": "https://export.arxiv.org/api/query?id_list=2602.21333",
+        "retrieved_at": "2026-08-18T08:57:18Z"
+      }
+    ],
+    "review_warnings": []
+  },
+  "review": {
+    "relevance": "direct-competitor-editing",
+    "source_inspected": "abstract-and-cvf-full-text-sections",
+    "key_findings": [
+      "Gaussian+mesh 3D 编辑与 video diffusion 时序细化，支持任意车辆和轨迹，并提出 HorizonSuite。"
+    ],
+    "methods": [
+      "3D harvesting/editing；noise-aware video diffusion。"
+    ],
+    "limitations": [
+      "生成式细化不等同于可解释的材质/光照分解或跨视角物理一致性。"
+    ],
+    "reviewed_by": "Codex",
+    "reviewed_at": "2026-08-18T00:00:00Z"
+  },
+  "traceability": {
+    "idea_ids": [
+      "IDEA-93F257E3E556"
+    ],
+    "experiment_ids": [
+      "EXP-4C2A9AD4C3D2"
+    ],
+    "claim_ids": [],
+    "figure_ids": [],
+    "table_ids": []
+  },
+  "created_at": "2026-08-18T08:50:20Z",
+  "updated_at": "2026-08-18T08:57:18Z"
+}

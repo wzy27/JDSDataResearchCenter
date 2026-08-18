@@ -6,8 +6,8 @@
 
 | 状态 | ID | 优先级 | 行动 | 验收 | Idea | 依赖 | 来源 |
 |---|---|---:|---|---|---|---|---|
-| [ ] | `TASK-9A7AF40BC2` | P0 | 锁定 FastRelight 基线代码、commit、环境和数据清单 | OmniRe/DriveStudio、LHM、补丁、license、环境和 checkpoint 均有 hash/版本 | `IDEA-93F257E3E556` | — | QE §6.2.3；S3 audit |
-| [ ] | `TASK-DD540CF915` | P0 | 统一 RGB、LiDAR、相机、实例、光照和编辑操作的数据合约 | 8–16 帧 manifest 通过 schema、坐标、颜色空间和曝光回归测试 | `IDEA-93F257E3E556` | `TASK-9A7AF40BC2` | QE pp.46–51 |
+| [~] | `TASK-9A7AF40BC2` | P0 | 锁定 FastRelight 基线代码、commit、环境和数据清单 | DriveStudio/Humans4D commit 与 license 已锁；仍缺 Linux+NVIDIA 环境、数据与 checkpoint | `IDEA-93F257E3E556` | — | `codebases/manifest.yaml`；P0 audit |
+| [~] | `TASK-DD540CF915` | P0 | 统一 RGB、LiDAR、相机、实例、光照和编辑操作的数据合约 | schema/example 已建立；仍需真实 8–16 帧 manifest 验证坐标、颜色空间和曝光 | `IDEA-93F257E3E556` | `TASK-9A7AF40BC2` | `datasets/sequence_manifest.schema.json` |
 | [ ] | `TASK-C0D73ED316` | P0 | 复现一个 Waymo 短序列并导出五类组件层 | sky/background/vehicle/pedestrian/deformable/composite schema 齐全，可为空层但不可缺协议 | `IDEA-93F257E3E556` | `TASK-DD540CF915` | PPT 27–29 |
 
 ## P1 — 组件独立验收

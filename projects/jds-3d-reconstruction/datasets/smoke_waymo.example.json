@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "sequence_id": "UNRESOLVED_WAYMO_SMOKE_SEQUENCE",
+  "dataset": "waymo",
+  "split": "training",
+  "frame_range": {"start": 0, "end": 15, "stride": 1},
+  "sensors": {"cameras": [0, 1, 2], "lidar": true, "timestamps": true, "coordinate_convention": "TO_BE_VERIFIED_FROM_DRIVESTUDIO", "linear_rgb": false, "exposure_metadata": false},
+  "components": {
+    "sky": {"present": true, "annotation_source": "SegFormer sky mask", "instance_count": null},
+    "static_background": {"present": true, "annotation_source": "DriveStudio background partition", "instance_count": 1},
+    "rigid_vehicle": {"present": false, "annotation_source": "Waymo object tracks", "instance_count": null},
+    "articulated_pedestrian": {"present": false, "annotation_source": "Waymo tracks + SMPL preprocessing", "instance_count": null},
+    "generic_deformable": {"present": false, "annotation_source": "Waymo category mapping", "instance_count": null}
+  },
+  "lighting": {"ground_truth": false, "condition_id": null, "environment_uri": null, "shadow_labels": false},
+  "provenance": {"data_version": null, "preprocess_code_commit": "e59bda4fa681f829dbb1d65f0de582b0f633c450", "manifest_sha256": null}
+}

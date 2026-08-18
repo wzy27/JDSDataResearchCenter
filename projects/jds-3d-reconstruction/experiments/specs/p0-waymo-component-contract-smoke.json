@@ -10,13 +10,13 @@
     "expected_outputs": ["resolved manifest", "component renders", "contract metrics"]
   },
   "traceability": {"idea_ids": ["IDEA-93F257E3E556"], "task_ids": ["TASK-9A7AF40BC2", "TASK-DD540CF915", "TASK-C0D73ED316"], "lit_ids": [], "claim_ids": [], "parent_experiment_ids": []},
-  "execution": {"executor_id": null, "cwd": {"connection": null, "relative_path": null}, "command_argv": [], "required_commands": [], "required_connections": [], "watchdog_policy": null},
-  "code": {"repository": null, "commit": null, "dirty": null, "patch_uri": null},
+  "execution": {"executor_id": null, "cwd": {"connection": "drivestudio-upstream", "relative_path": "."}, "command_argv": [], "required_commands": ["python"], "required_connections": ["drivestudio-upstream", "waymo-smoke-data"], "watchdog_policy": null},
+  "code": {"repository": "https://github.com/ziyc/drivestudio.git", "commit": "e59bda4fa681f829dbb1d65f0de582b0f633c450", "dirty": false, "patch_uri": null},
   "data": {"datasets": []},
   "environment": {"os": null, "runtime": null, "lockfile": null, "seeds": {}},
   "resources": {"accelerator": {"vendor": "unknown", "count": 1, "min_vram_gb": null, "cuda": null, "driver": null}, "min_disk_gb": null},
   "blockers": [
-    {"code": "CODE_UNPINNED", "description": "OmniRe/DriveStudio 实际代码 commit、环境与补丁顺序尚未锁定", "resolution": "登记仓库、immutable commit、环境锁与补丁顺序"},
+    {"code": "EXECUTOR_UNAVAILABLE", "description": "当前工作机没有 Conda、NVIDIA/CUDA，不能建立上游 Python 3.9 + CUDA 11.7 训练环境", "resolution": "登记 Linux + NVIDIA executor 并完成只读 preflight"},
     {"code": "DATA_UNPINNED", "description": "Waymo smoke sequence 与数据 manifest 尚未确定", "resolution": "选择 8–16 帧序列并登记不可变 manifest"}
   ],
   "source": "sources/2026-08-18_fastrelight_qe_and_presentation_intake.md"

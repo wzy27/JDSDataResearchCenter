@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://researchcenter.local/jds-3d-reconstruction/sequence-manifest.schema.json",
+  "title": "FastRelight sequence manifest",
+  "type": "object",
+  "required": ["schema_version", "sequence_id", "dataset", "split", "frame_range", "sensors", "components", "lighting", "provenance"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "sequence_id": {"type": "string", "minLength": 1},
+    "dataset": {"enum": ["waymo", "carla", "nuscenes", "argoverse2", "other"]},
+    "split": {"type": "string", "minLength": 1},
+    "frame_range": {
+      "type": "object",
+      "required": ["start", "end", "stride"],
+      "properties": {"start": {"type": "integer", "minimum": 0}, "end": {"type": "integer", "minimum": 0}, "stride": {"type": "integer", "minimum": 1}},
+      "additionalProperties": false
+    },
+    "sensors": {
+      "type": "object",
+      "required": ["cameras", "lidar", "timestamps", "coordinate_convention", "linear_rgb"],
+      "properties": {
+        "cameras": {"type": "array", "minItems": 1, "items": {"type": "integer", "minimum": 0}},
+        "lidar": {"type": "boolean"},
+        "timestamps": {"type": "boolean"},
+        "coordinate_convention": {"type": "string", "minLength": 1},
+        "linear_rgb": {"type": "boolean"},
+        "exposure_metadata": {"type": "boolean"}
+      },
+      "additionalProperties": false
+    },
+    "components": {
+      "type": "object",
+      "required": ["sky", "static_background", "rigid_vehicle", "articulated_pedestrian", "generic_deformable"],
+      "properties": {
+        "sky": {"$ref": "#/$defs/component"},
+        "static_background": {"$ref": "#/$defs/component"},
+        "rigid_vehicle": {"$ref": "#/$defs/component"},
+        "articulated_pedestrian": {"$ref": "#/$defs/component"},
+        "generic_deformable": {"$ref": "#/$defs/component"}
+      },
+      "additionalProperties": false
+    },
+    "lighting": {
+      "type": "object",
+      "required": ["ground_truth", "condition_id"],
+      "properties": {"ground_truth": {"type": "boolean"}, "condition_id": {"type": ["string", "null"]}, "environment_uri": {"type": ["string", "null"]}, "shadow_labels": {"type": "boolean"}},
+      "additionalProperties": false
+    },
+    "provenance": {
+      "type": "object",
+      "required": ["data_version", "preprocess_code_commit", "manifest_sha256"],
+      "properties": {"data_version": {"type": ["string", "null"]}, "preprocess_code_commit": {"type": ["string", "null"]}, "manifest_sha256": {"type": ["string", "null"]}},
+      "additionalProperties": false
+    }
+  },
+  "$defs": {
+    "component": {
+      "type": "object",
+      "required": ["present", "annotation_source"],
+      "properties": {"present": {"type": "boolean"}, "annotation_source": {"type": ["string", "null"]}, "instance_count": {"type": ["integer", "null"], "minimum": 0}},
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

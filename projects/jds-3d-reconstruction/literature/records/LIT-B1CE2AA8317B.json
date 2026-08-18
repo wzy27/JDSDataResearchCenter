@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "record_id": "LIT-B1CE2AA8317B",
+  "project_id": "jds-3d-reconstruction",
+  "status": "screened",
+  "bibliographic": {
+    "title": "Animated 3DGS Avatars in Diverse Scenes with Consistent Lighting and Shadows",
+    "authors": [
+      {
+        "name": "Aymen Mir",
+        "orcid": null
+      },
+      {
+        "name": "Riza Alp Guler",
+        "orcid": null
+      },
+      {
+        "name": "Jian Wang",
+        "orcid": null
+      },
+      {
+        "name": "Gerard Pons-Moll",
+        "orcid": null
+      },
+      {
+        "name": "Bing Zhou",
+        "orcid": null
+      }
+    ],
+    "year": 2026,
+    "publication_date": "2026-01-04T20:42:06Z",
+    "venue": "arXiv",
+    "publisher": "arXiv",
+    "type": "preprint",
+    "language": null,
+    "abstract": "We present a method for consistent lighting and shadows when animated 3D Gaussian Splatting (3DGS) avatars interact with 3DGS scenes or with dynamic objects inserted into otherwise static scenes. Our key contribution is Deep Gaussian Shadow Maps (DGSM), a modern analogue of the classical shadow mapping algorithm tailored to the volumetric 3DGS representation. Building on the classic deep shadow mapping idea, we show that 3DGS admits closed form light accumulation along light rays, enabling volumetric shadow computation without meshing. For each estimated light, we tabulate transmittance over concentric radial shells and store them in octahedral atlases, which modern GPUs can sample in real time per query to attenuate affected scene Gaussians and thus cast and receive shadows consistently. To relight moving avatars, we approximate the local environment illumination with HDRI probes represented in a spherical harmonic (SH) basis and apply a fast per Gaussian radiance transfer, avoiding explicit BRDF estimation or offline optimization. We demonstrate environment consistent lighting for avatars from AvatarX and ActorsHQ, composited into ScanNet++, DL3DV, and SuperSplat scenes, and show interactions with inserted objects. Across single and multi avatar settings, DGSM and SH relighting operate fully in the volumetric 3DGS representation, yielding coherent shadows and relighting while avoiding meshing.",
+    "topics": [
+      "cs.CV"
+    ],
+    "citation_count": null
+  },
+  "external_ids": {
+    "doi": null,
+    "openalex": null,
+    "arxiv": "2601.01660",
+    "pmid": null,
+    "zotero": null
+  },
+  "access": {
+    "canonical_url": "https://arxiv.org/abs/2601.01660",
+    "open_access_url": "https://arxiv.org/pdf/2601.01660v1",
+    "fulltext_urls": [
+      "https://arxiv.org/pdf/2601.01660v1"
+    ],
+    "license_urls": []
+  },
+  "provenance": {
+    "input": "2601.01660",
+    "canonical_identity": "arxiv:2601.01660",
+    "retrievals": [
+      {
+        "source": "arxiv",
+        "url": "https://export.arxiv.org/api/query?id_list=2601.01660",
+        "retrieved_at": "2026-08-18T08:50:20Z"
+      },
+      {
+        "source": "arxiv",
+        "url": "https://export.arxiv.org/api/query?id_list=2601.01660",
+        "retrieved_at": "2026-08-18T08:57:18Z"
+      }
+    ],
+    "review_warnings": []
+  },
+  "review": {
+    "relevance": "direct-competitor-shadow-method",
+    "source_inspected": "full-text",
+    "key_findings": [
+      "Deep Gaussian Shadow Maps 直接在 3DGS 中实现动态 avatar/对象 cast/receive shadows，并用 SH HDRI probe 重打光。"
+    ],
+    "methods": [
+      "closed-form Gaussian transmittance；octahedral deep-shadow atlas；per-Gaussian SH transfer。"
+    ],
+    "limitations": [
+      "假设光源附近场景静态并依赖光源估计；实验不是大尺度动态驾驶场景。"
+    ],
+    "reviewed_by": "Codex",
+    "reviewed_at": "2026-08-18T00:00:00Z"
+  },
+  "traceability": {
+    "idea_ids": [
+      "IDEA-DC38D8C3CC41",
+      "IDEA-132F2E720420"
+    ],
+    "experiment_ids": [
+      "EXP-4C2A9AD4C3D2"
+    ],
+    "claim_ids": [],
+    "figure_ids": [],
+    "table_ids": []
+  },
+  "created_at": "2026-08-18T08:50:20Z",
+  "updated_at": "2026-08-18T08:57:18Z"
+}

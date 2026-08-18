@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "record_id": "LIT-89E998CE9AF7",
+  "project_id": "jds-3d-reconstruction",
+  "status": "screened",
+  "bibliographic": {
+    "title": "DrivingEditor: 4D Composite Gaussian Splatting for Reconstruction and Edition of Dynamic Autonomous Driving Scenes",
+    "authors": [
+      {
+        "name": "Wang Xu",
+        "orcid": "0009-0000-2113-7442"
+      },
+      {
+        "name": "Yeqiang Qian",
+        "orcid": "0000-0003-0831-8702"
+      },
+      {
+        "name": "Yun-Fu Liu",
+        "orcid": null
+      },
+      {
+        "name": "Lei Tuo",
+        "orcid": null
+      },
+      {
+        "name": "Huiyong Chen",
+        "orcid": null
+      },
+      {
+        "name": "Ming Yang",
+        "orcid": "0000-0002-8679-9137"
+      }
+    ],
+    "year": 2026,
+    "publication_date": "2026",
+    "venue": "IEEE Transactions on Image Processing",
+    "publisher": "Institute of Electrical and Electronics Engineers (IEEE)",
+    "type": "journal-article",
+    "language": null,
+    "abstract": null,
+    "topics": [],
+    "citation_count": 0
+  },
+  "external_ids": {
+    "doi": "10.1109/tip.2026.3659733",
+    "openalex": null,
+    "arxiv": null,
+    "pmid": null,
+    "zotero": null
+  },
+  "access": {
+    "canonical_url": "https://doi.org/10.1109/tip.2026.3659733",
+    "open_access_url": null,
+    "fulltext_urls": [
+      "http://xplorestaging.ieee.org/ielx8/83/11355710/11372957.pdf?arnumber=11372957"
+    ],
+    "license_urls": [
+      "https://ieeexplore.ieee.org/Xplorehelp/downloads/license-information/IEEE.html",
+      "https://doi.org/10.15223/policy-029",
+      "https://doi.org/10.15223/policy-037"
+    ]
+  },
+  "provenance": {
+    "input": "10.1109/TIP.2026.3659733",
+    "canonical_identity": "doi:10.1109/tip.2026.3659733",
+    "retrievals": [
+      {
+        "source": "crossref",
+        "url": "https://api.crossref.org/works/10.1109/tip.2026.3659733",
+        "retrieved_at": "2026-08-18T08:50:21Z"
+      },
+      {
+        "source": "crossref",
+        "url": "https://api.crossref.org/works/10.1109/tip.2026.3659733",
+        "retrieved_at": "2026-08-18T08:57:19Z"
+      }
+    ],
+    "review_warnings": []
+  },
+  "review": {
+    "relevance": "direct-competitor-editing",
+    "source_inspected": "abstract-only",
+    "key_findings": [
+      "动态前景/静态背景双分支 4D composite Gaussian 表示，强调无需 3D bounding boxes 的重建与编辑。"
+    ],
+    "methods": [
+      "foreground/background decoupled Gaussian branches。"
+    ],
+    "limitations": [
+      "当前审阅未看到统一材质、环境光和动态 cast-shadow 证据。"
+    ],
+    "reviewed_by": "Codex",
+    "reviewed_at": "2026-08-18T00:00:00Z"
+  },
+  "traceability": {
+    "idea_ids": [
+      "IDEA-93F257E3E556"
+    ],
+    "experiment_ids": [
+      "EXP-1584B0636795"
+    ],
+    "claim_ids": [],
+    "figure_ids": [],
+    "table_ids": []
+  },
+  "created_at": "2026-08-18T08:50:21Z",
+  "updated_at": "2026-08-18T08:57:19Z"
+}

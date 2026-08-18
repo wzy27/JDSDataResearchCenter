@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "works": [
+    {
+      "record_id": "LIT-115789D31C03",
+      "status": "screened",
+      "title": "HorizonForge: Driving Scene Editing with Any Trajectories and Any Vehicles",
+      "year": 2026,
+      "doi": null,
+      "record_path": "records/LIT-115789D31C03.json",
+      "note_path": "notes/LIT-115789D31C03.md"
+    },
+    {
+      "record_id": "LIT-3E7D80D87C6C",
+      "status": "screened",
+      "title": "GS-ID: Illumination Decomposition on Gaussian Splatting via Adaptive Light Aggregation and Diffusion-Guided Material Priors",
+      "year": 2024,
+      "doi": null,
+      "record_path": "records/LIT-3E7D80D87C6C.json",
+      "note_path": "notes/LIT-3E7D80D87C6C.md"
+    },
+    {
+      "record_id": "LIT-537AC4BD205F",
+      "status": "screened",
+      "title": "LightSim: Neural Lighting Simulation for Urban Scenes",
+      "year": 2023,
+      "doi": null,
+      "record_path": "records/LIT-537AC4BD205F.json",
+      "note_path": "notes/LIT-537AC4BD205F.md"
+    },
+    {
+      "record_id": "LIT-59B38FF55E4D",
+      "status": "screened",
+      "title": "MADrive: Memory-Augmented Driving Scene Modeling",
+      "year": 2025,
+      "doi": null,
+      "record_path": "records/LIT-59B38FF55E4D.json",
+      "note_path": "notes/LIT-59B38FF55E4D.md"
+    },
+    {
+      "record_id": "LIT-6BE73BA19078",
+      "status": "screened",
+      "title": "DrivingGaussian++: Towards Realistic Reconstruction and Editable Simulation for Surrounding Dynamic Driving Scenes",
+      "year": 2025,
+      "doi": null,
+      "record_path": "records/LIT-6BE73BA19078.json",
+      "note_path": "notes/LIT-6BE73BA19078.md"
+    },
+    {
+      "record_id": "LIT-89E998CE9AF7",
+      "status": "screened",
+      "title": "DrivingEditor: 4D Composite Gaussian Splatting for Reconstruction and Edition of Dynamic Autonomous Driving Scenes",
+      "year": 2026,
+      "doi": "10.1109/tip.2026.3659733",
+      "record_path": "records/LIT-89E998CE9AF7.json",
+      "note_path": "notes/LIT-89E998CE9AF7.md"
+    },
+    {
+      "record_id": "LIT-A91382E33778",
+      "status": "screened",
+      "title": "Real2Sim: A Physics-driven and Editable Gaussian Splatting Framework for Autonomous Driving Scenes",
+      "year": 2026,
+      "doi": null,
+      "record_path": "records/LIT-A91382E33778.json",
+      "note_path": "notes/LIT-A91382E33778.md"
+    },
+    {
+      "record_id": "LIT-B1CE2AA8317B",
+      "status": "screened",
+      "title": "Animated 3DGS Avatars in Diverse Scenes with Consistent Lighting and Shadows",
+      "year": 2026,
+      "doi": null,
+      "record_path": "records/LIT-B1CE2AA8317B.json",
+      "note_path": "notes/LIT-B1CE2AA8317B.md"
+    },
+    {
+      "record_id": "LIT-C156B17C747C",
+      "status": "screened",
+      "title": "DrivingRecon: Large 4D Gaussian Reconstruction Model For Autonomous Driving",
+      "year": 2024,
+      "doi": null,
+      "record_path": "records/LIT-C156B17C747C.json",
+      "note_path": "notes/LIT-C156B17C747C.md"
+    },
+    {
+      "record_id": "LIT-F9C476331FA3",
+      "status": "screened",
+      "title": "DynamicVGGT: Learning Dynamic Point Maps for 4D Scene Reconstruction in Autonomous Driving",
+      "year": 2026,
+      "doi": null,
+      "record_path": "records/LIT-F9C476331FA3.json",
+      "note_path": "notes/LIT-F9C476331FA3.md"
+    }
+  ]
+}

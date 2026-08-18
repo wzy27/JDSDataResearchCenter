@@ -15,6 +15,12 @@ Presentation 已给出 FastRelight 的问题、组件图、损失方向与评估
 
 材料摘录与矛盾项见 [`sources/2026-08-18_fastrelight_qe_and_presentation_intake.md`](sources/2026-08-18_fastrelight_qe_and_presentation_intake.md)，执行路线见 [`plans/2026-08-18_fastrelight_research_program_v1.md`](plans/2026-08-18_fastrelight_research_program_v1.md)。
 
+## P0 更新：上游基线已锁定，运行仍阻塞
+
+2026-08-18 已将官方 DriveStudio 最新默认分支锁定为 `main@e59bda4fa681f829dbb1d65f0de582b0f633c450`，并锁定 `Humans4D@6ec79656a23c33237c724742ca2a0ec00b398b53`、MIT license、关键配置 hash、五类组件映射和分层渲染输出。sequence manifest schema 与未解析 smoke example 已建立。
+
+当前工作机没有 Conda、NVIDIA/CUDA executor，也没有 Waymo raw/processed 数据，因此没有执行训练或渲染 smoke test。`EXP-54CD8F9137F2` 保持 `blocked`；这属于 P0 部分完成，不是 baseline 已复现。详见 [`sources/2026-08-18_drivestudio_p0_baseline_audit.md`](sources/2026-08-18_drivestudio_p0_baseline_audit.md)。
+
 状态定义：
 
 - `已验证`：存在可复现代码、配置、数据版本、指标和产物。

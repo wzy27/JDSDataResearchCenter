@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "record_id": "LIT-59B38FF55E4D",
+  "project_id": "jds-3d-reconstruction",
+  "status": "screened",
+  "bibliographic": {
+    "title": "MADrive: Memory-Augmented Driving Scene Modeling",
+    "authors": [
+      {
+        "name": "Polina Karpikova",
+        "orcid": null
+      },
+      {
+        "name": "Daniil Selikhanovych",
+        "orcid": null
+      },
+      {
+        "name": "Kirill Struminsky",
+        "orcid": null
+      },
+      {
+        "name": "Ruslan Musaev",
+        "orcid": null
+      },
+      {
+        "name": "Maria Golitsyna",
+        "orcid": null
+      },
+      {
+        "name": "Dmitry Baranchuk",
+        "orcid": null
+      }
+    ],
+    "year": 2025,
+    "publication_date": "2025-06-26T17:41:07Z",
+    "venue": "arXiv",
+    "publisher": "arXiv",
+    "type": "preprint",
+    "language": null,
+    "abstract": "Recent advances in scene reconstruction have pushed toward highly realistic modeling of autonomous driving (AD) environments using 3D Gaussian splatting. However, the resulting reconstructions remain closely tied to the original observations and struggle to support photorealistic synthesis of significantly altered or novel driving scenarios. This work introduces MADrive, a memory-augmented reconstruction framework designed to extend the capabilities of existing scene reconstruction methods by replacing observed vehicles with visually similar 3D assets retrieved from a large-scale external memory bank. Specifically, we release MAD-Cars, a curated dataset of ${\\sim}70$K 360° car videos captured in the wild and present a retrieval module that finds the most similar car instances in the memory bank, reconstructs the corresponding 3D assets from video, and integrates them into the target scene through orientation alignment and relighting. The resulting replacements provide complete multi-view representations of vehicles in the scene, enabling photorealistic synthesis of substantially altered configurations, as demonstrated in our experiments. Project page: https://yandex-research.github.io/madrive/",
+    "topics": [
+      "cs.CV"
+    ],
+    "citation_count": null
+  },
+  "external_ids": {
+    "doi": null,
+    "openalex": null,
+    "arxiv": "2506.21520",
+    "pmid": null,
+    "zotero": null
+  },
+  "access": {
+    "canonical_url": "https://arxiv.org/abs/2506.21520",
+    "open_access_url": "https://arxiv.org/pdf/2506.21520v2",
+    "fulltext_urls": [
+      "https://arxiv.org/pdf/2506.21520v2"
+    ],
+    "license_urls": []
+  },
+  "provenance": {
+    "input": "2506.21520",
+    "canonical_identity": "arxiv:2506.21520",
+    "retrievals": [
+      {
+        "source": "arxiv",
+        "url": "https://export.arxiv.org/api/query?id_list=2506.21520",
+        "retrieved_at": "2026-08-18T08:50:20Z"
+      },
+      {
+        "source": "arxiv",
+        "url": "https://export.arxiv.org/api/query?id_list=2506.21520",
+        "retrieved_at": "2026-08-18T08:57:18Z"
+      }
+    ],
+    "review_warnings": []
+  },
+  "review": {
+    "relevance": "direct-competitor-vehicle-relighting",
+    "source_inspected": "abstract-and-project-page",
+    "key_findings": [
+      "从约 70K 车辆视频记忆库检索完整资产，以 relightable 2DGS 替换车辆并适配目标场景光照。"
+    ],
+    "methods": [
+      "asset retrieval；2DGS vehicle reconstruction；environment-light adaptation。"
+    ],
+    "limitations": [
+      "聚焦车辆替换；不能代表行人/通用形变体或完整场景重打光。"
+    ],
+    "reviewed_by": "Codex",
+    "reviewed_at": "2026-08-18T00:00:00Z"
+  },
+  "traceability": {
+    "idea_ids": [
+      "IDEA-93F257E3E556",
+      "IDEA-DC38D8C3CC41"
+    ],
+    "experiment_ids": [
+      "EXP-4C2A9AD4C3D2"
+    ],
+    "claim_ids": [],
+    "figure_ids": [],
+    "table_ids": []
+  },
+  "created_at": "2026-08-18T08:50:20Z",
+  "updated_at": "2026-08-18T08:57:18Z"
+}

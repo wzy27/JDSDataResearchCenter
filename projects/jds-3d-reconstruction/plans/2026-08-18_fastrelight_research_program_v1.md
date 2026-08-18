@@ -5,6 +5,15 @@
 > 依据：Presentation slides 25–32/41/43/49；QE report Chapter 4 与 §6.2.3  
 > 规划方式：阶段门优先；日期是容量估计，不以压缩证据来追赶日历。
 
+## 2026-08-18 竞争格局覆盖（优先于原始贡献表述）
+
+- LightSim 已完成驾驶场景 actor/background 分解、对象编辑与太阳/阴影重打光；FastRelight 不得声称首个 editable + relightable driving system。
+- DrivingRecon 与 DynamicVGGT 已占据 feed-forward 驾驶 4D 重建；DrivingGaussian++、DrivingEditor、MADrive、HorizonForge 已覆盖多种 Gaussian 对象编辑。
+- GS-ID 的 environment map + spatial lights + material prior 与原计划高度重叠；单独实现 segmented lighting 不能构成主创新。
+- 主方法暂时收缩为：**编辑轨迹下，多类别动态 Gaussian 组件之间时间一致的 cast/receive visibility 与 shadow transport**。统一组件接口和 feed-forward reconstruction 是系统支撑，不单独宣称新颖。
+- P3 前新增 go/no-go probe：比较 `global light only`、`global + segmented residual`、`global + explicit Gaussian visibility/shadow`；若显式 visibility 没有稳定优势，停止把 FastRelight 定位为方法论文。
+- 详细依据见 `sources/2026-08-18_fastrelight_competitive_landscape.md`。
+
 ## 1. 北极星与可证伪问题
 
 最终演示必须在同一真实驾驶序列中完成：选择一辆车或一个行人，移除/替换/改变轨迹或姿态，切换环境光，再渲染时间连续、遮挡正确、阴影合理、曝光和色调一致的多视角视频。

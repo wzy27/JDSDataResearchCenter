@@ -1,0 +1,27 @@
+schema_version: 1
+codebases:
+  - codebase_id: drivestudio-upstream
+    role: p0-baseline
+    repository: https://github.com/ziyc/drivestudio.git
+    default_branch: main
+    commit: e59bda4fa681f829dbb1d65f0de582b0f633c450
+    commit_date: 2025-08-27T16:42:36+08:00
+    license: MIT
+    dirty: false
+    submodules:
+      - path: third_party/Humans4D
+        repository: https://github.com/shubham-goel/4D-Humans.git
+        commit: 6ec79656a23c33237c724742ca2a0ec00b398b53
+    pinned_files:
+      - path: requirements.txt
+        sha256: 656f11bcd3fb46587b002a4344023cca1651ccb7a4bb896cc1567d5e73d2fc2b
+      - path: configs/omnire.yaml
+        sha256: 997ae1def19c2d69b33b4d58172857bf258bc98910a7a62f64b9f959bc67e7fb
+      - path: configs/paper_legacy/omnire.yaml
+        sha256: ce8d36cfd356b4544209e2d5170e9d6eae99affc5313b86823e3d0148d37c61b
+      - path: configs/datasets/waymo/3cams.yaml
+        sha256: d0ad5df707b6af145173e1f406dcc0a1678d5e23ccad0f2391a6bac5a3e2cd5d
+    local_connection: drivestudio-upstream
+    notes: >-
+      2026-08-18 通过 git ls-remote 确认 main HEAD 后克隆；本仓库不复制上游源码，
+      以 immutable commit 与逻辑 connection 引用。

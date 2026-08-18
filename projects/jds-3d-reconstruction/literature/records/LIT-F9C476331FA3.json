@@ -1,0 +1,130 @@
+{
+  "schema_version": 1,
+  "record_id": "LIT-F9C476331FA3",
+  "project_id": "jds-3d-reconstruction",
+  "status": "screened",
+  "bibliographic": {
+    "title": "DynamicVGGT: Learning Dynamic Point Maps for 4D Scene Reconstruction in Autonomous Driving",
+    "authors": [
+      {
+        "name": "Zhuolin He",
+        "orcid": null
+      },
+      {
+        "name": "Jing Li",
+        "orcid": null
+      },
+      {
+        "name": "Guanghao Li",
+        "orcid": null
+      },
+      {
+        "name": "Xiaolei Chen",
+        "orcid": null
+      },
+      {
+        "name": "Jiacheng Tang",
+        "orcid": null
+      },
+      {
+        "name": "Siyang Zhang",
+        "orcid": null
+      },
+      {
+        "name": "Zhounan Jin",
+        "orcid": null
+      },
+      {
+        "name": "Feipeng Cai",
+        "orcid": null
+      },
+      {
+        "name": "Bin Li",
+        "orcid": null
+      },
+      {
+        "name": "Jian Pu",
+        "orcid": null
+      },
+      {
+        "name": "Jia Cai",
+        "orcid": null
+      },
+      {
+        "name": "Xiangyang Xue",
+        "orcid": null
+      }
+    ],
+    "year": 2026,
+    "publication_date": "2026-03-09T11:24:14Z",
+    "venue": "arXiv",
+    "publisher": "arXiv",
+    "type": "preprint",
+    "language": null,
+    "abstract": "Dynamic scene reconstruction in autonomous driving remains a fundamental challenge due to significant temporal variations, moving objects, and complex scene dynamics. Existing feed-forward 3D models have demonstrated strong performance in static reconstruction but still struggle to capture dynamic motion. To address these limitations, we propose DynamicVGGT, a unified feed-forward framework that extends VGGT from static 3D perception to dynamic 4D reconstruction. Our goal is to model point motion within feed-forward 3D models in a dynamic and temporally coherent manner. To this end, we jointly predict the current and future point maps within a shared reference coordinate system, allowing the model to implicitly learn dynamic point representations through temporal correspondence. To efficiently capture temporal dependencies, we introduce a Motion-aware Temporal Attention (MTA) module that learns motion continuity. Furthermore, we design a Dynamic 3D Gaussian Splatting Head that explicitly models point motion by predicting Gaussian velocities using learnable motion tokens under scene flow supervision. It refines dynamic geometry through continuous 3D Gaussian optimization. Extensive experiments on autonomous driving datasets demonstrate that DynamicVGGT significantly outperforms existing methods in reconstruction accuracy, achieving robust feed-forward 4D dynamic scene reconstruction under complex driving scenarios.",
+    "topics": [
+      "cs.CV"
+    ],
+    "citation_count": null
+  },
+  "external_ids": {
+    "doi": null,
+    "openalex": null,
+    "arxiv": "2603.08254",
+    "pmid": null,
+    "zotero": null
+  },
+  "access": {
+    "canonical_url": "https://arxiv.org/abs/2603.08254",
+    "open_access_url": "https://arxiv.org/pdf/2603.08254v1",
+    "fulltext_urls": [
+      "https://arxiv.org/pdf/2603.08254v1"
+    ],
+    "license_urls": []
+  },
+  "provenance": {
+    "input": "2603.08254",
+    "canonical_identity": "arxiv:2603.08254",
+    "retrievals": [
+      {
+        "source": "arxiv",
+        "url": "https://export.arxiv.org/api/query?id_list=2603.08254",
+        "retrieved_at": "2026-08-18T08:50:20Z"
+      },
+      {
+        "source": "arxiv",
+        "url": "https://export.arxiv.org/api/query?id_list=2603.08254",
+        "retrieved_at": "2026-08-18T08:57:18Z"
+      }
+    ],
+    "review_warnings": []
+  },
+  "review": {
+    "relevance": "direct-competitor-reconstruction",
+    "source_inspected": "abstract-and-cvf-full-text-sections",
+    "key_findings": [
+      "VGGT 扩展到 feed-forward dynamic point maps 与 3D Gaussian head。"
+    ],
+    "methods": [
+      "motion-aware temporal attention；future point prediction；scene-flow supervision。"
+    ],
+    "limitations": [
+      "论文主问题是动态几何，不是可编辑材质与重打光。"
+    ],
+    "reviewed_by": "Codex",
+    "reviewed_at": "2026-08-18T00:00:00Z"
+  },
+  "traceability": {
+    "idea_ids": [
+      "IDEA-93F257E3E556"
+    ],
+    "experiment_ids": [
+      "EXP-1584B0636795"
+    ],
+    "claim_ids": [],
+    "figure_ids": [],
+    "table_ids": []
+  },
+  "created_at": "2026-08-18T08:50:20Z",
+  "updated_at": "2026-08-18T08:57:18Z"
+}

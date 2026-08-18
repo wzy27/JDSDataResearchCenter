@@ -38,6 +38,8 @@ FastRelight 的研究问题不是“把几个重建模块接起来”，而是�
 - [`TODO.md`](TODO.md)：带稳定 TASK ID 的执行视图。
 - [`sources/2026-08-18_fastrelight_qe_and_presentation_intake.md`](sources/2026-08-18_fastrelight_qe_and_presentation_intake.md)：PPT/QE report 的 FastRelight 证据摘录。
 - [`progress.md`](progress.md)：已有资产与实际完成度审计。
+- [`sources/2026-08-18_drivestudio_p0_baseline_audit.md`](sources/2026-08-18_drivestudio_p0_baseline_audit.md)：锁定的上游 commit、组件映射和执行阻塞。
+- [`sources/2026-08-18_fastrelight_competitive_landscape.md`](sources/2026-08-18_fastrelight_competitive_landscape.md)：直接竞品、被占据的贡献与收缩建议。
 - [`ideas/index.json`](ideas/index.json)、[`experiments/index.json`](experiments/index.json)：研究假设和实验台账。
 
 ## 仓库边界

@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "record_id": "LIT-A91382E33778",
+  "project_id": "jds-3d-reconstruction",
+  "status": "screened",
+  "bibliographic": {
+    "title": "Real2Sim: A Physics-driven and Editable Gaussian Splatting Framework for Autonomous Driving Scenes",
+    "authors": [
+      {
+        "name": "Kaicong Huang",
+        "orcid": null
+      },
+      {
+        "name": "Talha Azfar",
+        "orcid": null
+      },
+      {
+        "name": "Weisong Shi",
+        "orcid": null
+      },
+      {
+        "name": "Ruimin Ke",
+        "orcid": null
+      }
+    ],
+    "year": 2026,
+    "publication_date": "2026-05-13T14:26:25Z",
+    "venue": "arXiv",
+    "publisher": "arXiv",
+    "type": "preprint",
+    "language": null,
+    "abstract": "Reliable autonomous driving relies on large-scale, well-labeled data and robust models. However, manual data collection is resource-intensive, and traditional simulation suffers from a persistent reality gap. While recent generative frameworks and radiance-field methods improve visual fidelity, they still struggle with temporal and spatial consistency and cannot ensure physics-aware behavior, limiting their applicability to driving scenario generation. To address these challenges, we propose Real2Sim, an unified framework that combines 4D Gaussian Splatting (4DGS) with a differentiable Material Point Method (MPM) solver. Real2Sim explicitly reconstructs dynamic driving scenes as temporally continuous Gaussian primitives, supports instance-level editing, and simulates realistic object-object and object-environment interactions. This framework enables physics-aware, high-fidelity synthesis of diverse, editable scenarios, including challenging corner cases such as collisions and post-impact trajectories. Experiments on the Waymo Open Dataset validate Real2Sim's capabilities in rendering, reconstruction, editing, and physics simulation, demonstrating its potential as a scalable tool for data generation in downstream tasks such as perception, tracking, trajectory prediction, and end-to-end policy learning.",
+    "topics": [
+      "cs.CV"
+    ],
+    "citation_count": null
+  },
+  "external_ids": {
+    "doi": null,
+    "openalex": null,
+    "arxiv": "2605.13591",
+    "pmid": null,
+    "zotero": null
+  },
+  "access": {
+    "canonical_url": "https://arxiv.org/abs/2605.13591",
+    "open_access_url": "https://arxiv.org/pdf/2605.13591v1",
+    "fulltext_urls": [
+      "https://arxiv.org/pdf/2605.13591v1"
+    ],
+    "license_urls": []
+  },
+  "provenance": {
+    "input": "2605.13591",
+    "canonical_identity": "arxiv:2605.13591",
+    "retrievals": [
+      {
+        "source": "arxiv",
+        "url": "https://export.arxiv.org/api/query?id_list=2605.13591",
+        "retrieved_at": "2026-08-18T08:50:20Z"
+      },
+      {
+        "source": "arxiv",
+        "url": "https://export.arxiv.org/api/query?id_list=2605.13591",
+        "retrieved_at": "2026-08-18T08:57:18Z"
+      }
+    ],
+    "review_warnings": []
+  },
+  "review": {
+    "relevance": "adjacent-competitor-physics",
+    "source_inspected": "abstract-only",
+    "key_findings": [
+      "4DGS 与 differentiable MPM 结合，支持实例编辑和碰撞后物理交互。"
+    ],
+    "methods": [
+      "temporally continuous 4DGS；Material Point Method。"
+    ],
+    "limitations": [
+      "摘要未主张完整材质/光照重打光；与 FastRelight 主要在 physics-aware 编辑叙事上竞争。"
+    ],
+    "reviewed_by": "Codex",
+    "reviewed_at": "2026-08-18T00:00:00Z"
+  },
+  "traceability": {
+    "idea_ids": [
+      "IDEA-93F257E3E556"
+    ],
+    "experiment_ids": [
+      "EXP-4C2A9AD4C3D2"
+    ],
+    "claim_ids": [],
+    "figure_ids": [],
+    "table_ids": []
+  },
+  "created_at": "2026-08-18T08:50:20Z",
+  "updated_at": "2026-08-18T08:57:18Z"
+}

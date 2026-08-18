@@ -40,18 +40,18 @@
   "execution": {
     "executor_id": null,
     "cwd": {
-      "connection": null,
-      "relative_path": null
+      "connection": "drivestudio-upstream",
+      "relative_path": "."
     },
     "command_argv": [],
-    "required_commands": [],
-    "required_connections": [],
+    "required_commands": ["python"],
+    "required_connections": ["drivestudio-upstream", "waymo-smoke-data"],
     "watchdog_policy": null
   },
   "code": {
-    "repository": null,
-    "commit": null,
-    "dirty": null,
+    "repository": "https://github.com/ziyc/drivestudio.git",
+    "commit": "e59bda4fa681f829dbb1d65f0de582b0f633c450",
+    "dirty": false,
     "patch_uri": null
   },
   "data": {
@@ -75,9 +75,9 @@
   },
   "blockers": [
     {
-      "code": "CODE_UNPINNED",
-      "description": "OmniRe/DriveStudio 实际代码 commit、环境与补丁顺序尚未锁定",
-      "resolution": "登记仓库、immutable commit、环境锁与补丁顺序"
+      "code": "EXECUTOR_UNAVAILABLE",
+      "description": "当前工作机没有 Conda、NVIDIA/CUDA，不能建立上游 Python 3.9 + CUDA 11.7 训练环境",
+      "resolution": "登记 Linux + NVIDIA executor 并完成只读 preflight"
     },
     {
       "code": "DATA_UNPINNED",

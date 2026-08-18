@@ -40,6 +40,10 @@ external_links:
     identifier: arXiv:2503.10625
     url: https://arxiv.org/abs/2503.10625
 connections:
+  - kind: external-code
+    title: Pinned DriveStudio upstream checkout
+    connection: drivestudio-upstream
+    uri: https://github.com/ziyc/drivestudio.git@e59bda4fa681f829dbb1d65f0de582b0f633c450
   - kind: external-data
     title: JDS S3 source prefix
     connection: jds-obs

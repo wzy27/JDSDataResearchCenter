@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "record_id": "LIT-C156B17C747C",
+  "project_id": "jds-3d-reconstruction",
+  "status": "screened",
+  "bibliographic": {
+    "title": "DrivingRecon: Large 4D Gaussian Reconstruction Model For Autonomous Driving",
+    "authors": [
+      {
+        "name": "Hao Lu",
+        "orcid": null
+      },
+      {
+        "name": "Tianshuo Xu",
+        "orcid": null
+      },
+      {
+        "name": "Wenzhao Zheng",
+        "orcid": null
+      },
+      {
+        "name": "Yunpeng Zhang",
+        "orcid": null
+      },
+      {
+        "name": "Wei Zhan",
+        "orcid": null
+      },
+      {
+        "name": "Dalong Du",
+        "orcid": null
+      },
+      {
+        "name": "Masayoshi Tomizuka",
+        "orcid": null
+      },
+      {
+        "name": "Kurt Keutzer",
+        "orcid": null
+      },
+      {
+        "name": "Yingcong Chen",
+        "orcid": null
+      }
+    ],
+    "year": 2024,
+    "publication_date": "2024-12-12T08:10:31Z",
+    "venue": "arXiv",
+    "publisher": "arXiv",
+    "type": "preprint",
+    "language": null,
+    "abstract": "Photorealistic 4D reconstruction of street scenes is essential for developing real-world simulators in autonomous driving. However, most existing methods perform this task offline and rely on time-consuming iterative processes, limiting their practical applications. To this end, we introduce the Large 4D Gaussian Reconstruction Model (DrivingRecon), a generalizable driving scene reconstruction model, which directly predicts 4D Gaussian from surround view videos. To better integrate the surround-view images, the Prune and Dilate Block (PD-Block) is proposed to eliminate overlapping Gaussian points between adjacent views and remove redundant background points. To enhance cross-temporal information, dynamic and static decoupling is tailored to better learn geometry and motion features. Experimental results demonstrate that DrivingRecon significantly improves scene reconstruction quality and novel view synthesis compared to existing methods. Furthermore, we explore applications of DrivingRecon in model pre-training, vehicle adaptation, and scene editing. Our code is available at https://github.com/EnVision-Research/DriveRecon.",
+    "topics": [
+      "cs.CV"
+    ],
+    "citation_count": null
+  },
+  "external_ids": {
+    "doi": null,
+    "openalex": null,
+    "arxiv": "2412.09043",
+    "pmid": null,
+    "zotero": null
+  },
+  "access": {
+    "canonical_url": "https://arxiv.org/abs/2412.09043",
+    "open_access_url": "https://arxiv.org/pdf/2412.09043v1",
+    "fulltext_urls": [
+      "https://arxiv.org/pdf/2412.09043v1"
+    ],
+    "license_urls": []
+  },
+  "provenance": {
+    "input": "2412.09043",
+    "canonical_identity": "arxiv:2412.09043",
+    "retrievals": [
+      {
+        "source": "arxiv",
+        "url": "https://export.arxiv.org/api/query?id_list=2412.09043",
+        "retrieved_at": "2026-08-18T08:50:20Z"
+      },
+      {
+        "source": "arxiv",
+        "url": "https://export.arxiv.org/api/query?id_list=2412.09043",
+        "retrieved_at": "2026-08-18T08:57:18Z"
+      }
+    ],
+    "review_warnings": []
+  },
+  "review": {
+    "relevance": "direct-competitor-reconstruction",
+    "source_inspected": "abstract-and-official-proceedings",
+    "key_findings": [
+      "surround-view 视频单次前向预测 4D Gaussian，并做静/动态解耦和编辑演示。"
+    ],
+    "methods": [
+      "large 4D reconstruction model；Prune and Dilate Block。"
+    ],
+    "limitations": [
+      "摘要未显示统一材质、光照和阴影建模。"
+    ],
+    "reviewed_by": "Codex",
+    "reviewed_at": "2026-08-18T00:00:00Z"
+  },
+  "traceability": {
+    "idea_ids": [
+      "IDEA-93F257E3E556"
+    ],
+    "experiment_ids": [
+      "EXP-1584B0636795"
+    ],
+    "claim_ids": [],
+    "figure_ids": [],
+    "table_ids": []
+  },
+  "created_at": "2026-08-18T08:50:20Z",
+  "updated_at": "2026-08-18T08:57:18Z"
+}
