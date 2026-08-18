@@ -1,0 +1,36 @@
+{
+  "title": "最小可复现实验",
+  "type": "smoke-test",
+  "status": "planned",
+  "objective": "验证最小输入可以完成端到端处理并产生可核验输出。",
+  "protocol": {
+    "scope": "只运行最小样本，不用于性能结论。",
+    "success_criteria": ["必需输出存在且通过语义校验。"],
+    "failure_criteria": ["命令失败、超时或输出不完整。"],
+    "expected_outputs": []
+  },
+  "traceability": {
+    "idea_ids": [],
+    "task_ids": [],
+    "lit_ids": [],
+    "claim_ids": [],
+    "parent_experiment_ids": []
+  },
+  "execution": {
+    "executor_id": null,
+    "cwd": {"connection": null, "relative_path": null},
+    "command_argv": [],
+    "required_commands": [],
+    "required_connections": [],
+    "watchdog_policy": null
+  },
+  "code": {"repository": null, "commit": null, "dirty": null, "patch_uri": null},
+  "data": {"datasets": []},
+  "environment": {"os": null, "runtime": null, "lockfile": null, "seeds": {}},
+  "resources": {
+    "accelerator": {"vendor": "none", "count": 0, "min_vram_gb": null, "cuda": null, "driver": null},
+    "min_disk_gb": null
+  },
+  "blockers": [],
+  "source": null
+}

@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "plugins": [
+    {
+      "name": "Data Analytics",
+      "package": "data-analytics@openai-curated-remote",
+      "required_for": [
+        "statistical-analysis",
+        "data-cleaning",
+        "experiment-reporting"
+      ]
+    },
+    {
+      "name": "Visualize",
+      "package": "visualize@openai-bundled",
+      "required_for": [
+        "interactive-charts",
+        "interactive-exploration"
+      ]
+    },
+    {
+      "name": "Zotero",
+      "package": "zotero@openai-curated-remote",
+      "required_for": [
+        "library-sync",
+        "collection-and-item-lookup"
+      ]
+    }
+  ],
+  "notes": [
+    "Plugin installation and authentication are host-local state and are never committed.",
+    "Agents must verify that a plugin's tools are callable before relying on it.",
+    "Restart or open a new Codex session after installing a plugin if its tools are not visible."
+  ]
+}

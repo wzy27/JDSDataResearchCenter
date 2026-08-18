@@ -1,0 +1,4 @@
+interface:
+  display_name: "科研实验台账"
+  short_description: "规划实验、核验资源、追踪运行状态、结果证据与科研结论"
+  default_prompt: "使用 $experiment-ledger 登记这个实验，检查执行条件并关联 Idea、TODO 与结果证据。"

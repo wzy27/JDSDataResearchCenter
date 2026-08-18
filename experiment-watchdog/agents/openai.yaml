@@ -1,0 +1,4 @@
+interface:
+  display_name: "Experiment Watchdog"
+  short_description: "Supervise long-running accelerator experiments"
+  default_prompt: "Use $experiment-watchdog to safely launch and monitor this long-running accelerator experiment."

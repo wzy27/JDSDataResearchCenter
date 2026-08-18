@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-08-18",
+  "source": {
+    "kind": "huawei-csb-obs",
+    "uri": "s3://bucket-2622-guiyang/w84400451/jds_data/",
+    "region": "cn-southwest-2"
+  },
+  "summary": {
+    "object_count": 3,
+    "total_bytes": 3492821998
+  },
+  "objects": [
+    {
+      "key": "w84400451/jds_data/3DRecon_in_Autonomous.pptx",
+      "size_bytes": 92103911,
+      "sha256": "b3a97e6220edff368e1c6591cb091a55ff5f95ee4f3c78de738892033930bb20",
+      "content_summary": {
+        "kind": "presentation",
+        "slide_count": 24
+      }
+    },
+    {
+      "key": "w84400451/jds_data/download.zip",
+      "size_bytes": 1828759357,
+      "sha256": "ef331956ca9c8174e5d46d8f3d8202c956f7c669e1735be71d654594df46c5cf",
+      "content_summary": {
+        "kind": "zip",
+        "entries": 9601,
+        "files": 9238,
+        "uncompressed_bytes": 1947739667,
+        "research_categories": [
+          "pedestrian-ground-truth-tracks",
+          "evaluation-videos",
+          "LHM-and-garment-patches",
+          "analysis-materials"
+        ],
+        "excluded_categories": [
+          "personal-and-administrative-documents",
+          "installers-and-environment-bundles"
+        ]
+      }
+    },
+    {
+      "key": "w84400451/jds_data/Transfer_Data.zip",
+      "size_bytes": 1571958730,
+      "sha256": "74176351c00d3af76aec4da974311b62f3b5548fb5ae2f4e27c1f4255b2c8a9e",
+      "content_summary": {
+        "kind": "zip",
+        "entries": 2157,
+        "files": 1856,
+        "uncompressed_bytes": 1700782877,
+        "research_categories": [
+          "LHM-source-tree",
+          "research-documents",
+          "media-and-geometry-assets"
+        ],
+        "excluded_categories": [
+          "personal-and-administrative-documents",
+          "email-archives",
+          "binary-installers"
+        ]
+      }
+    }
+  ],
+  "notes": [
+    "Object last-modified timestamps were not returned by the listing endpoint.",
+    "Credentials and signed URLs are intentionally excluded.",
+    "Internal archive summaries are category-level to avoid publishing personal filenames."
+  ]
+}

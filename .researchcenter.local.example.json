@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "executor_id": "替换为本机执行器名称",
+  "kind": "local",
+  "os": "windows",
+  "connections": {
+    "jds-code-workspace": "替换为 JDS 代码工作区的绝对路径",
+    "jds-obs-download-cache": "替换为 OBS 下载缓存的绝对路径",
+    "experiment-output": "替换为实验输出根目录"
+  },
+  "commands": {
+    "python": "python",
+    "nvidia-smi": "nvidia-smi"
+  }
+}

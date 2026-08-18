@@ -1,0 +1,4 @@
+interface:
+  display_name: "Literature Intake"
+  short_description: "Ingest auditable research literature records"
+  default_prompt: "Use $literature-intake to add this paper to the current research project evidence ledger."

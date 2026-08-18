@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://researchcenter.local/schemas/idea-record.schema.json",
+  "title": "ResearchCenter idea record",
+  "type": "object",
+  "required": [
+    "schema_version", "idea_id", "project_id", "title", "kind", "status",
+    "statement", "motivation", "assumptions", "alternatives", "validation",
+    "evolution", "provenance", "traceability", "created_at", "updated_at"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "idea_id": { "type": "string", "pattern": "^IDEA-[0-9A-F]{12}$" },
+    "project_id": { "type": "string", "minLength": 1 },
+    "title": { "type": "string", "minLength": 1 },
+    "kind": { "enum": ["hypothesis", "method", "research-question", "system-design", "dataset", "analysis"] },
+    "status": { "enum": ["proposed", "active", "testing", "supported", "challenged", "superseded", "rejected", "parked"] },
+    "statement": { "type": "string", "minLength": 1 },
+    "motivation": { "type": "string" },
+    "assumptions": { "type": "array", "items": { "type": "string" } },
+    "alternatives": { "type": "array", "items": { "type": "string" } },
+    "validation": { "type": "object" },
+    "evolution": { "type": "array", "minItems": 1, "items": { "type": "object" } },
+    "provenance": { "type": "object" },
+    "traceability": { "type": "object" },
+    "created_at": { "type": "string", "format": "date-time" },
+    "updated_at": { "type": "string", "format": "date-time" }
+  },
+  "additionalProperties": false
+}

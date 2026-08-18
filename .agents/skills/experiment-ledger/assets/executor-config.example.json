@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "executor_id": "local-windows-nvidia",
+  "kind": "local",
+  "os": "windows",
+  "connections": {
+    "code-root": "C:\\absolute\\path\\to\\code",
+    "data-root": "D:\\absolute\\path\\to\\data"
+  },
+  "commands": {
+    "python": "python",
+    "nvidia-smi": "nvidia-smi",
+    "npu-smi": "npu-smi"
+  }
+}

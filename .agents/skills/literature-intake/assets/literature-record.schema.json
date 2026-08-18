@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://researchcenter.local/schemas/literature-record.schema.json",
+  "title": "ResearchCenter literature record",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "record_id",
+    "project_id",
+    "status",
+    "bibliographic",
+    "external_ids",
+    "access",
+    "provenance",
+    "review",
+    "traceability",
+    "created_at",
+    "updated_at"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "record_id": { "type": "string", "pattern": "^LIT-[0-9A-F]{12}$" },
+    "project_id": { "type": "string", "minLength": 1 },
+    "status": {
+      "enum": ["needs-review", "screened", "read", "verified", "excluded"]
+    },
+    "bibliographic": {
+      "type": "object",
+      "required": ["title", "authors", "year", "venue", "type", "abstract", "topics"],
+      "properties": {
+        "title": { "type": "string", "minLength": 1 },
+        "authors": { "type": "array", "items": { "type": "object" } },
+        "year": { "type": ["integer", "null"] },
+        "venue": { "type": ["string", "null"] },
+        "type": { "type": ["string", "null"] },
+        "language": { "type": ["string", "null"] },
+        "abstract": { "type": ["string", "null"] },
+        "topics": { "type": "array", "items": { "type": "string" } },
+        "citation_count": { "type": ["integer", "null"], "minimum": 0 }
+      },
+      "additionalProperties": true
+    },
+    "external_ids": { "type": "object" },
+    "access": { "type": "object" },
+    "provenance": { "type": "object" },
+    "review": { "type": "object" },
+    "traceability": { "type": "object" },
+    "created_at": { "type": "string", "format": "date-time" },
+    "updated_at": { "type": "string", "format": "date-time" }
+  },
+  "additionalProperties": false
+}

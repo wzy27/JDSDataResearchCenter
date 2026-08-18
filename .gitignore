@@ -1,0 +1,29 @@
+# Machine-local ResearchCenter executor and connection mappings
+.researchcenter.local.json
+**/.researchcenter.local.json
+
+# Python caches
+__pycache__/
+*.py[cod]
+
+# Local downloads, caches, and generated outputs
+.tmp/
+.cache/
+downloads/
+external-data/
+outputs/
+
+# Large or sensitive source packages stay in object storage
+*.zip
+*.tar
+*.tar.gz
+*.7z
+*.pptx
+*.pdf
+*.xls
+*.xlsx
+*.pst
+*.mp4
+*.pt
+*.pth
+*.ckpt

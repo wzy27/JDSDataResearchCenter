@@ -1,0 +1,4 @@
+interface:
+  display_name: "科研 Idea 台账"
+  short_description: "记录研究想法、演变过程、决策依据、验证路径与实验追溯"
+  default_prompt: "使用 $idea-ledger 将这份研究想法整理为可追溯记录，并关联后续 TODO 与实验。"
