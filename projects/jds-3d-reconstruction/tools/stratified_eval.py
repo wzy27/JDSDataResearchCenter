@@ -108,6 +108,7 @@ def evaluate(scene_dir, pred_dir, strata, frame_ids, cam_ids, W, H,
             ann[f].append((iid, o2w, bs))
 
     per_instance = defaultdict(lambda: {"psnr": [], "ssim": [], "px": 0})
+    per_obs = []          # 逐观测记录，供 E2 的观测级分析使用
     missing = []
     for fi, f in enumerate(frame_ids):
         for ci, cam in enumerate(cam_ids):
@@ -141,9 +142,17 @@ def evaluate(scene_dir, pred_dir, strata, frame_ids, cam_ids, W, H,
                 p = psnr_on(pred, gt, m)
                 if p is not None:
                     per_instance[iid]["psnr"].append(p)
-                if smap is not None:
-                    per_instance[iid]["ssim"].append(float(smap[m].mean()))
+                sv = float(smap[m].mean()) if smap is not None else None
+                if sv is not None:
+                    per_instance[iid]["ssim"].append(sv)
                 per_instance[iid]["px"] += int(m.sum())
+                # 该次观测自身的投影高度（渲染分辨率下），用于观测级分层
+                ys, xs = np.nonzero(m)
+                per_obs.append({
+                    "instance_id": iid, "frame": int(f), "cam": int(cam),
+                    "psnr": p, "ssim": sv, "px": int(m.sum()),
+                    "obs_px_height": int(ys.max() - ys.min() + 1) if ys.size else 0,
+                })
 
     cells = defaultdict(lambda: {"psnr": [], "ssim": [], "instances": 0, "px": 0})
     for iid, d in per_instance.items():
@@ -164,7 +173,8 @@ def evaluate(scene_dir, pred_dir, strata, frame_ids, cam_ids, W, H,
                   "psnr_std": round(float(np.std(v["psnr"])), 4),
                   "ssim_mean": round(float(np.mean(v["ssim"])), 4) if v["ssim"] else None}
     return {"cells": out, "n_instances_scored": len(per_instance),
-            "missing_frames": len(missing), "mask_source": mask_source}
+            "missing_frames": len(missing), "mask_source": mask_source,
+            "observations": per_obs}
 
 
 def main():
@@ -177,6 +187,8 @@ def main():
     ap.add_argument("--cam-ids", default="0,1,2,3,4,5")
     ap.add_argument("--width", type=int, default=1600)
     ap.add_argument("--height", type=int, default=900)
+    ap.add_argument("--obs-out", default=None,
+                    help="另存逐观测记录（E2 观测级分析所需）")
     ap.add_argument("--mask-sources", default="coarse,fine",
                     help="逗号分隔，可选 coarse / fine / hull；多个则同时报告以作对照")
     ap.add_argument("--native-width", type=int, default=1600)
@@ -196,7 +208,13 @@ def main():
         results[src] = evaluate(a.scene_dir, a.pred_dir, strata, frames, cams,
                                 a.width, a.height, a.native_width, a.native_height,
                                 mask_source=src)
-    json.dump(results, open(a.out, "w"), indent=2)
+    if a.obs_out:
+        json.dump({k: v["observations"] for k, v in results.items()},
+                  open(a.obs_out, "w"))
+        print("per-observation records ->", a.obs_out)
+    slim = {k: {kk: vv for kk, vv in v.items() if kk != "observations"}
+            for k, v in results.items()}
+    json.dump(slim, open(a.out, "w"), indent=2)
     # 对照表
     srcs = list(results)
     cells = sorted({c for r in results.values() for c in r["cells"]})

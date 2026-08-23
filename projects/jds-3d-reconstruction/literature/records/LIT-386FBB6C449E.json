@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "record_id": "LIT-386FBB6C449E",
+  "project_id": "jds-3d-reconstruction",
+  "status": "needs-review",
+  "bibliographic": {
+    "title": "Leveraging 2D Priors and SDF Guidance for Dynamic Urban Scene Rendering",
+    "authors": [
+      {
+        "name": "Siddharth Tourani",
+        "orcid": null
+      },
+      {
+        "name": "Jayaram Reddy",
+        "orcid": null
+      },
+      {
+        "name": "Akash Kumbar",
+        "orcid": null
+      },
+      {
+        "name": "Satyajit Tourani",
+        "orcid": null
+      },
+      {
+        "name": "Nishant Goyal",
+        "orcid": null
+      },
+      {
+        "name": "Madhava Krishna",
+        "orcid": null
+      },
+      {
+        "name": "N. Dinesh Reddy",
+        "orcid": null
+      },
+      {
+        "name": "Muhammad Haris Khan",
+        "orcid": null
+      }
+    ],
+    "year": 2025,
+    "publication_date": "2025-10-15T10:21:36Z",
+    "venue": "Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV), 2025",
+    "publisher": "arXiv",
+    "type": "preprint",
+    "language": null,
+    "abstract": "Dynamic scene rendering and reconstruction play a crucial role in computer vision and augmented reality. Recent methods based on 3D Gaussian Splatting (3DGS), have enabled accurate modeling of dynamic urban scenes, but for urban scenes they require both camera and LiDAR data, ground-truth 3D segmentations and motion data in the form of tracklets or pre-defined object templates such as SMPL. In this work, we explore whether a combination of 2D object agnostic priors in the form of depth and point tracking coupled with a signed distance function (SDF) representation for dynamic objects can be used to relax some of these requirements. We present a novel approach that integrates Signed Distance Functions (SDFs) with 3D Gaussian Splatting (3DGS) to create a more robust object representation by harnessing the strengths of both methods. Our unified optimization framework enhances the geometric accuracy of 3D Gaussian splatting and improves deformation modeling within the SDF, resulting in a more adaptable and precise representation. We demonstrate that our method achieves state-of-the-art performance in rendering metrics even without LiDAR data on urban scenes. When incorporating LiDAR, our approach improved further in reconstructing and generating novel views across diverse object categories, without ground-truth 3D motion annotation. Additionally, our method enables various scene editing tasks, including scene decomposition, and scene composition.",
+    "topics": [
+      "cs.CV",
+      "cs.GR"
+    ],
+    "citation_count": null
+  },
+  "external_ids": {
+    "doi": "10.1109/iccv51701.2025.02698",
+    "openalex": null,
+    "arxiv": "2510.13381",
+    "pmid": null,
+    "zotero": null
+  },
+  "access": {
+    "canonical_url": "https://arxiv.org/abs/2510.13381",
+    "open_access_url": "https://arxiv.org/pdf/2510.13381v1",
+    "fulltext_urls": [
+      "https://arxiv.org/pdf/2510.13381v1"
+    ],
+    "license_urls": []
+  },
+  "provenance": {
+    "input": "arXiv:2510.13381",
+    "canonical_identity": "doi:10.1109/iccv51701.2025.02698",
+    "retrievals": [
+      {
+        "source": "arxiv",
+        "url": "https://export.arxiv.org/api/query?id_list=2510.13381",
+        "retrieved_at": "2026-08-23T09:07:56Z"
+      }
+    ],
+    "review_warnings": []
+  },
+  "review": {
+    "relevance": "unreviewed",
+    "source_inspected": "metadata-only",
+    "key_findings": [],
+    "methods": [],
+    "limitations": [],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  "traceability": {
+    "idea_ids": [],
+    "experiment_ids": [],
+    "claim_ids": [],
+    "figure_ids": [],
+    "table_ids": []
+  },
+  "created_at": "2026-08-23T09:07:56Z",
+  "updated_at": "2026-08-23T09:07:56Z"
+}

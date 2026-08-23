@@ -47,6 +47,15 @@
       "note_path": "notes/LIT-334F00637EB0.md"
     },
     {
+      "record_id": "LIT-386FBB6C449E",
+      "status": "needs-review",
+      "title": "Leveraging 2D Priors and SDF Guidance for Dynamic Urban Scene Rendering",
+      "year": 2025,
+      "doi": "10.1109/iccv51701.2025.02698",
+      "record_path": "records/LIT-386FBB6C449E.json",
+      "note_path": "notes/LIT-386FBB6C449E.md"
+    },
+    {
       "record_id": "LIT-3E7D80D87C6C",
       "status": "screened",
       "title": "GS-ID: Illumination Decomposition on Gaussian Splatting via Adaptive Light Aggregation and Diffusion-Guided Material Priors",
