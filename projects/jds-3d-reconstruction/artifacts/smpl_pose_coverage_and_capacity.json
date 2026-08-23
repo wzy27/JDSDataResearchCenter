@@ -1,0 +1,152 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-08-23",
+  "purpose": "SMPL 姿态可得性与容量分配随观测条件的变化；只读官方预处理产物与标注，未训练、未使用 GPU。",
+  "source": "DriveStudio 官方提供的 nuScenes v1.0-mini 预处理人体姿态（humanpose/smpl.pkl）",
+  "scenes": {
+    "000": {
+      "pedestrian_instances": 60,
+      "smpl_pkl_entries": 19,
+      "with_valid_pose": 19,
+      "coverage_overall": 0.3167,
+      "by_stratum": [
+        {
+          "stratum": "px<96",
+          "pedestrians": 16,
+          "with_smpl_pose": 0,
+          "coverage": 0.0,
+          "median_valid_frames": 0
+        },
+        {
+          "stratum": "px96-160",
+          "pedestrians": 22,
+          "with_smpl_pose": 1,
+          "coverage": 0.0455,
+          "median_valid_frames": 0
+        },
+        {
+          "stratum": "px160-320",
+          "pedestrians": 14,
+          "with_smpl_pose": 10,
+          "coverage": 0.7143,
+          "median_valid_frames": 123
+        },
+        {
+          "stratum": "px>320",
+          "pedestrians": 8,
+          "with_smpl_pose": 8,
+          "coverage": 1.0,
+          "median_valid_frames": 118
+        }
+      ]
+    },
+    "001": {
+      "pedestrian_instances": 46,
+      "smpl_pkl_entries": 25,
+      "with_valid_pose": 25,
+      "coverage_overall": 0.5435,
+      "by_stratum": [
+        {
+          "stratum": "px<96",
+          "pedestrians": 7,
+          "with_smpl_pose": 0,
+          "coverage": 0.0,
+          "median_valid_frames": 0
+        },
+        {
+          "stratum": "px96-160",
+          "pedestrians": 12,
+          "with_smpl_pose": 1,
+          "coverage": 0.0833,
+          "median_valid_frames": 0
+        },
+        {
+          "stratum": "px160-320",
+          "pedestrians": 12,
+          "with_smpl_pose": 9,
+          "coverage": 0.75,
+          "median_valid_frames": 60
+        },
+        {
+          "stratum": "px>320",
+          "pedestrians": 15,
+          "with_smpl_pose": 15,
+          "coverage": 1.0,
+          "median_valid_frames": 69
+        }
+      ]
+    },
+    "008": {
+      "pedestrian_instances": 55,
+      "smpl_pkl_entries": 12,
+      "with_valid_pose": 12,
+      "coverage_overall": 0.2182,
+      "by_stratum": [
+        {
+          "stratum": "px<96",
+          "pedestrians": 13,
+          "with_smpl_pose": 0,
+          "coverage": 0.0,
+          "median_valid_frames": 0
+        },
+        {
+          "stratum": "px96-160",
+          "pedestrians": 23,
+          "with_smpl_pose": 0,
+          "coverage": 0.0,
+          "median_valid_frames": 0
+        },
+        {
+          "stratum": "px160-320",
+          "pedestrians": 10,
+          "with_smpl_pose": 5,
+          "coverage": 0.5,
+          "median_valid_frames": 38
+        },
+        {
+          "stratum": "px>320",
+          "pedestrians": 9,
+          "with_smpl_pose": 7,
+          "coverage": 0.7778,
+          "median_valid_frames": 55
+        }
+      ]
+    }
+  },
+  "totals": {
+    "pedestrian_instances": 161,
+    "with_valid_pose": 56,
+    "coverage_overall": 0.3478,
+    "without_pose": 105
+  },
+  "capacity": {
+    "smpl_nodes_per_instance": 6890,
+    "smpl_nodes_note": "SMPLNodes.smpl_points_num 硬编码为 6890（SMPL 网格顶点数），与观测条件无关；且 SMPLNodes 无 densification/pruning（对比 RigidNodes 有完整 refinement_after）。",
+    "non_smpl_pedestrian_init_points": {
+      "median": 161,
+      "p10": 20,
+      "p90": 336,
+      "px_lt_96_median": 70,
+      "px_lt_96_range": [
+        5,
+        295
+      ]
+    },
+    "ratio_approx": 43,
+    "caveat": "以上为 LiDAR 初始化点数，DeformableNodes 在训练中会 densify，最终容量须从 checkpoint 读取后复核。"
+  },
+  "mechanism": [
+    "行人距离远或被遮挡",
+    "SMPL 姿态估计失败（px<96 层三场景合计 36 个行人，覆盖率 0%）",
+    "落入 DeformableNodes：无人体先验、无骨架、无 LBS",
+    "以稀疏 LiDAR 点初始化，中位仅 70-161 个 Gaussian，对比 SMPLNodes 固定 6890",
+    "这些行人的像素仍计入 human mask，但由通用形变体或背景解释",
+    "其质量在整体 human-region 指标中被近处行人淹没，从未被单独报告"
+  ],
+  "caveats": [
+    "px_height_max 由 3D box 投影解析计算，SMPL 覆盖由官方 humanpose 流水线给出，两者独立，相关性非循环论证。",
+    "humanpose 为 DriveStudio 官方发布的预处理产物，因此反映的是 OmniRe 官方流水线的真实行为，而非本地复现误差。",
+    "DeformableNodes 还受 only_moving 与 traj_length_thres 过滤，静止行人可能被进一步剔除，本统计未区分该原因。",
+    "容量数字为初始化值，非训练后的最终值。"
+  ]
+}

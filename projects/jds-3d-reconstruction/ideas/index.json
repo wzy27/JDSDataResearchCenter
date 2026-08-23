@@ -36,10 +36,10 @@
       "title": "驾驶采集条件下的着衣行人重建",
       "kind": "hypothesis",
       "status": "active",
-      "statement": "在驾驶采集条件造成的有效像素分辨率严重不足下（nuScenes mini 中行人典型视角仅 85 px 高，20% 的行人任何视角下不超过 96 px，中位深度 23.3 m），通过观测充分性建模、跨相机跨时刻观测聚合与按有效分辨率分层的评测，可显著提升 human-region 的重建与新视角质量；人体与衣物先验作为被调用模块而非方法主创新。",
+      "statement": "驾驶场景行人重建的失败不是渐进的而是断崖式的：流水线在连续变化的观测质量上施加了二值化的门（有姿态/无姿态决定走 SMPLNodes 还是 DeformableNodes；6890/约70 个 Gaussian 的容量分配），而该门的位置远低于真实的可重建边界。以可重建边界的量化、姿态置信度加权的连续退化表示、以及观测充分性驱动的容量分配替代二值门，可显著提升 human-region 质量。",
       "record_path": "records/IDEA-F1BED52F1B2D.json",
       "note_path": "notes/IDEA-F1BED52F1B2D.md",
-      "updated_at": "2026-08-23T06:17:50Z"
+      "updated_at": "2026-08-23T08:14:34Z"
     }
   ]
 }

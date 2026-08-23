@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-08-23",
+  "purpose": "区分「信息本就不足」与「本可重建却被流水线丢弃」；只读标注、标定与官方预处理产物，未训练、未使用 GPU。",
+  "supersedes_framing": "先前 smpl_pose_coverage_and_capacity.json 只报告覆盖率随观测坍塌，未区分这两种成因，表述上将二者混同。",
+  "total_pedestrian_instances": 161,
+  "with_valid_pose": 56,
+  "coverage_by_best_view_height": [
+    {
+      "lo": 0,
+      "hi": 64,
+      "n": 6,
+      "has_pose": 0,
+      "no_pose": 6,
+      "coverage": 0.0
+    },
+    {
+      "lo": 64,
+      "hi": 96,
+      "n": 30,
+      "has_pose": 0,
+      "no_pose": 30,
+      "coverage": 0.0
+    },
+    {
+      "lo": 96,
+      "hi": 128,
+      "n": 37,
+      "has_pose": 0,
+      "no_pose": 37,
+      "coverage": 0.0
+    },
+    {
+      "lo": 128,
+      "hi": 160,
+      "n": 20,
+      "has_pose": 2,
+      "no_pose": 18,
+      "coverage": 0.1
+    },
+    {
+      "lo": 160,
+      "hi": 224,
+      "n": 18,
+      "has_pose": 7,
+      "no_pose": 11,
+      "coverage": 0.3889
+    },
+    {
+      "lo": 224,
+      "hi": 320,
+      "n": 18,
+      "has_pose": 17,
+      "no_pose": 1,
+      "coverage": 0.9444
+    },
+    {
+      "lo": 320,
+      "hi": 480,
+      "n": 20,
+      "has_pose": 20,
+      "no_pose": 0,
+      "coverage": 1.0
+    },
+    {
+      "lo": 480,
+      "hi": null,
+      "n": 12,
+      "has_pose": 10,
+      "no_pose": 2,
+      "coverage": 0.8333
+    }
+  ],
+  "non_monotonic_evidence": {
+    "claim": "若漏检仅由信息不足解释，覆盖率应随最佳视角分辨率单调上升；实测不单调。",
+    "320_480_native_px": {
+      "n": 20,
+      "coverage": 1.0
+    },
+    "gt_480_native_px": {
+      "n": 12,
+      "coverage": 0.8333
+    },
+    "note": "最大分辨率档的覆盖率反而低于次高档，其中包含最佳视角 993 px、深度 7.3 m、可见比 1.00 的实例。"
+  },
+  "categories": {
+    "A 信息本就不足 (最佳视角 < 96px 原生 / 32px 渲染)": {
+      "n": 36,
+      "no_pose": 36,
+      "no_pose_frac": 1.0
+    },
+    "B 边缘可重建 (96-160px 原生 / 32-53px 渲染)": {
+      "n": 57,
+      "no_pose": 55,
+      "no_pose_frac": 0.9649
+    },
+    "C 明确可重建 (>= 160px 原生 / >= 53px 渲染)": {
+      "n": 68,
+      "no_pose": 14,
+      "no_pose_frac": 0.2059
+    }
+  },
+  "unambiguous_misses": {
+    "definition": "最佳视角 >= 160 px（原生）且该视角可见比 >= 0.9，却无任何有效 SMPL 姿态",
+    "count": 13,
+    "instances": [
+      {
+        "scene": "000",
+        "iid": "9",
+        "px_best_native": 177.3,
+        "px_best_render": 59.1,
+        "depth_median": 22.4,
+        "best_view_visible": 1.0,
+        "in_smpl_pkl": false
+      },
+      {
+        "scene": "000",
+        "iid": "29",
+        "px_best_native": 190.0,
+        "px_best_render": 63.3,
+        "depth_median": 20.3,
+        "best_view_visible": 1.0,
+        "in_smpl_pkl": false
+      },
+      {
+        "scene": "000",
+        "iid": "78",
+        "px_best_native": 199.1,
+        "px_best_render": 66.4,
+        "depth_median": 21.7,
+        "best_view_visible": 1.0,
+        "in_smpl_pkl": false
+      },
+      {
+        "scene": "000",
+        "iid": "81",
+        "px_best_native": 194.5,
+        "px_best_render": 64.8,
+        "depth_median": 19.1,
+        "best_view_visible": 1.0,
+        "in_smpl_pkl": false
+      },
+      {
+        "scene": "001",
+        "iid": "12",
+        "px_best_native": 185.9,
+        "px_best_render": 62.0,
+        "depth_median": 14.9,
+        "best_view_visible": 1.0,
+        "in_smpl_pkl": false
+      },
+      {
+        "scene": "001",
+        "iid": "25",
+        "px_best_native": 192.5,
+        "px_best_render": 64.2,
+        "depth_median": 14.1,
+        "best_view_visible": 1.0,
+        "in_smpl_pkl": false
+      },
+      {
+        "scene": "008",
+        "iid": "1",
+        "px_best_native": 993.4,
+        "px_best_render": 331.1,
+        "depth_median": 7.3,
+        "best_view_visible": 1.0,
+        "in_smpl_pkl": false
+      },
+      {
+        "scene": "008",
+        "iid": "6",
+        "px_best_native": 171.7,
+        "px_best_render": 57.2,
+        "depth_median": 15.1,
+        "best_view_visible": 1.0,
+        "in_smpl_pkl": false
+      },
+      {
+        "scene": "008",
+        "iid": "39",
+        "px_best_native": 179.0,
+        "px_best_render": 59.7,
+        "depth_median": 17.0,
+        "best_view_visible": 1.0,
+        "in_smpl_pkl": false
+      },
+      {
+        "scene": "008",
+        "iid": "63",
+        "px_best_native": 167.5,
+        "px_best_render": 55.8,
+        "depth_median": 18.8,
+        "best_view_visible": 1.0,
+        "in_smpl_pkl": false
+      },
+      {
+        "scene": "008",
+        "iid": "74",
+        "px_best_native": 161.6,
+        "px_best_render": 53.9,
+        "depth_median": 29.1,
+        "best_view_visible": 1.0,
+        "in_smpl_pkl": false
+      },
+      {
+        "scene": "008",
+        "iid": "79",
+        "px_best_native": 509.9,
+        "px_best_render": 170.0,
+        "depth_median": 17.5,
+        "best_view_visible": 1.0,
+        "in_smpl_pkl": false
+      },
+      {
+        "scene": "008",
+        "iid": "83",
+        "px_best_native": 176.1,
+        "px_best_render": 58.7,
+        "depth_median": 21.2,
+        "best_view_visible": 1.0,
+        "in_smpl_pkl": false
+      }
+    ]
+  },
+  "failure_stage": {
+    "not_in_smpl_pkl": 105,
+    "in_pkl_but_all_frames_invalid": 0,
+    "interpretation": "105/105 的漏检发生在检测或关联阶段——姿态估计器从未见过这些实例；无一例是 SMPL 拟合失败。问题因此不在人体姿态估计的能力上限，而在流水线门限的位置。"
+  },
+  "caveats": [
+    "类别 A/B/C 的阈值（96 px、160 px 原生）为按像素高度设定的启发式，不是实测的可重建边界。",
+    "真实边界须由独立实验确定：跳过检测与关联，直接以 GT 3D box crop 喂入姿态模型，观察其成败。",
+    "最佳视角可见比只统计已标注物体造成的遮挡，是真实遮挡的下界。",
+    "仅覆盖 nuScenes v1.0-mini 的 3 个场景、161 个行人实例。"
+  ]
+}
