@@ -161,3 +161,69 @@ octree.VolumePointsHessEikon(
 
 - `train-big.py` 需 `LOctree`、`LOTreeOptGS`、`svox` —— 前两者在未公开的 `LOTree-zhengyu`；`svox` 为 PlenOctrees 开源库，可 pip 安装。
 - `train-origin.py` 等基线脚本无此依赖，**可先行验证**。
+
+---
+
+## 编译过程中发现的上游缺陷
+
+`sub/diff-surfel-rasterization/cuda_rasterizer/backward.cu` 无法编译：
+
+```
+backward.cu(695): error: no instance of function template "preprocessCUDA" matches the argument list
+```
+
+原因：`preprocessCUDA` 的模板声明（第 534–560 行）含 25 个形参，其中第 540 行为
+
+```cpp
+const float* ref_shs,
+```
+
+而第 695 行的调用只传 24 个实参，缺少 `ref_shs`。
+
+**`ref_shs` 在整个 `backward.cu` 中仅出现这一次**——既未被函数体使用，也未被任何调用方传入。这是作者在原版 2DGS 的 `diff-surfel-rasterization` 上改造时留下的死参数。
+
+处理：删除该行后编译通过。原文件备份为 `backward.cu.orig`。该修改不改变任何计算，仅移除未使用的形参。
+
+### 这一发现与论点的关系
+
+它本身是个小缺陷，但说明一件与本项目论点直接相关的事：**MGSR 公开的这份代码，其 2DGS 分支的 backward 从未被成功编译过**——若编译过，此错误必然暴露。
+
+这引出两个必须核实的问题：
+
+1. 论文实验所用的代码与公开的这份是否一致？
+2. 若公开版本与实验版本存在差异，则依据公开代码所做的任何旋钮分析，其结论未必适用于论文数值。
+
+**在核实之前，不得把基于此代码的实验结果与论文报告的数值直接比较。** 该项须联系作者确认，或通过复现论文数值来间接验证。
+
+这也强化了 P0 中「代码能否复现论文数值」这一前置任务的必要性——它不只是工程步骤，而是后续所有分析的有效性前提。
+
+---
+
+## 环境搭建的完整记录（可复现）
+
+两个仓库共用一个 conda 环境 `MGSR`（python 3.11 + torch 2.0.1+cu118），CUDA 工具链
+复用 `drivestudio` 环境的 nvcc 11.8 与 gcc 11。
+
+### 必须的修正
+
+| 问题 | 原因 | 处理 |
+|---|---|---|
+| 首次编译全部失败 | `git clone --depth 1` 不拉子模块 | `git submodule update --init --recursive` |
+| pip 装到错误环境 | `export PATH=$CUDA_HOME/bin:$PATH` 把 `drivestudio` 置于 `MGSR` 之前 | 改为 `PATH=$CONDA_PREFIX/bin:$PATH:$CUDA_HOME/bin` |
+| `glm/glm.hpp: No such file` | rasterizer 自身的 `third_party/glm` 未随递归拉取到位 | 从上游 clone `g-truc/glm@0.9.9.8` 并复制到三处 `third_party/glm` |
+| `pkg_resources` 缺失 | 新 setuptools 移除了该模块 | `pip install "setuptools<70"` |
+| `RuntimeError: Numpy is not available` | torch 2.0.1 针对 numpy 1.x 编译，环境为 numpy 2.4 | `pip install "numpy<2"`，并将 opencv 降至 4.8.1.78、plyfile 降至 1.1.2 |
+| GS-Octree `No url found for submodule path 'submodules/simple-kNN'` | `.gitmodules` 中路径大小写为 `simple-kNN`，实际目录为 `simple-knn` | 直接从 `gitlab.inria.fr/bkerbl/simple-knn` clone |
+
+前五项为本地操作或依赖漂移问题；最后一项为 GS-Octree 仓库自身的不一致。
+
+### 验证结果
+
+- MGSR：`diff_surfel_rasterization`、`simple_knn`、`diff_gaussian_rasterization` 三个 CUDA 扩展全部编译通过并可导入。
+- GS-Octree：基线所需模块（`scene`、`gaussian_renderer`、`simple_knn`、`diff_gaussian_rasterization`）可导入；完整方法仍阻塞于 `LOTree-zhengyu`。
+
+### 数据
+
+`tandt_db.zip`（650 MB，3DGS 官方，无需授权）已下载并解包，含 `tandt/truck`、`tandt/train`、`db/drjohnson`、`db/playroom`，均为 COLMAP 标准格式。
+
+**用于管线验证而非论文对比**——MGSR 的论文实验使用 DTU 与 OmniObject3D，GS-Octree 的默认脚本亦使用 DTU（`scan40`）。两者数据集重合，这对 E-α 的公平对比有利；正式实验须换用 DTU。
