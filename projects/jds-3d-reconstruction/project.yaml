@@ -1,14 +1,14 @@
 project_id: jds-3d-reconstruction
-title: FastRelight：可编辑、可重打光的 4D 驾驶场景重建
+title: 观测受限条件下的驾驶场景行人重建
 status: active
 scope: >-
-  基于 OmniRe 的显式前景/背景分解，从同步多视角 RGB 与 LiDAR 构建天空、静态背景、
-  刚性车辆、骨骼驱动行人和通用形变体五类 Gaussian 组件；以共享环境光、空间光照残差、
-  材质先验和可见性/阴影建模支持对象级编辑与光照一致的重新组合。
+  在驾驶采集条件造成的有效像素分辨率严重不足下重建行人：以观测充分性建模、跨相机与跨时刻
+  观测聚合、以及按有效分辨率分层的 human-region 评测为方法主体；SMPL/LBS、衣物分解与
+  LHM 类前馈人体先验作为被调用模块，不作为主创新。定位为 OmniRe 人体分支的改进工作。
 created_at: 2026-08-18
-updated_at: 2026-08-18
-current_phase: p0-contract-and-reproducible-baseline
-current_plan: plans/2026-08-18_fastrelight_research_program_v1.md
+updated_at: 2026-08-23
+current_phase: p0-stratified-human-region-baseline
+current_plan: TODO.md
 primary_inputs:
   - synchronized-multiview-rgb
   - calibrated-cameras
@@ -16,11 +16,13 @@ primary_inputs:
 deferred_inputs:
   - radar
 component_scope:
+  - articulated-pedestrian
+deprioritized_scope:
   - sky
   - static-background
   - rigid-vehicle
-  - articulated-pedestrian
   - generic-deformable
+  - relighting
 external_links:
   - kind: project
     title: OmniRe project page
@@ -48,6 +50,10 @@ connections:
     title: JDS S3 source prefix
     connection: jds-obs
     uri: s3://bucket-2622-guiyang/w84400451/jds_data/
+  - kind: external-data
+    title: nuScenes v1.0-mini
+    connection: nuscenes-mini-data
+    uri: https://www.nuscenes.org/data/v1.0-mini.tgz
   - kind: local-cache
     title: Optional machine-local download cache
     connection: jds-obs-download-cache

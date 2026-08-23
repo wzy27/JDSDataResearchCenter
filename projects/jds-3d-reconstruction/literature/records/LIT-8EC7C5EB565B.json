@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "record_id": "LIT-8EC7C5EB565B",
+  "project_id": "jds-3d-reconstruction",
+  "status": "needs-review",
+  "bibliographic": {
+    "title": "LumiMotion: Improving Gaussian Relighting with Scene Dynamics",
+    "authors": [
+      {
+        "name": "Joanna Kaleta",
+        "orcid": null
+      },
+      {
+        "name": "Piotr Wójcik",
+        "orcid": null
+      },
+      {
+        "name": "Kacper Marzol",
+        "orcid": null
+      },
+      {
+        "name": "Tomasz Trzciński",
+        "orcid": null
+      },
+      {
+        "name": "Kacper Kania",
+        "orcid": null
+      },
+      {
+        "name": "Marek Kowalski",
+        "orcid": null
+      }
+    ],
+    "year": 2026,
+    "publication_date": "2026-04-13T04:50:05Z",
+    "venue": "arXiv",
+    "publisher": "arXiv",
+    "type": "preprint",
+    "language": null,
+    "abstract": "In 3D reconstruction, the problem of inverse rendering, namely recovering the illumination of the scene and the material properties, is fundamental. Existing Gaussian Splatting-based methods primarily target static scenes and often assume simplified or moderate lighting to avoid entangling shadows with surface appearance. This limits their ability to accurately separate lighting effects from material properties, particularly in real-world conditions. We address this limitation by leveraging dynamic elements - regions of the scene that undergo motion - as a supervisory signal for inverse rendering. Motion reveals the same surfaces under varying lighting conditions, providing stronger cues for disentangling material and illumination. This thesis is supported by our experimental results which show we improve LPIPS by 23% for albedo estimation and by 15% for scene relighting relative to next-best baseline. To this end, we introduce LumiMotion, the first Gaussian-based approach that leverages dynamics for inverse rendering and operates in arbitrary dynamic scenes. Our method learns a dynamic 2D Gaussian Splatting representation that employs a set of novel constraints which encourage the dynamic regions of the scene to deform, while keeping static regions stable. As we demonstrate, this separation is crucial for correct optimization of the albedo. Finally, we release a new synthetic benchmark comprising five scenes under four lighting conditions, each in both static and dynamic variants, for the first time enabling systematic evaluation of inverse rendering methods in dynamic environments and challenging lighting. Link to project page: https://joaxkal.github.io/LumiMotion/",
+    "topics": [
+      "cs.CV"
+    ],
+    "citation_count": null
+  },
+  "external_ids": {
+    "doi": null,
+    "openalex": null,
+    "arxiv": "2604.10994",
+    "pmid": null,
+    "zotero": null
+  },
+  "access": {
+    "canonical_url": "https://arxiv.org/abs/2604.10994",
+    "open_access_url": "https://arxiv.org/pdf/2604.10994v1",
+    "fulltext_urls": [
+      "https://arxiv.org/pdf/2604.10994v1"
+    ],
+    "license_urls": []
+  },
+  "provenance": {
+    "input": "arXiv:2604.10994",
+    "canonical_identity": "arxiv:2604.10994",
+    "retrievals": [
+      {
+        "source": "arxiv",
+        "url": "https://export.arxiv.org/api/query?id_list=2604.10994",
+        "retrieved_at": "2026-08-23T05:16:43Z"
+      }
+    ],
+    "review_warnings": []
+  },
+  "review": {
+    "relevance": "unreviewed",
+    "source_inspected": "metadata-only",
+    "key_findings": [],
+    "methods": [],
+    "limitations": [],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  "traceability": {
+    "idea_ids": [],
+    "experiment_ids": [],
+    "claim_ids": [],
+    "figure_ids": [],
+    "table_ids": []
+  },
+  "created_at": "2026-08-23T05:16:43Z",
+  "updated_at": "2026-08-23T05:16:43Z"
+}

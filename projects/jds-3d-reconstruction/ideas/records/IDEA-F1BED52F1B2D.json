@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "idea_id": "IDEA-F1BED52F1B2D",
+  "project_id": "jds-3d-reconstruction",
+  "title": "驾驶采集条件下的着衣行人重建",
+  "kind": "hypothesis",
+  "status": "active",
+  "statement": "在驾驶采集条件造成的有效像素分辨率严重不足下（nuScenes mini 中行人典型视角仅 85 px 高，20% 的行人任何视角下不超过 96 px，中位深度 23.3 m），通过观测充分性建模、跨相机跨时刻观测聚合与按有效分辨率分层的评测，可显著提升 human-region 的重建与新视角质量；人体与衣物先验作为被调用模块而非方法主创新。",
+  "motivation": "着衣人体重建全部在受控单目/多视角捕捉下发展；驾驶场景人体建模停留在骨架/位姿或外观耦合的 SMPL Gaussian。两个方向的交集当前为空，且团队同时具备两侧能力。",
+  "assumptions": [
+    "驾驶采集条件下行人重建质量随距离、遮挡率和可观测帧数存在显著退化，OmniRe SMPLNodes 留有可观 headroom",
+    "行人穿行于日照与建筑阴影所产生的外观变化可作为重建监督，抑制阴影被烘焙进外观"
+  ],
+  "alternatives": [
+    "沿用外观耦合 SMPLNodes 并仅增加分辨率/密度",
+    "把受控条件着衣方法直接移植到驾驶行人 crop"
+  ],
+  "validation": {
+    "success_criteria": [
+      "行人 crop 的 novel-view PSNR/SSIM/LPIPS 与 mask IoU 同时优于两类 baseline，且按距离/遮挡率/观测帧数分层后改善在各层一致"
+    ],
+    "failure_signals": [
+      "OmniRe SMPLNodes 在多数行人上退化曲线平缓，headroom 不足以支撑方法贡献"
+    ],
+    "experiment_ids": []
+  },
+  "evolution": [
+    {
+      "event_id": "EVT-51AED5348B",
+      "timestamp": "2026-08-23T05:19:55Z",
+      "type": "captured",
+      "summary": "Initial capture",
+      "reason": "导师要求成果落在重建方向；确认人体与衣物重建合作者后重新定位选题",
+      "source": "sources/2026-08-23_reconstruction_pivot_landscape.md"
+    },
+    {
+      "event_id": "EVT-0A32014990",
+      "timestamp": "2026-08-23T06:08:07Z",
+      "type": "pivoted",
+      "summary": "从以衣物解耦为主创新，转为以观测受限条件下的重建为主创新",
+      "reason": "CLOTH-HUGS (arXiv:2604.15875) 已实现 body/cloth 分层 Gaussian 加 SMPL LBS 与物理约束，衣物解耦作为主创新等价于在驾驶数据上重做该工作。综述 arXiv:2503.14537 就行人重建点名 Degradation at Long Range 与 Complex Occlusions 两条 open challenge，OmniRe 亦在 4.2 节承认远距/遮挡行人姿态预测失准，其 Limitations 未提衣物。剩余空间在观测条件而非人体表示，且该侧属 3DGS/几何/多传感器/评测范畴。",
+      "source": "sources/2026-08-23_pedestrian_reconstruction_sota_survey.md"
+    },
+    {
+      "event_id": "EVT-75C4144B7A",
+      "timestamp": "2026-08-23T06:17:50Z",
+      "type": "refined",
+      "summary": "按 nuScenes mini 实测分布收紧论据：主轴改为有效像素分辨率，移除观测窗口短的表述",
+      "reason": "2026-08-23 对 nuScenes v1.0-mini 227 个行人实例做了观测条件审计。有效像素分辨率轴强成立（中位视角 85 px，20% 不超过 96 px），与综述点名的 Degradation at Long Range 一致。但观测次数轴不成立：中位约 21 个独立关键帧观测，不构成观测窗口极短，该表述已从主要论据移除。遮挡轴当前的包围盒级代理不具区分度（87% 触发），需改用像素级定义后重新判断。",
+      "source": "sources/2026-08-23_nuscenes_mini_observation_audit.md"
+    }
+  ],
+  "tags": [
+    "reconstruction",
+    "pedestrian",
+    "garment",
+    "3dgs"
+  ],
+  "provenance": {
+    "sources": [
+      {
+        "location": "sources/2026-08-23_reconstruction_pivot_landscape.md",
+        "sha256": null,
+        "anchor": null,
+        "role": "analysis"
+      }
+    ]
+  },
+  "traceability": {
+    "lit_ids": [
+      "LIT-DA08AE46A3C9",
+      "LIT-B36B0F75FBEA",
+      "LIT-0FEBA0C3BF45",
+      "LIT-0215EC756CB8"
+    ],
+    "task_ids": [],
+    "experiment_ids": [],
+    "claim_ids": [],
+    "parent_idea_ids": [],
+    "supersedes": [],
+    "superseded_by": []
+  },
+  "created_at": "2026-08-23T05:19:55Z",
+  "updated_at": "2026-08-23T06:17:50Z"
+}

@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "record_id": "LIT-0FEBA0C3BF45",
+  "project_id": "jds-3d-reconstruction",
+  "status": "needs-review",
+  "bibliographic": {
+    "title": "MonoCloth: Reconstruction and Animation of Cloth-Decoupled Human Avatars from Monocular Videos",
+    "authors": [
+      {
+        "name": "Daisheng Jin",
+        "orcid": null
+      },
+      {
+        "name": "Ying He",
+        "orcid": null
+      }
+    ],
+    "year": 2025,
+    "publication_date": "2025-08-06T14:50:54Z",
+    "venue": "arXiv",
+    "publisher": "arXiv",
+    "type": "preprint",
+    "language": null,
+    "abstract": "Reconstructing realistic 3D human avatars from monocular videos is a challenging task due to the limited geometric information and complex non-rigid motion involved. We present MonoCloth, a new method for reconstructing and animating clothed human avatars from monocular videos. To overcome the limitations of monocular input, we introduce a part-based decomposition strategy that separates the avatar into body, face, hands, and clothing. This design reflects the varying levels of reconstruction difficulty and deformation complexity across these components. Specifically, we focus on detailed geometry recovery for the face and hands. For clothing, we propose a dedicated cloth simulation module that captures garment deformation using temporal motion cues and geometric constraints. Experimental results demonstrate that MonoCloth improves both visual reconstruction quality and animation realism compared to existing methods. Furthermore, thanks to its part-based design, MonoCloth also supports additional tasks such as clothing transfer, underscoring its versatility and practical utility.",
+    "topics": [
+      "cs.CV"
+    ],
+    "citation_count": null
+  },
+  "external_ids": {
+    "doi": null,
+    "openalex": null,
+    "arxiv": "2508.04505",
+    "pmid": null,
+    "zotero": null
+  },
+  "access": {
+    "canonical_url": "https://arxiv.org/abs/2508.04505",
+    "open_access_url": "https://arxiv.org/pdf/2508.04505v2",
+    "fulltext_urls": [
+      "https://arxiv.org/pdf/2508.04505v2"
+    ],
+    "license_urls": []
+  },
+  "provenance": {
+    "input": "arXiv:2508.04505",
+    "canonical_identity": "arxiv:2508.04505",
+    "retrievals": [
+      {
+        "source": "arxiv",
+        "url": "https://export.arxiv.org/api/query?id_list=2508.04505",
+        "retrieved_at": "2026-08-23T05:16:47Z"
+      }
+    ],
+    "review_warnings": []
+  },
+  "review": {
+    "relevance": "unreviewed",
+    "source_inspected": "metadata-only",
+    "key_findings": [],
+    "methods": [],
+    "limitations": [],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  "traceability": {
+    "idea_ids": [],
+    "experiment_ids": [],
+    "claim_ids": [],
+    "figure_ids": [],
+    "table_ids": []
+  },
+  "created_at": "2026-08-23T05:16:47Z",
+  "updated_at": "2026-08-23T05:16:47Z"
+}

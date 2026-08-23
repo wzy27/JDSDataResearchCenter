@@ -27,3 +27,9 @@ outputs/
 *.pt
 *.pth
 *.ckpt
+
+# 模型权重（SMPL 等受许可限制，不得入库）
+*.pkl
+*.npy
+*.npz
+*.safetensors

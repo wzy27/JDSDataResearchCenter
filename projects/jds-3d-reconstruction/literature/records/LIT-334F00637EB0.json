@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "record_id": "LIT-334F00637EB0",
+  "project_id": "jds-3d-reconstruction",
+  "status": "needs-review",
+  "bibliographic": {
+    "title": "Learning-based 3D Reconstruction in Autonomous Driving: A Comprehensive Survey",
+    "authors": [
+      {
+        "name": "Liewen Liao",
+        "orcid": null
+      },
+      {
+        "name": "Weihao Yan",
+        "orcid": null
+      },
+      {
+        "name": "Wang Xu",
+        "orcid": null
+      },
+      {
+        "name": "Ming Yang",
+        "orcid": null
+      },
+      {
+        "name": "Songan Zhang",
+        "orcid": null
+      },
+      {
+        "name": "H. Eric Tseng",
+        "orcid": null
+      }
+    ],
+    "year": 2025,
+    "publication_date": "2025-03-17T13:56:03Z",
+    "venue": "arXiv",
+    "publisher": "arXiv",
+    "type": "preprint",
+    "language": null,
+    "abstract": "Learning-based 3D reconstruction has emerged as a transformative technique in autonomous driving, enabling precise modeling of environments through advanced neural representations. It has inspired pioneering solutions for vital tasks in autonomous driving, such as dense mapping and closed-loop simulation, as well as comprehensive scene feature for driving scene understanding and reasoning. Given the rapid growth in related research, this survey provides a comprehensive review of both technical evolutions and practical applications in autonomous driving. We begin with an introduction to the preliminaries of learning-based 3D reconstruction to provide a solid technical background foundation, then progress to a rigorous, multi-dimensional examination of cutting-edge methodologies, systematically organized according to the distinctive technical requirements and fundamental challenges of autonomous driving. Through analyzing and summarizing development trends and cutting-edge research, we identify existing technical challenges, along with insufficient disclosure of on-board validation and safety verification details in the current literature, and ultimately suggest potential directions to guide future studies.",
+    "topics": [
+      "cs.CV",
+      "cs.RO"
+    ],
+    "citation_count": null
+  },
+  "external_ids": {
+    "doi": null,
+    "openalex": null,
+    "arxiv": "2503.14537",
+    "pmid": null,
+    "zotero": null
+  },
+  "access": {
+    "canonical_url": "https://arxiv.org/abs/2503.14537",
+    "open_access_url": "https://arxiv.org/pdf/2503.14537v5",
+    "fulltext_urls": [
+      "https://arxiv.org/pdf/2503.14537v5"
+    ],
+    "license_urls": []
+  },
+  "provenance": {
+    "input": "arXiv:2503.14537",
+    "canonical_identity": "arxiv:2503.14537",
+    "retrievals": [
+      {
+        "source": "arxiv",
+        "url": "https://export.arxiv.org/api/query?id_list=2503.14537",
+        "retrieved_at": "2026-08-23T06:05:28Z"
+      }
+    ],
+    "review_warnings": []
+  },
+  "review": {
+    "relevance": "unreviewed",
+    "source_inspected": "metadata-only",
+    "key_findings": [],
+    "methods": [],
+    "limitations": [],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  "traceability": {
+    "idea_ids": [],
+    "experiment_ids": [],
+    "claim_ids": [],
+    "figure_ids": [],
+    "table_ids": []
+  },
+  "created_at": "2026-08-23T06:05:28Z",
+  "updated_at": "2026-08-23T06:05:28Z"
+}

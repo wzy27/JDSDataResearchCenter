@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "record_id": "LIT-696A8B3ACE37",
+  "project_id": "jds-3d-reconstruction",
+  "status": "needs-review",
+  "bibliographic": {
+    "title": "LHM: Large Animatable Human Reconstruction Model from a Single Image in Seconds",
+    "authors": [
+      {
+        "name": "Lingteng Qiu",
+        "orcid": null
+      },
+      {
+        "name": "Xiaodong Gu",
+        "orcid": null
+      },
+      {
+        "name": "Peihao Li",
+        "orcid": null
+      },
+      {
+        "name": "Qi Zuo",
+        "orcid": null
+      },
+      {
+        "name": "Weichao Shen",
+        "orcid": null
+      },
+      {
+        "name": "Junfei Zhang",
+        "orcid": null
+      },
+      {
+        "name": "Kejie Qiu",
+        "orcid": null
+      },
+      {
+        "name": "Weihao Yuan",
+        "orcid": null
+      },
+      {
+        "name": "Guanying Chen",
+        "orcid": null
+      },
+      {
+        "name": "Zilong Dong",
+        "orcid": null
+      },
+      {
+        "name": "Liefeng Bo",
+        "orcid": null
+      }
+    ],
+    "year": 2025,
+    "publication_date": "2025-03-13T17:59:21Z",
+    "venue": "arXiv",
+    "publisher": "arXiv",
+    "type": "preprint",
+    "language": null,
+    "abstract": "Animatable 3D human reconstruction from a single image is a challenging problem due to the ambiguity in decoupling geometry, appearance, and deformation. Recent advances in 3D human reconstruction mainly focus on static human modeling, and the reliance of using synthetic 3D scans for training limits their generalization ability. Conversely, optimization-based video methods achieve higher fidelity but demand controlled capture conditions and computationally intensive refinement processes. Motivated by the emergence of large reconstruction models for efficient static reconstruction, we propose LHM (Large Animatable Human Reconstruction Model) to infer high-fidelity avatars represented as 3D Gaussian splatting in a feed-forward pass. Our model leverages a multimodal transformer architecture to effectively encode the human body positional features and image features with attention mechanism, enabling detailed preservation of clothing geometry and texture. To further boost the face identity preservation and fine detail recovery, we propose a head feature pyramid encoding scheme to aggregate multi-scale features of the head regions. Extensive experiments demonstrate that our LHM generates plausible animatable human in seconds without post-processing for face and hands, outperforming existing methods in both reconstruction accuracy and generalization ability.",
+    "topics": [
+      "cs.AI",
+      "cs.CV"
+    ],
+    "citation_count": null
+  },
+  "external_ids": {
+    "doi": null,
+    "openalex": null,
+    "arxiv": "2503.10625",
+    "pmid": null,
+    "zotero": null
+  },
+  "access": {
+    "canonical_url": "https://arxiv.org/abs/2503.10625",
+    "open_access_url": "https://arxiv.org/pdf/2503.10625v1",
+    "fulltext_urls": [
+      "https://arxiv.org/pdf/2503.10625v1"
+    ],
+    "license_urls": []
+  },
+  "provenance": {
+    "input": "arXiv:2503.10625",
+    "canonical_identity": "arxiv:2503.10625",
+    "retrievals": [
+      {
+        "source": "arxiv",
+        "url": "https://export.arxiv.org/api/query?id_list=2503.10625",
+        "retrieved_at": "2026-08-23T06:05:30Z"
+      }
+    ],
+    "review_warnings": []
+  },
+  "review": {
+    "relevance": "unreviewed",
+    "source_inspected": "metadata-only",
+    "key_findings": [],
+    "methods": [],
+    "limitations": [],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  "traceability": {
+    "idea_ids": [],
+    "experiment_ids": [],
+    "claim_ids": [],
+    "figure_ids": [],
+    "table_ids": []
+  },
+  "created_at": "2026-08-23T06:05:30Z",
+  "updated_at": "2026-08-23T06:05:30Z"
+}

@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "record_id": "LIT-8B84FE3C3F97",
+  "project_id": "jds-3d-reconstruction",
+  "status": "needs-review",
+  "bibliographic": {
+    "title": "CLOTH-HUGS: Cloth Aware Human Gaussian Splatting",
+    "authors": [
+      {
+        "name": "Sadia Mubashshira",
+        "orcid": null
+      },
+      {
+        "name": "Nazanin Amini",
+        "orcid": null
+      },
+      {
+        "name": "Kevin Desai",
+        "orcid": null
+      }
+    ],
+    "year": 2026,
+    "publication_date": "2026-04-17T09:22:58Z",
+    "venue": "arXiv",
+    "publisher": "arXiv",
+    "type": "preprint",
+    "language": null,
+    "abstract": "We present Cloth-HUGS, a Gaussian Splatting based neural rendering framework for photorealistic clothed human reconstruction that explicitly disentangles body and clothing. Unlike prior methods that absorb clothing into a single body representation and struggle with loose garments and complex deformations, Cloth-HUGS represents the performer using separate Gaussian layers for body and cloth within a shared canonical space. The canonical volume jointly encodes body, cloth, and scene primitives and is deformed through SMPL-driven articulation with learned linear blend skinning weights. To improve cloth realism, we initialize cloth Gaussians from mesh topology and apply physics-inspired constraints, including simulation-consistency, ARAP regularization, and mask supervision. We further introduce a depth-aware multi-pass rendering strategy for robust body-cloth-scene compositing, enabling real-time rendering at over 60 FPS. Experiments on multiple benchmarks show that Cloth-HUGS improves perceptual quality and geometric fidelity over state-of-the-art baselines, reducing LPIPS by up to 28% while producing temporally coherent cloth dynamics.",
+    "topics": [
+      "cs.CV"
+    ],
+    "citation_count": null
+  },
+  "external_ids": {
+    "doi": null,
+    "openalex": null,
+    "arxiv": "2604.15875",
+    "pmid": null,
+    "zotero": null
+  },
+  "access": {
+    "canonical_url": "https://arxiv.org/abs/2604.15875",
+    "open_access_url": "https://arxiv.org/pdf/2604.15875v1",
+    "fulltext_urls": [
+      "https://arxiv.org/pdf/2604.15875v1"
+    ],
+    "license_urls": []
+  },
+  "provenance": {
+    "input": "arXiv:2604.15875",
+    "canonical_identity": "arxiv:2604.15875",
+    "retrievals": [
+      {
+        "source": "arxiv",
+        "url": "https://export.arxiv.org/api/query?id_list=2604.15875",
+        "retrieved_at": "2026-08-23T06:05:28Z"
+      }
+    ],
+    "review_warnings": []
+  },
+  "review": {
+    "relevance": "unreviewed",
+    "source_inspected": "metadata-only",
+    "key_findings": [],
+    "methods": [],
+    "limitations": [],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  "traceability": {
+    "idea_ids": [],
+    "experiment_ids": [],
+    "claim_ids": [],
+    "figure_ids": [],
+    "table_ids": []
+  },
+  "created_at": "2026-08-23T06:05:28Z",
+  "updated_at": "2026-08-23T06:05:28Z"
+}

@@ -53,6 +53,19 @@
       "record_path": "records/EXP-C4E8F5217892.json",
       "note_path": "notes/EXP-C4E8F5217892.md",
       "updated_at": "2026-08-18T08:44:36Z"
+    },
+    {
+      "experiment_id": "EXP-D364146FE7A6",
+      "title": "P0 分层 human-region 基线：OmniRe 行人重建质量随观测条件的退化曲线",
+      "type": "benchmark",
+      "status": "planned",
+      "objective": "在 nuScenes v1.0-mini 上复现 OmniRe 基线，按行人距离、遮挡率与可观测帧数分层报告 human-region 的 PSNR/SSIM/LPIPS，判定观测受限条件下是否存在足以支撑方法贡献的 headroom。",
+      "idea_ids": [
+        "IDEA-F1BED52F1B2D"
+      ],
+      "record_path": "records/EXP-D364146FE7A6.json",
+      "note_path": "notes/EXP-D364146FE7A6.md",
+      "updated_at": "2026-08-23T06:09:48Z"
     }
   ]
 }

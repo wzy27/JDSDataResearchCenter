@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-08-23",
+  "purpose": "像素级行人可见性与二维分层定义，用于 EXP-D364146FE7A6。只读标注与标定，未训练、未渲染、未使用 GPU。",
+  "method": "3D box 8 角点投影取凸包，按最近角点深度以画家算法绘入 id-buffer；可见比 = 可见像素 / 单独绘制像素。0.5 倍降采样光栅化。",
+  "supersedes": "2026-08-23 观测审计中的 2D 包围盒遮挡代理（触发率 87%，无区分度）",
+  "instances": 227,
+  "visibility_distribution": {
+    "visible_fraction_median": {
+      "p10": 0.0169,
+      "p25": 0.296,
+      "p50": 0.9876,
+      "p75": 1.0,
+      "p90": 1.0
+    },
+    "visible_fraction_area_weighted": {
+      "p10": 0.2185,
+      "p25": 0.4134,
+      "p50": 0.701,
+      "p75": 0.9427,
+      "p90": 0.9978
+    },
+    "best_view_visible_fraction": {
+      "p10": 1.0,
+      "p25": 1.0,
+      "p50": 1.0,
+      "p75": 1.0,
+      "p90": 1.0
+    },
+    "frac_obs_below_50pct_visible": {
+      "p10": 0.0,
+      "p25": 0.0957,
+      "p50": 0.3444,
+      "p75": 0.6089,
+      "p90": 0.8657
+    },
+    "frac_obs_below_25pct_visible": {
+      "p10": 0.0,
+      "p25": 0.0379,
+      "p50": 0.2368,
+      "p75": 0.4717,
+      "p90": 0.7143
+    },
+    "in_frame_fraction_median": {
+      "p10": 1.0,
+      "p25": 1.0,
+      "p50": 1.0,
+      "p75": 1.0,
+      "p90": 1.0
+    }
+  },
+  "visibility_thresholds": {
+    "0.3": {
+      "count": 35,
+      "fraction": 0.1542
+    },
+    "0.5": {
+      "count": 71,
+      "fraction": 0.3128
+    },
+    "0.7": {
+      "count": 113,
+      "fraction": 0.4978
+    },
+    "0.9": {
+      "count": 161,
+      "fraction": 0.7093
+    }
+  },
+  "axis_independence": {
+    "spearman_px_height_max_vs_visible_fraction_area_weighted": 0.199,
+    "note": "两轴近似独立，故采用二维网格分层；px_height_median 与 depth_median 相关 -0.927，视为同一轴；visible_fraction 与 frac_obs_below_50pct 相关 -0.933，视为同一轴。"
+  },
+  "strata_definition": {
+    "px_height_max_bins": [
+      0,
+      96,
+      160,
+      320,
+      null
+    ],
+    "visible_fraction_area_weighted_bins": [
+      0.0,
+      0.5,
+      0.8,
+      1.01
+    ],
+    "cell_counts": {
+      "px160-320|vis0.5-0.8": 12,
+      "px160-320|vis<0.5": 21,
+      "px160-320|vis>0.8": 26,
+      "px96-160|vis0.5-0.8": 26,
+      "px96-160|vis<0.5": 24,
+      "px96-160|vis>0.8": 15,
+      "px<96|vis0.5-0.8": 15,
+      "px<96|vis<0.5": 15,
+      "px<96|vis>0.8": 16,
+      "px>320|vis0.5-0.8": 10,
+      "px>320|vis<0.5": 11,
+      "px>320|vis>0.8": 36
+    }
+  },
+  "evaluator_verification": {
+    "script": "stratified_eval.py",
+    "sha256": "cc83ca303b82d0dbf15818b6c66776dea840b649761ea361ddd9b9b902554852",
+    "checks": [
+      {
+        "name": "noise monotonicity",
+        "result": "PASS",
+        "detail": "sigma 0.005/0.02/0.08 -> mean human-region PSNR 45.19/33.90/22.01 dB；sigma=0.02 的理论值为 33.98 dB，实测 33.90 dB。"
+      },
+      {
+        "name": "stratum resolving power",
+        "result": "PASS",
+        "detail": "仅向 px<96 层实例的互斥掩码注入额外噪声后，该层退化 12.15 dB，其余各层 -0.02 dB，分离比约 807 倍。"
+      }
+    ],
+    "bugs_found_and_fixed": [
+      "内参未随图像缩放同步缩放，导致降采样评测时投影全部落到画布外、评分实例数为 0。",
+      "per-instance 掩码允许重叠，相邻行人的同一像素被重复计入；改为按深度排序的互斥归属。"
+    ]
+  },
+  "scripts": {
+    "location": "executor-local ~/fastrelight/analysis/（未纳入 Git）",
+    "sha256": {
+      "observation_sufficiency.py": "befcc70ff3fbee5ec8e98ea8b0323e584b554768c53a69c92aae6ae463b8dab1",
+      "pixel_visibility.py": "3a551a7b04a0d49571e01d5400322d55be048b547db0024612218b2ab5dee36f",
+      "strata.py": "2b87467dcf0fd86cf50260a9a63c22fa1f70d59c3153a75815b5d39829e51a35",
+      "stratified_eval.py": "cc83ca303b82d0dbf15818b6c66776dea840b649761ea361ddd9b9b902554852"
+    }
+  },
+  "caveats": [
+    "可见比只统计已标注物体造成的遮挡，不含建筑、杆件、树木与未标注静物，因此是真实遮挡的下界。",
+    "凸包为 3D box 投影的外接轮廓，比真实人体轮廓大；评测时与真值 human mask 求交以收紧，但分层统计本身未收紧。",
+    "best_view_visible_fraction 的 p10 即为 1.0：几乎每个行人都至少存在一个完全可见的视角，遮挡是逐观测而非逐实例的属性。",
+    "自测使用合成噪声验证管线，不构成对真实渲染结果的验证。"
+  ]
+}

@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "record_id": "LIT-295254DA2278",
+  "project_id": "jds-3d-reconstruction",
+  "status": "needs-review",
+  "bibliographic": {
+    "title": "ReconDrive: Fast Feed-Forward 4D Gaussian Splatting for Autonomous Driving Scene Reconstruction",
+    "authors": [
+      {
+        "name": "Haibao Yu",
+        "orcid": null
+      },
+      {
+        "name": "Kuntao Xiao",
+        "orcid": null
+      },
+      {
+        "name": "Jiahang Wang",
+        "orcid": null
+      },
+      {
+        "name": "Ruiyang Hao",
+        "orcid": null
+      },
+      {
+        "name": "Yuxin Huang",
+        "orcid": null
+      },
+      {
+        "name": "Guoran Hu",
+        "orcid": null
+      },
+      {
+        "name": "Haifang Qin",
+        "orcid": null
+      },
+      {
+        "name": "Bowen Jing",
+        "orcid": null
+      },
+      {
+        "name": "Yuntian Bo",
+        "orcid": null
+      },
+      {
+        "name": "Ping Luo",
+        "orcid": null
+      }
+    ],
+    "year": 2026,
+    "publication_date": "2026-03-08T09:31:15Z",
+    "venue": "arXiv",
+    "publisher": "arXiv",
+    "type": "preprint",
+    "language": null,
+    "abstract": "High-fidelity visual reconstruction and novel-view synthesis are essential for realistic closed-loop evaluation in autonomous driving. While 4D Gaussian Splatting (4DGS) offers a promising balance of accuracy and efficiency, existing per-scene optimization methods require costly iterative refinement, rendering them unscalable for extensive urban environments. Conversely, current feed-forward approaches often suffer from degraded photometric quality. To address these limitations, we propose ReconDrive, a feed-forward framework that leverages and extends the 3D foundation model VGGT for rapid, high-fidelity 4DGS generation. Our architecture introduces two core adaptations to tailor the foundation model to dynamic driving scenes: (1) Hybrid Gaussian Prediction Heads, which decouple the regression of spatial coordinates and appearance attributes to overcome the photometric deficiencies inherent in generalized foundation features; and (2) a Static-Dynamic 4D Composition strategy that explicitly captures temporal motion via velocity modeling to represent complex dynamic environments. Benchmarked on nuScenes, ReconDrive significantly outperforms existing feed-forward baselines in reconstruction, novel-view synthesis, and 3D perception. It achieves performance competitive with per-scene optimization while being orders of magnitude faster, providing a scalable and practical solution for realistic driving simulation.",
+    "topics": [
+      "cs.CV",
+      "cs.RO"
+    ],
+    "citation_count": null
+  },
+  "external_ids": {
+    "doi": null,
+    "openalex": null,
+    "arxiv": "2603.07552",
+    "pmid": null,
+    "zotero": null
+  },
+  "access": {
+    "canonical_url": "https://arxiv.org/abs/2603.07552",
+    "open_access_url": "https://arxiv.org/pdf/2603.07552v1",
+    "fulltext_urls": [
+      "https://arxiv.org/pdf/2603.07552v1"
+    ],
+    "license_urls": []
+  },
+  "provenance": {
+    "input": "arXiv:2603.07552",
+    "canonical_identity": "arxiv:2603.07552",
+    "retrievals": [
+      {
+        "source": "arxiv",
+        "url": "https://export.arxiv.org/api/query?id_list=2603.07552",
+        "retrieved_at": "2026-08-23T06:05:32Z"
+      }
+    ],
+    "review_warnings": []
+  },
+  "review": {
+    "relevance": "unreviewed",
+    "source_inspected": "metadata-only",
+    "key_findings": [],
+    "methods": [],
+    "limitations": [],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  "traceability": {
+    "idea_ids": [],
+    "experiment_ids": [],
+    "claim_ids": [],
+    "figure_ids": [],
+    "table_ids": []
+  },
+  "created_at": "2026-08-23T06:05:32Z",
+  "updated_at": "2026-08-23T06:05:32Z"
+}

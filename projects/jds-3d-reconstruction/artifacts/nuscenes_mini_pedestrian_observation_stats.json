@@ -1,0 +1,160 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-08-23",
+  "purpose": "为 EXP-D364146FE7A6 的分层轴提供观测充分性分布；只读标注与标定，未训练、未渲染、未使用 GPU。",
+  "dataset": {
+    "name": "nuScenes",
+    "split": "v1.0-mini",
+    "preprocessing": "drivestudio datasets/preprocess.py --interpolate_N 4 (2Hz keyframes -> 10Hz)",
+    "scenes": 10,
+    "cameras": 6,
+    "image_size": [
+      1600,
+      900
+    ],
+    "raw_archive_sha256": "943037abbb3b26b3070dc76504a43eb440503b00baf9ac2f1538d9c03fc9298f"
+  },
+  "pedestrian_instances": {
+    "total": 227,
+    "with_camera_observation": 227,
+    "per_scene": {
+      "000": 60,
+      "001": 46,
+      "002": 12,
+      "003": 7,
+      "004": 2,
+      "005": 11,
+      "006": 23,
+      "007": 0,
+      "008": 55,
+      "009": 11
+    }
+  },
+  "distributions": {
+    "depth_median": {
+      "min": 7.163,
+      "p10": 11.068,
+      "p25": 15.657,
+      "p50": 23.269,
+      "p75": 29.045,
+      "p90": 39.132,
+      "max": 77.167
+    },
+    "px_height_max": {
+      "min": 31.154,
+      "p10": 76.864,
+      "p25": 101.045,
+      "p50": 163.83,
+      "p75": 322.1,
+      "p90": 414.613,
+      "max": 1354.22
+    },
+    "px_height_median": {
+      "min": 19.883,
+      "p10": 48.497,
+      "p25": 64.346,
+      "p50": 85.027,
+      "p75": 126.714,
+      "p90": 169.693,
+      "max": 314.163
+    },
+    "n_observations": {
+      "min": 1.0,
+      "p10": 30.2,
+      "p25": 81.0,
+      "p50": 116.0,
+      "p75": 166.0,
+      "p90": 202.2,
+      "max": 400.0
+    },
+    "n_frames": {
+      "min": 1.0,
+      "p10": 26.0,
+      "p25": 71.0,
+      "p50": 106.0,
+      "p75": 146.0,
+      "p90": 191.0,
+      "max": 201.0
+    },
+    "occlusion_proxy_median": {
+      "min": 0.0,
+      "p10": 0.0,
+      "p25": 0.0,
+      "p50": 0.0,
+      "p75": 0.646,
+      "p90": 0.924,
+      "max": 1.0
+    },
+    "occlusion_proxy_max": {
+      "min": 0.0,
+      "p10": 0.398,
+      "p25": 0.986,
+      "p50": 1.0,
+      "p75": 1.0,
+      "p90": 1.0,
+      "max": 1.0
+    }
+  },
+  "thresholds": {
+    "px_height_max_below": {
+      "32": {
+        "count": 1,
+        "fraction": 0.0044
+      },
+      "64": {
+        "count": 12,
+        "fraction": 0.0529
+      },
+      "96": {
+        "count": 46,
+        "fraction": 0.2026
+      },
+      "128": {
+        "count": 85,
+        "fraction": 0.3744
+      },
+      "256": {
+        "count": 154,
+        "fraction": 0.6784
+      }
+    },
+    "n_frames_below": {
+      "5": {
+        "count": 2,
+        "fraction": 0.0088
+      },
+      "10": {
+        "count": 4,
+        "fraction": 0.0176
+      },
+      "20": {
+        "count": 17,
+        "fraction": 0.0749
+      },
+      "50": {
+        "count": 38,
+        "fraction": 0.1674
+      }
+    },
+    "occlusion_proxy_max_above": {
+      "0.1": {
+        "count": 208,
+        "fraction": 0.9163
+      },
+      "0.3": {
+        "count": 206,
+        "fraction": 0.9075
+      },
+      "0.5": {
+        "count": 198,
+        "fraction": 0.8722
+      }
+    }
+  },
+  "caveats": [
+    "n_frames 计的是 10Hz 插值后的帧；nuScenes 原始标注为 2Hz 关键帧，独立观测约为 n_frames/5。",
+    "occlusion_proxy 为 2D 包围盒级代理：任一更近物体的投影框对本框的覆盖比，会显著高估真实像素遮挡，尤其当近处车辆的大框覆盖远处行人的小框时。该轴需改用像素级深度排序或实例掩码重新定义。",
+    "px_height 由 fy * box_height / depth 解析计算，未考虑截断与畸变。",
+    "本统计描述观测条件分布，不包含任何重建质量结论。"
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "record_id": "LIT-E27A56D80AFF",
+  "project_id": "jds-3d-reconstruction",
+  "status": "needs-review",
+  "bibliographic": {
+    "title": "DriveSplat: Unified Neural Gaussian Reconstruction for Dynamic Driving Scenes",
+    "authors": [
+      {
+        "name": "Cong Wang",
+        "orcid": null
+      },
+      {
+        "name": "Ruiqi Song",
+        "orcid": null
+      },
+      {
+        "name": "Wei Tian",
+        "orcid": null
+      },
+      {
+        "name": "Chenming Zhang",
+        "orcid": null
+      },
+      {
+        "name": "Lingxi Li",
+        "orcid": null
+      },
+      {
+        "name": "Long Chen",
+        "orcid": null
+      }
+    ],
+    "year": 2025,
+    "publication_date": "2025-08-21T09:14:50Z",
+    "venue": "arXiv",
+    "publisher": "arXiv",
+    "type": "preprint",
+    "language": null,
+    "abstract": "Reconstructing large-scale dynamic driving scenes remains challenging due to the coexistence of static environments with extreme depth variation and diverse dynamic actors exhibiting complex motions. Existing Gaussian Splatting based methods have primarily focused on limited-scale or object-centric settings, and their applicability to large-scale dynamic driving scenes remains underexplored, particularly in the presence of extreme scale variation and non-rigid motions. In this work, we propose DriveSplat, a unified neural Gaussian framework for reconstructing dynamic driving scenes within a unified Gaussian-based representation. For static backgrounds, we introduce a scene-aware learnable level-of-detail (LOD) modeling strategy that explicitly accounts for near, intermediate, and far depth ranges in driving environments, enabling adaptive multi-scale Gaussian allocation. For dynamic actors, we use an object-centric formulation with neural Gaussian primitives, modeling motion through a global rigid transformation and handling non-rigid dynamics via a two-stage deformation that first adjusts anchors and subsequently updates the Gaussians. To further regularize the optimization, we incorporate dense depth and surface normal priors from pre-trained models as auxiliary supervision. Extensive experiments on the Waymo and KITTI benchmarks demonstrate that DriveSplat achieves state-of-the-art performance in novel-view synthesis while producing temporally stable and geometrically consistent reconstructions of dynamic driving scenes. Project page: https://physwm.github.io/drivesplat.",
+    "topics": [
+      "cs.CV"
+    ],
+    "citation_count": null
+  },
+  "external_ids": {
+    "doi": null,
+    "openalex": null,
+    "arxiv": "2508.15376",
+    "pmid": null,
+    "zotero": null
+  },
+  "access": {
+    "canonical_url": "https://arxiv.org/abs/2508.15376",
+    "open_access_url": "https://arxiv.org/pdf/2508.15376v4",
+    "fulltext_urls": [
+      "https://arxiv.org/pdf/2508.15376v4"
+    ],
+    "license_urls": []
+  },
+  "provenance": {
+    "input": "arXiv:2508.15376",
+    "canonical_identity": "arxiv:2508.15376",
+    "retrievals": [
+      {
+        "source": "arxiv",
+        "url": "https://export.arxiv.org/api/query?id_list=2508.15376",
+        "retrieved_at": "2026-08-23T06:05:27Z"
+      }
+    ],
+    "review_warnings": []
+  },
+  "review": {
+    "relevance": "unreviewed",
+    "source_inspected": "metadata-only",
+    "key_findings": [],
+    "methods": [],
+    "limitations": [],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  "traceability": {
+    "idea_ids": [],
+    "experiment_ids": [],
+    "claim_ids": [],
+    "figure_ids": [],
+    "table_ids": []
+  },
+  "created_at": "2026-08-23T06:05:27Z",
+  "updated_at": "2026-08-23T06:05:27Z"
+}

@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "record_id": "LIT-B320AFDA160F",
+  "project_id": "jds-3d-reconstruction",
+  "status": "needs-review",
+  "bibliographic": {
+    "title": "4D Human-Scene Reconstruction from Low-Overlap Captures",
+    "authors": [
+      {
+        "name": "Minhyuk Hwang",
+        "orcid": null
+      },
+      {
+        "name": "Sangmin Kim",
+        "orcid": null
+      },
+      {
+        "name": "Seunguk Do",
+        "orcid": null
+      },
+      {
+        "name": "Daneul Kim",
+        "orcid": null
+      },
+      {
+        "name": "Jaesik Park",
+        "orcid": null
+      }
+    ],
+    "year": 2026,
+    "publication_date": "2026-07-10T06:30:45Z",
+    "venue": "arXiv",
+    "publisher": "arXiv",
+    "type": "preprint",
+    "language": null,
+    "abstract": "Existing volumetric capture of dynamic human performance achieves high fidelity with dense camera arrays. However, in real-world scenarios, only a handful of low-overlap cameras are available, which degrades the output quality and leaves large areas unobserved. Recent 4D reconstruction methods have focused on low-overlap settings, yet they still produce noticeable artifacts in under-observed regions. Video diffusion models have emerged as another option, but they show geometrically inconsistent results for humans. To address these limitations, we propose StudioRecon, a pipeline that reconstructs 4D human scenes from sparse, low-overlap cameras by decoupling background and humans. We densify background supervision by synthesizing hundreds of camera-controlled novel views with a video diffusion model. We also robustly initialize deformable Gaussian humans with cross-view identity association and triangulated multi-view keypoint fitting. Finally, our recursive enhancement module with motion-adaptive consistency injection harmonizes the composed output, thereby further avoiding remaining artifacts. We achieve state-of-the-art novel view synthesis across four real-world datasets and demonstrate applications such as novel trajectory rendering and human replacement.",
+    "topics": [
+      "cs.CV"
+    ],
+    "citation_count": null
+  },
+  "external_ids": {
+    "doi": null,
+    "openalex": null,
+    "arxiv": "2607.09125",
+    "pmid": null,
+    "zotero": null
+  },
+  "access": {
+    "canonical_url": "https://arxiv.org/abs/2607.09125",
+    "open_access_url": "https://arxiv.org/pdf/2607.09125v1",
+    "fulltext_urls": [
+      "https://arxiv.org/pdf/2607.09125v1"
+    ],
+    "license_urls": []
+  },
+  "provenance": {
+    "input": "arXiv:2607.09125",
+    "canonical_identity": "arxiv:2607.09125",
+    "retrievals": [
+      {
+        "source": "arxiv",
+        "url": "https://export.arxiv.org/api/query?id_list=2607.09125",
+        "retrieved_at": "2026-08-23T06:05:31Z"
+      }
+    ],
+    "review_warnings": []
+  },
+  "review": {
+    "relevance": "unreviewed",
+    "source_inspected": "metadata-only",
+    "key_findings": [],
+    "methods": [],
+    "limitations": [],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  "traceability": {
+    "idea_ids": [],
+    "experiment_ids": [],
+    "claim_ids": [],
+    "figure_ids": [],
+    "table_ids": []
+  },
+  "created_at": "2026-08-23T06:05:31Z",
+  "updated_at": "2026-08-23T06:05:31Z"
+}

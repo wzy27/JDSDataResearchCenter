@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "experiment_id": "EXP-D364146FE7A6",
+  "project_id": "jds-3d-reconstruction",
+  "title": "P0 分层 human-region 基线：OmniRe 行人重建质量随观测条件的退化曲线",
+  "type": "benchmark",
+  "status": "planned",
+  "objective": "在 nuScenes v1.0-mini 上复现 OmniRe 基线，按行人距离、遮挡率与可观测帧数分层报告 human-region 的 PSNR/SSIM/LPIPS，判定观测受限条件下是否存在足以支撑方法贡献的 headroom。",
+  "protocol": {
+    "scope": "只测量既有基线的退化行为，不引入任何新方法，不用于方法优劣结论。这是选题的 go/no-go 前置判据。",
+    "success_criteria": [
+      "10 个 mini 场景中至少 5 个含行人的场景完成训练与评测",
+      "human-region 的 PSNR/SSIM/LPIPS 可按距离、遮挡率、可观测帧数三个轴分层输出",
+      "整体 human-region 数值与 OmniRe 论文报告的量级可比，确认复现无系统性错误"
+    ],
+    "failure_criteria": [
+      "分层统计所依赖的行人 3D box、轨迹或可见性标注不足以定义分层",
+      "复现所得 human-region 指标与论文量级偏离过大且无法解释",
+      "行人像素样本量过小，分层后各层不具统计意义"
+    ],
+    "expected_outputs": [
+      "分层 human-region 指标表（JSON）",
+      "退化曲线图：指标 vs 距离 / 遮挡率 / 观测帧数",
+      "每个分层的行人实例数与像素量统计",
+      "定性对比图：最差分层的渲染与 GT"
+    ]
+  },
+  "traceability": {
+    "idea_ids": [
+      "IDEA-F1BED52F1B2D"
+    ],
+    "task_ids": [],
+    "lit_ids": [
+      "LIT-334F00637EB0",
+      "LIT-E27A56D80AFF"
+    ],
+    "claim_ids": [],
+    "parent_experiment_ids": []
+  },
+  "execution": {
+    "executor_id": "wsl2-ubuntu2404-rtx4090",
+    "cwd": {
+      "connection": "drivestudio-upstream",
+      "relative_path": "."
+    },
+    "command_argv": [],
+    "required_commands": [
+      "python",
+      "nvidia-smi"
+    ],
+    "required_connections": [
+      "drivestudio-upstream",
+      "nuscenes-mini-data"
+    ],
+    "watchdog_policy": null
+  },
+  "code": {
+    "repository": "https://github.com/ziyc/drivestudio.git",
+    "commit": "e59bda4fa681f829dbb1d65f0de582b0f633c450",
+    "dirty": false,
+    "patch_uri": null
+  },
+  "data": {
+    "datasets": []
+  },
+  "environment": {
+    "os": "linux",
+    "runtime": "conda:drivestudio python 3.9.23 / torch 2.0.0+cu118 / CUDA 11.8",
+    "lockfile": null,
+    "seeds": {}
+  },
+  "resources": {
+    "accelerator": {
+      "vendor": "nvidia",
+      "count": 1,
+      "min_vram_gb": 24,
+      "cuda": "11.8",
+      "driver": "591.86"
+    },
+    "min_disk_gb": 60
+  },
+  "blockers": [
+    {
+      "code": "SMPL_MODEL_MISSING",
+      "description": "SMPL v1.1 neutral 模型需在 smpl.is.tue.mpg.de 注册并接受许可后手动下载，无法自动获取；缺少它则 SMPLNodes 无法建模行人",
+      "resolution": "研究者手动下载 SMPL_python_v.1.1.0.zip 并放置为 smpl_models/SMPL_NEUTRAL.pkl"
+    },
+    {
+      "code": "SKY_MASK_MISSING",
+      "description": "训练所需的 sky mask 由 SegFormer 生成，需单独的 pytorch 1.8 + cu111 conda 环境与 GPU 推理",
+      "resolution": "建立 segformer 环境、下载 segformer.b5.1024x1024.city.160k.pth 并运行 extract_masks.py"
+    },
+    {
+      "code": "STRATIFICATION_UNDEFINED",
+      "description": "距离/遮挡率/可观测帧数三个分层轴的具体定义与阈值尚未确定，评测脚本尚未实现",
+      "resolution": "基于 nuScenes 3D box、visibility 标注与 rig 标定定义分层，并实现 human-region 分层评测脚本"
+    }
+  ],
+  "preflight": {
+    "latest_status": "not-run",
+    "reports": []
+  },
+  "results": {
+    "metrics": [],
+    "artifacts": [],
+    "output_validation": "not-run",
+    "conclusion": null,
+    "idea_effects": [],
+    "limitations": [],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  "events": [
+    {
+      "event_id": "EVT-E8921C7B99",
+      "timestamp": "2026-08-23T06:09:48Z",
+      "type": "created",
+      "from_status": null,
+      "to_status": "planned",
+      "reason": "Created from an experiment specification.",
+      "evidence": null
+    }
+  ],
+  "provenance": {
+    "source": "sources/2026-08-23_pedestrian_reconstruction_sota_survey.md",
+    "source_sha256": null,
+    "created_by": "Codex"
+  },
+  "created_at": "2026-08-23T06:09:48Z",
+  "updated_at": "2026-08-23T06:09:48Z"
+}

@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "record_id": "LIT-3F979628DBA4",
+  "project_id": "jds-3d-reconstruction",
+  "status": "needs-review",
+  "bibliographic": {
+    "title": "ReLumix: Extending Image Relighting to Video via Video Diffusion Models",
+    "authors": [
+      {
+        "name": "Lezhong Wang",
+        "orcid": null
+      },
+      {
+        "name": "Shutong Jin",
+        "orcid": null
+      },
+      {
+        "name": "Ruiqi Cui",
+        "orcid": null
+      },
+      {
+        "name": "Anders Bjorholm Dahl",
+        "orcid": null
+      },
+      {
+        "name": "Jeppe Revall Frisvad",
+        "orcid": null
+      },
+      {
+        "name": "Siavash Bigdeli",
+        "orcid": null
+      }
+    ],
+    "year": 2025,
+    "publication_date": "2025-09-28T09:35:33Z",
+    "venue": "arXiv",
+    "publisher": "arXiv",
+    "type": "preprint",
+    "language": null,
+    "abstract": "Controlling illumination during video post-production is a crucial yet elusive goal in computational photography. Existing methods often lack flexibility, restricting users to certain relighting models. This paper introduces ReLumix, a novel framework that decouples the relighting algorithm from temporal synthesis, thereby enabling any image relighting technique to be seamlessly applied to video. Our approach reformulates video relighting into a simple yet effective two-stage process: (1) an artist relights a single reference frame using any preferred image-based technique (e.g., Diffusion Models, physics-based renderers); and (2) a fine-tuned stable video diffusion (SVD) model seamlessly propagates this target illumination throughout the sequence. To ensure temporal coherence and prevent artifacts, we introduce a gated cross-attention mechanism for smooth feature blending and a temporal bootstrapping strategy that harnesses SVD's powerful motion priors. Although trained on synthetic data, ReLumix shows competitive generalization to real-world videos. The method demonstrates significant improvements in visual fidelity, offering a scalable and versatile solution for dynamic lighting control.",
+    "topics": [
+      "cs.AI",
+      "cs.CV",
+      "cs.GR"
+    ],
+    "citation_count": null
+  },
+  "external_ids": {
+    "doi": null,
+    "openalex": null,
+    "arxiv": "2509.23769",
+    "pmid": null,
+    "zotero": null
+  },
+  "access": {
+    "canonical_url": "https://arxiv.org/abs/2509.23769",
+    "open_access_url": "https://arxiv.org/pdf/2509.23769v1",
+    "fulltext_urls": [
+      "https://arxiv.org/pdf/2509.23769v1"
+    ],
+    "license_urls": []
+  },
+  "provenance": {
+    "input": "arXiv:2509.23769",
+    "canonical_identity": "arxiv:2509.23769",
+    "retrievals": [
+      {
+        "source": "arxiv",
+        "url": "https://export.arxiv.org/api/query?id_list=2509.23769",
+        "retrieved_at": "2026-08-23T05:16:44Z"
+      }
+    ],
+    "review_warnings": []
+  },
+  "review": {
+    "relevance": "unreviewed",
+    "source_inspected": "metadata-only",
+    "key_findings": [],
+    "methods": [],
+    "limitations": [],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  "traceability": {
+    "idea_ids": [],
+    "experiment_ids": [],
+    "claim_ids": [],
+    "figure_ids": [],
+    "table_ids": []
+  },
+  "created_at": "2026-08-23T05:16:44Z",
+  "updated_at": "2026-08-23T05:16:44Z"
+}

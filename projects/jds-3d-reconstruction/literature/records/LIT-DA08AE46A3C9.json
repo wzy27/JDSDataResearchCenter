@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "record_id": "LIT-DA08AE46A3C9",
+  "project_id": "jds-3d-reconstruction",
+  "status": "needs-review",
+  "bibliographic": {
+    "title": "Waymo-3DSkelMo: A Multi-Agent 3D Skeletal Motion Dataset for Pedestrian Interaction Modeling in Autonomous Driving",
+    "authors": [
+      {
+        "name": "Guangxun Zhu",
+        "orcid": null
+      },
+      {
+        "name": "Shiyu Fan",
+        "orcid": null
+      },
+      {
+        "name": "Hang Dai",
+        "orcid": null
+      },
+      {
+        "name": "Edmond S. L. Ho",
+        "orcid": null
+      }
+    ],
+    "year": 2025,
+    "publication_date": "2025-08-13T00:39:56Z",
+    "venue": "arXiv",
+    "publisher": "arXiv",
+    "type": "preprint",
+    "language": null,
+    "abstract": "Large-scale high-quality 3D motion datasets with multi-person interactions are crucial for data-driven models in autonomous driving to achieve fine-grained pedestrian interaction understanding in dynamic urban environments. However, existing datasets mostly rely on estimating 3D poses from monocular RGB video frames, which suffer from occlusion and lack of temporal continuity, thus resulting in unrealistic and low-quality human motion. In this paper, we introduce Waymo-3DSkelMo, the first large-scale dataset providing high-quality, temporally coherent 3D skeletal motions with explicit interaction semantics, derived from the Waymo Perception dataset. Our key insight is to utilize 3D human body shape and motion priors to enhance the quality of the 3D pose sequences extracted from the raw LiDRA point clouds. The dataset covers over 14,000 seconds across more than 800 real driving scenarios, including rich interactions among an average of 27 agents per scene (with up to 250 agents in the largest scene). Furthermore, we establish 3D pose forecasting benchmarks under varying pedestrian densities, and the results demonstrate its value as a foundational resource for future research on fine-grained human behavior understanding in complex urban environments. The dataset and code will be available at https://github.com/GuangxunZhu/Waymo-3DSkelMo",
+    "topics": [
+      "cs.CV",
+      "cs.MM"
+    ],
+    "citation_count": null
+  },
+  "external_ids": {
+    "doi": null,
+    "openalex": null,
+    "arxiv": "2508.09404",
+    "pmid": null,
+    "zotero": null
+  },
+  "access": {
+    "canonical_url": "https://arxiv.org/abs/2508.09404",
+    "open_access_url": "https://arxiv.org/pdf/2508.09404v1",
+    "fulltext_urls": [
+      "https://arxiv.org/pdf/2508.09404v1"
+    ],
+    "license_urls": []
+  },
+  "provenance": {
+    "input": "arXiv:2508.09404",
+    "canonical_identity": "arxiv:2508.09404",
+    "retrievals": [
+      {
+        "source": "arxiv",
+        "url": "https://export.arxiv.org/api/query?id_list=2508.09404",
+        "retrieved_at": "2026-08-23T05:16:45Z"
+      }
+    ],
+    "review_warnings": []
+  },
+  "review": {
+    "relevance": "unreviewed",
+    "source_inspected": "metadata-only",
+    "key_findings": [],
+    "methods": [],
+    "limitations": [],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  "traceability": {
+    "idea_ids": [],
+    "experiment_ids": [],
+    "claim_ids": [],
+    "figure_ids": [],
+    "table_ids": []
+  },
+  "created_at": "2026-08-23T05:16:45Z",
+  "updated_at": "2026-08-23T05:16:45Z"
+}

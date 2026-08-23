@@ -4,7 +4,7 @@
   "project_id": "jds-3d-reconstruction",
   "title": "共享环境光与空间光照残差的统一重打光",
   "kind": "hypothesis",
-  "status": "proposed",
+  "status": "challenged",
   "statement": "共享环境光参数提供跨组件的全局一致性，空间分区光照残差与材质先验补充建筑阴影和局部光源，可在不重建几何的情况下提升编辑后重打光真实性。",
   "motivation": "单一全局光照无法表达街区阴影，完全独立的组件光照又容易产生曝光和色调不一致。",
   "assumptions": [
@@ -20,7 +20,10 @@
     "failure_signals": [
       "空间残差吸收材质/几何，或编辑后阴影位置与遮挡关系不一致。"
     ],
-    "experiment_ids": ["EXP-C4E8F5217892", "EXP-4C2A9AD4C3D2"]
+    "experiment_ids": [
+      "EXP-C4E8F5217892",
+      "EXP-4C2A9AD4C3D2"
+    ]
   },
   "evolution": [
     {
@@ -30,6 +33,14 @@
       "summary": "Initial capture",
       "reason": "Captured from supplied research material.",
       "source": "D:\\Workspace\\QE_main.pdf"
+    },
+    {
+      "event_id": "EVT-D9EFD396A6",
+      "timestamp": "2026-08-23T05:20:19Z",
+      "type": "challenged",
+      "summary": "共享环境光加空间光照残差的核心表述已被 CVPR 2026 人体—场景联合重建工作占据",
+      "reason": "CVPR 2026 Illumination-Consistent Human-Scene Reconstruction from Monocular Video 提出 learnable light volume 向 human Gaussians 提供局部光照线索，等价于本 idea 的空间光照残差作用于组件；LumiMotion (arXiv:2604.10994) 另占据以动态作为逆渲染监督的表述；驾驶场景 BRDF 材质分解由 arXiv:2602.13549 占据。该 idea 不再具备主创新地位。",
+      "source": "sources/2026-08-23_reconstruction_pivot_landscape.md"
     }
   ],
   "tags": [
@@ -48,13 +59,21 @@
   },
   "traceability": {
     "lit_ids": [],
-    "task_ids": ["TASK-C020D3B4C2", "TASK-C312DFAB8F", "TASK-BA65540608", "TASK-31CE2EFAFC"],
-    "experiment_ids": ["EXP-C4E8F5217892", "EXP-4C2A9AD4C3D2"],
+    "task_ids": [
+      "TASK-C020D3B4C2",
+      "TASK-C312DFAB8F",
+      "TASK-BA65540608",
+      "TASK-31CE2EFAFC"
+    ],
+    "experiment_ids": [
+      "EXP-C4E8F5217892",
+      "EXP-4C2A9AD4C3D2"
+    ],
     "claim_ids": [],
     "parent_idea_ids": [],
     "supersedes": [],
     "superseded_by": []
   },
   "created_at": "2026-08-18T08:39:59Z",
-  "updated_at": "2026-08-18T08:39:59Z"
+  "updated_at": "2026-08-23T05:20:19Z"
 }

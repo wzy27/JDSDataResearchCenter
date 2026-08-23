@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "record_id": "LIT-6CADDC4504A2",
+  "project_id": "jds-3d-reconstruction",
+  "status": "needs-review",
+  "bibliographic": {
+    "title": "Nighttime Autonomous Driving Scene Reconstruction with Physically-Based Gaussian Splatting",
+    "authors": [
+      {
+        "name": "Tae-Kyeong Kim",
+        "orcid": null
+      },
+      {
+        "name": "Xingxin Chen",
+        "orcid": null
+      },
+      {
+        "name": "Guile Wu",
+        "orcid": null
+      },
+      {
+        "name": "Chengjie Huang",
+        "orcid": null
+      },
+      {
+        "name": "Dongfeng Bai",
+        "orcid": null
+      },
+      {
+        "name": "Bingbing Liu",
+        "orcid": null
+      }
+    ],
+    "year": 2026,
+    "publication_date": "2026-02-14T01:49:23Z",
+    "venue": "arXiv",
+    "publisher": "arXiv",
+    "type": "preprint",
+    "language": null,
+    "abstract": "This paper focuses on scene reconstruction under nighttime conditions in autonomous driving simulation. Recent methods based on Neural Radiance Fields (NeRFs) and 3D Gaussian Splatting (3DGS) have achieved photorealistic modeling in autonomous driving scene reconstruction, but they primarily focus on normal-light conditions. Low-light driving scenes are more challenging to model due to their complex lighting and appearance conditions, which often causes performance degradation of existing methods. To address this problem, this work presents a novel approach that integrates physically based rendering into 3DGS to enhance nighttime scene reconstruction for autonomous driving. Specifically, our approach integrates physically based rendering into composite scene Gaussian representations and jointly optimizes Bidirectional Reflectance Distribution Function (BRDF) based material properties. We explicitly model diffuse components through a global illumination module and specular components by anisotropic spherical Gaussians. As a result, our approach improves reconstruction quality for outdoor nighttime driving scenes, while maintaining real-time rendering. Extensive experiments across diverse nighttime scenarios on two real-world autonomous driving datasets, including nuScenes and Waymo, demonstrate that our approach outperforms the state-of-the-art methods both quantitatively and qualitatively.",
+    "topics": [
+      "cs.CV"
+    ],
+    "citation_count": null
+  },
+  "external_ids": {
+    "doi": null,
+    "openalex": null,
+    "arxiv": "2602.13549",
+    "pmid": null,
+    "zotero": null
+  },
+  "access": {
+    "canonical_url": "https://arxiv.org/abs/2602.13549",
+    "open_access_url": "https://arxiv.org/pdf/2602.13549v1",
+    "fulltext_urls": [
+      "https://arxiv.org/pdf/2602.13549v1"
+    ],
+    "license_urls": []
+  },
+  "provenance": {
+    "input": "arXiv:2602.13549",
+    "canonical_identity": "arxiv:2602.13549",
+    "retrievals": [
+      {
+        "source": "arxiv",
+        "url": "https://export.arxiv.org/api/query?id_list=2602.13549",
+        "retrieved_at": "2026-08-23T05:16:44Z"
+      }
+    ],
+    "review_warnings": []
+  },
+  "review": {
+    "relevance": "unreviewed",
+    "source_inspected": "metadata-only",
+    "key_findings": [],
+    "methods": [],
+    "limitations": [],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  "traceability": {
+    "idea_ids": [],
+    "experiment_ids": [],
+    "claim_ids": [],
+    "figure_ids": [],
+    "table_ids": []
+  },
+  "created_at": "2026-08-23T05:16:44Z",
+  "updated_at": "2026-08-23T05:16:44Z"
+}
