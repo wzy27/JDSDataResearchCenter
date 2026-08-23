@@ -33,3 +33,34 @@
 （1）给现有 survey 文件加“复核结果段”；  
 （2）新建 citation 补录日志文件；  
 （3）给 `README.md` 和 `plans/CHANGELOG.md` 加一句可追踪的里程碑备注。
+
+---
+
+## 2026-08-23 通道 B：MGSR 与 P2GS 前向引用复核（新增）
+
+按你原本规则（OmniRe → Citations → keyword 过滤）对两个种子论文补做了 Semantic Scholar 前向引用抓取，时间窗口为本次任务时点（2026-08-23）。
+
+### 结果
+
+- MGSR（arXiv:2503.05182）当前 `7` 篇前向引用：
+  - RPC-GS: Gaussian Splatting with native RPC Rendering for Satellite Imagery（2026）
+  - DCRR++: Unsupervised Reflection Removal and Novel View Synthesis via Dual-Pixel Guided 3D Gaussian Splatting（2026）
+  - Denoising-GS: Gaussian Splatting with Spatial-aware Denoising（2026）
+  - SMDGS: Scale-Aligned Monocular Depth-Guided 3D Gaussian Splatting for Rendering and Surface Reconstruction（2026）
+  - Benchmarking PhD-Level Coding in 3D Geometric Computer Vision（2026）
+  - High-fidelity 3D reconstruction of cultural heritage via super-resolution and progressive Gaussian splatting（2026）
+  - Reflections Unlock: Geometry-Aware Reflection Disentanglement in 3D Gaussian Splatting for Photorealistic Scenes Rendering（2025）
+- P2GS（arXiv:2605.16925）当前 `0` 篇前向引用（API 返回 `data=[]`）。
+
+### 对你关心的 future work 接续判断
+
+- MGSR 论文结尾的 future work 是“低光照场景可能过平滑，计划引入输入图像曝光补偿”；当前 7 篇前向引用中，
+  标题层未见 exposure compensation / low-light / human / pedestrian / SMPL / long-distance / occlusion 方向，**未观察到有论文直接接住 MGSR 的这条 future work。**
+- P2GS 在论文末尾提到“未显式分离材质与外部光照、未支持可重光照渲染”是后续扩展方向；但当前该论文也未被后续论文引用（0），也就没有可追溯的“接续证据”。
+- 结论：这两条链上都未出现你最关心的人体方向（human、远距离、遮挡）交付，**目前是可快速切入的空白窗口**。
+
+### 建议（接近你“2 天 vs 2 个月”决策）
+
+1. 先把这次复核作为可追溯证据，已保存为：`sources/2026-08-23_channel_b_mgsr_p2gs_forward_citations.json`。
+2. 你的下一轮可直接优先做：**far-distance 人体、遮挡场景、稀疏视角下人体建模**三条主线的候选对标，而不是花太多时间在 P2GS / MGSR 的已出现路线复读。
+3. 如果你同意，我下一步可以把这两条未来方向做成 4-6 个“候选工作包（dataset / 损失项 / 模块替换）”，并给出可直接落地的实验设计。

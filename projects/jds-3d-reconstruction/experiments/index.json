@@ -28,6 +28,19 @@
       "updated_at": "2026-08-23T07:34:45Z"
     },
     {
+      "experiment_id": "EXP-320CDAC90FCC",
+      "title": "E-alpha 循环消融：互导是否稳健优于单向引导",
+      "type": "ablation",
+      "status": "planned",
+      "objective": "在同一批场景上对比仅表示 A、仅表示 B、单向 A→B、双向 A↔B 四种配置，检验假设 H1：是否存在互导劣于单向引导的情形。",
+      "idea_ids": [
+        "IDEA-4DC79F20C0C6"
+      ],
+      "record_path": "records/EXP-320CDAC90FCC.json",
+      "note_path": "notes/EXP-320CDAC90FCC.md",
+      "updated_at": "2026-08-23T16:22:54Z"
+    },
+    {
       "experiment_id": "EXP-4C2A9AD4C3D2",
       "title": "P4 全局/空间光照、材质与可见性消融",
       "type": "ablation",
@@ -79,6 +92,19 @@
       "record_path": "records/EXP-D364146FE7A6.json",
       "note_path": "notes/EXP-D364146FE7A6.md",
       "updated_at": "2026-08-23T06:09:48Z"
+    },
+    {
+      "experiment_id": "EXP-D3E26C0B2BFF",
+      "title": "E-beta 受控误差注入：互导循环纠正误差还是放大误差",
+      "type": "ablation",
+      "status": "planned",
+      "objective": "向已收敛的良好 SDF 注入可控幅度与类型的扰动，运行互导循环，测量扰动随迭代收缩还是增长。直接检验 H1 的机制，且不受场景差异这一混杂因素影响。",
+      "idea_ids": [
+        "IDEA-4DC79F20C0C6"
+      ],
+      "record_path": "records/EXP-D3E26C0B2BFF.json",
+      "note_path": "notes/EXP-D3E26C0B2BFF.md",
+      "updated_at": "2026-08-23T16:22:54Z"
     }
   ]
 }

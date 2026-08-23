@@ -1,0 +1,81 @@
+{
+  "延伸2 八叉树/自适应细分准则": {
+    "sub": {
+      "八叉树/层级网格": [
+        "Proxy-GS: Unified Occlusion Priors for Training and Inference in Str",
+        "LongSplat: Robust Unposed 3D Gaussian Splatting for Casual Long Vide",
+        "Sparse Voxels Rasterization: Real-time High-fidelity Radiance Field ",
+        "FilterGS: Traversal-Free Parallel Filtering and Adaptive Shrinking",
+        "TexGaussian: Generating High-quality PBR Material via",
+        "GS-Occ3D: Scaling Vision-only Occupancy Reconstruction"
+      ],
+      "SDF+GS 混合": [
+        "Gaussian Splatting with Discretized SDF for Relightable Assets"
+      ],
+      "细分准则": []
+    },
+    "strong": [
+      "FISHuman: Fine-grained Single-image 3D Human Reconstruction",
+      "GaussianGrow: Geometry-aware Gaussian Growing from 3D Point Clouds w",
+      "LongSplat: Robust Unposed 3D Gaussian Splatting for Casual Long Vide",
+      "MGSR: 2D/3D Mutual-boosted Gaussian Splatting for High-fidelity Surf",
+      "TexGaussian: Generating High-quality PBR Material via"
+    ]
+  },
+  "延伸3 Hessian/曲率约束与假设边界": {
+    "sub": {
+      "尖锐/薄/非流形失效": [
+        "HyperGaussians: High-Dimensional Gaussian Splatting",
+        "GauSTAR: Gaussian Surface Tracking and Reconstruction"
+      ],
+      "Hessian/曲率正则": [],
+      "Eikonal/SDF 正则": []
+    },
+    "strong": [
+      "Gaussian Splatting with Discretized SDF for Relightable Assets"
+    ]
+  },
+  "延伸1 物体级到场景级": {
+    "sub": {
+      "可扩展性": [
+        "Scaling4D: Pushing the Frontier of Video Novel View Synthesis throug",
+        "FreeArtGS: Articulated Gaussian Splatting Under Free-moving Scenario",
+        "Video2Robo: 3DGS-based Synthetic Data from One Video Enables Scalabl",
+        "ContraGS: Codebook-Condensed and Trainable Gaussian Splatting for Fa",
+        "Scene Reconstruction as Mapping Priors for 3D Detection",
+        "CityGS-X : A Scalable Architecture for Efficient and Geometrically A",
+        "SGAD-SLAM: Splatting Gaussians at Adjusted Depth for Better Radiance",
+        "From None to All: Self-Supervised 3D Reconstruction via Novel View S",
+        "3D Gaussian Splatting for Arbitrary Resolutions with Compact Proxy A",
+        "GaussTR: Foundation Model-Aligned Gaussian Transformer for",
+        "MegaSynth: Scaling Up 3D Scene Reconstruction with Synthesized Data",
+        "ClipGStream: Clip-Stream Gaussian Splatting for Any Length and Any M",
+        "GWM: Towards Scalable Gaussian World Models for Robotic Manipulation",
+        "V olumetricSMPL: A Neural V olumetric Body Model for",
+        "Scaling Transformer-Based Novel View Synthesis with Models",
+        "GaussianVision: Vision-Language Alignment from Compressed Image",
+        "DARB-Splatting: Generalizing Splatting with Decaying Anisotropic Rad",
+        "LOD-GS: Achieving Levels of Detail using Scalable Gaussian Soup",
+        "ODGS-SLAM: Omnidirectional Gaussian Splatting SLAM",
+        "SplatFlow: Self-Supervised Dynamic Gaussian Splatting in Neural Moti",
+        "PrITTI: Primitive-based Generation of",
+        "HorizonForge: Driving Scene Editing with Any Trajectories and Any Ve",
+        "MobileH2R: Learning Generalizable Human to Mobile Robot Handover",
+        "Vid2Sim: Realistic and Interactive Simulation from Video for Urban N",
+        "FreeSplatter: Pose-free Gaussian Splatting for Sparse-view 3D Recons",
+        "MAC-Ego3D: Multi-Agent Gaussian Consensus for",
+        "GS-Occ3D: Scaling Vision-only Occupancy Reconstruction",
+        "MEGA: Memory-Efficient 4D Gaussian Splatting for Dynamic Scenes",
+        "VisionPAD: A Vision-Centric Pre-training Paradigm for Autonomous Dri",
+        "MotionScale: Reconstructing Appearance, Geometry, and Motion of Dyna",
+        "IDOL: Instant Photorealistic 3D Human Creation from a Single Image"
+      ],
+      "场景级 SDF+GS": [
+        "FreeSplatter: Pose-free Gaussian Splatting for Sparse-view 3D Recons",
+        "Long-LRM: Long-sequence Large Reconstruction Model for Wide-coverage"
+      ],
+      "室内/室外曲面重建": []
+    },
+    "strong": []
+  }
+}

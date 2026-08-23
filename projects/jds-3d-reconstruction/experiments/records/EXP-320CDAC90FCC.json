@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "experiment_id": "EXP-320CDAC90FCC",
+  "project_id": "jds-3d-reconstruction",
+  "title": "E-alpha 循环消融：互导是否稳健优于单向引导",
+  "type": "ablation",
+  "status": "planned",
+  "objective": "在同一批场景上对比仅表示 A、仅表示 B、单向 A→B、双向 A↔B 四种配置，检验假设 H1：是否存在互导劣于单向引导的情形。",
+  "protocol": {
+    "scope": "只做四路对比，不引入任何新方法。这是论点的根基判据：若互导稳健更优，H1 为假，方向应放弃。",
+    "success_criteria": [
+      "四种配置在相同场景、相同迭代预算下完成训练",
+      "几何指标 Chamfer distance 与 F-score、渲染指标 PSNR/SSIM/LPIPS 齐全",
+      "至少一个场景上双向配置不优于单向配置，且差异超出种子波动"
+    ],
+    "failure_criteria": [
+      "双向配置在全部场景上稳健优于单向，且差异均超出种子波动 —— H1 为假",
+      "四种配置无法在相同预算下公平对比",
+      "GS-Octree 代码无法复现原论文数值"
+    ],
+    "expected_outputs": [
+      "四路对比表（几何 + 渲染）",
+      "逐场景差异与种子波动的置信区间",
+      "失效场景的定性渲染与网格对比"
+    ]
+  },
+  "traceability": {
+    "idea_ids": [
+      "IDEA-4DC79F20C0C6"
+    ],
+    "task_ids": [],
+    "lit_ids": [],
+    "claim_ids": [],
+    "parent_experiment_ids": []
+  },
+  "execution": {
+    "executor_id": "wsl2-ubuntu2404-rtx4090",
+    "cwd": {
+      "connection": "gs-octree-code",
+      "relative_path": "."
+    },
+    "command_argv": [],
+    "required_commands": [
+      "python",
+      "nvidia-smi"
+    ],
+    "required_connections": [
+      "gs-octree-code",
+      "nerf-synthetic-data"
+    ],
+    "watchdog_policy": null
+  },
+  "code": {
+    "repository": null,
+    "commit": null,
+    "dirty": null,
+    "patch_uri": null
+  },
+  "data": {
+    "datasets": []
+  },
+  "environment": {
+    "os": "linux",
+    "runtime": "待定：GS-Octree 的依赖尚未核实",
+    "lockfile": null,
+    "seeds": {}
+  },
+  "resources": {
+    "accelerator": {
+      "vendor": "nvidia",
+      "count": 1,
+      "min_vram_gb": 24,
+      "cuda": "11.8",
+      "driver": "591.86"
+    },
+    "min_disk_gb": 30
+  },
+  "blockers": [
+    {
+      "code": "CODE_UNVERIFIED",
+      "description": "GS-Octree 代码是否可运行、能否复现论文数值尚未核实；MGSR 代码同样未核实",
+      "resolution": "取得 GS-Octree 代码并在 NeRF-Synthetic 上复现论文报告的至少一个数值"
+    },
+    {
+      "code": "DATA_UNPINNED",
+      "description": "NeRF-Synthetic 与 OmniObject3D 尚未下载，评测协议未固定",
+      "resolution": "下载数据并登记不可变 manifest 与评测脚本"
+    }
+  ],
+  "preflight": {
+    "latest_status": "not-run",
+    "reports": []
+  },
+  "results": {
+    "metrics": [],
+    "artifacts": [],
+    "output_validation": "not-run",
+    "conclusion": null,
+    "idea_effects": [],
+    "limitations": [],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  "events": [
+    {
+      "event_id": "EVT-C9D48A636C",
+      "timestamp": "2026-08-23T16:22:54Z",
+      "type": "created",
+      "from_status": null,
+      "to_status": "planned",
+      "reason": "Created from an experiment specification.",
+      "evidence": null
+    }
+  ],
+  "provenance": {
+    "source": "sources/2026-08-24_mutual_guidance_position.md",
+    "source_sha256": "559ee40ece2157eb1b7372844685d6d32616c88c48d6a1d7e4ca84f0bb36a5fd",
+    "created_by": "Codex"
+  },
+  "created_at": "2026-08-23T16:22:54Z",
+  "updated_at": "2026-08-23T16:22:54Z"
+}

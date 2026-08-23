@@ -1,0 +1,33 @@
+{
+  "延伸2 何时/何处细分": {
+    "空间数据结构": [
+      "RayGaussX: Accelerating Gaussian-Based Ray Marching for Real-Time an",
+      "Proxy-GS: Unified Occlusion Priors for Training and Inference in Str",
+      "LongSplat: Robust Unposed 3D Gaussian Splatting for Casual Long Vide",
+      "Eulerian Gaussian Splatting using Hashed Probability Pyramids",
+      "GausSim: Foreseeing Reality by Gaussian Simulator for Elastic Object",
+      "Hierarchy UGP: Hierarchy Unified Gaussian Primitive for Large-Scale ",
+      "Sparse Voxels Rasterization: Real-time High-fidelity Radiance Field ",
+      "FilterGS: Traversal-Free Parallel Filtering and Adaptive Shrinking",
+      "TexGaussian: Generating High-quality PBR Material via",
+      "GS-Occ3D: Scaling Vision-only Occupancy Reconstruction",
+      "LiDAR-RT: Gaussian-based Ray Tracing for Dynamic LiDAR Re-simulation"
+    ],
+    "LOD/分辨率调度": [
+      "ArchitectHead: Continuous Level of Detail Control for 3D Gaussian He"
+    ],
+    "自适应细分": [],
+    "容量/预算分配": []
+  },
+  "延伸3 二阶/曲率正则": {
+    "尖锐/薄/拓扑失效": [
+      "TWINGS: Thin Plate Splines Warp-aligned Initialization for Sparse-Vi",
+      "HyperGaussians: High-Dimensional Gaussian Splatting"
+    ],
+    "无网络的归纳偏置": [
+      "LagerNVS: Latent Geometry for Fully Neural Real-time Novel View Synt"
+    ],
+    "Hessian/二阶": [],
+    "Eikonal 及其变体": []
+  }
+}

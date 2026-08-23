@@ -1,0 +1,106 @@
+{
+  "n": 704,
+  "admit": {
+    "各向异性椭球假设": 8,
+    "L1+SSIM 光度损失": 12,
+    "SH 球谐颜色": 11,
+    "深度排序/近似混合": 2,
+    "协方差参数化(四元数+尺度)": 2,
+    "不透明度激活/重置": 2,
+    "分块光栅化": 3,
+    "尺度指数激活": 1,
+    "屏幕空间梯度阈值": 1,
+    "SfM/COLMAP 初始化": 3
+  },
+  "inherit": {
+    "SfM/COLMAP 初始化": 16,
+    "L1+SSIM 光度损失": 40,
+    "SH 球谐颜色": 27,
+    "低通滤波/屏幕膨胀": 2,
+    "不透明度激活/重置": 3,
+    "各向异性椭球假设": 17,
+    "分块光栅化": 6,
+    "屏幕空间梯度阈值": 2,
+    "协方差参数化(四元数+尺度)": 4,
+    "尺度指数激活": 1,
+    "深度排序/近似混合": 3
+  },
+  "examples": {
+    "各向异性椭球假设": [
+      "RayGaussX: Accelerating Gaussian-Based Ray Marching for Real-Time and",
+      "Joint Modeling of Corruption-Driven and Information-Limited Uncertaint",
+      "Time of the Flight of the Gaussians:"
+    ],
+    "L1+SSIM 光度损失": [
+      "RayGaussX: Accelerating Gaussian-Based Ray Marching for Real-Time and",
+      "GRAPE (Gaussian Rendering for Accelerated Pixel Enhancement) Brings Fa",
+      "SPLART: Articulation Estimation and Part-Level Reconstruction"
+    ],
+    "SH 球谐颜色": [
+      "GaussianVideo: Efficient Video Representation via Hierarchical Gaussia",
+      "SR3R: Rethinking Super-Resolution 3D Reconstruction With Feed-Forward",
+      "DCSHARP: 3D Gaussian Splatting with Direction Cosine Spherical Harmoni"
+    ],
+    "深度排序/近似混合": [
+      "HERA: Hybrid Explicit Representation for Ultra-Realistic Head A vatars",
+      "Stochastic Rasterization for Sorting-Free 3D Gaussian Splatting"
+    ],
+    "协方差参数化(四元数+尺度)": [
+      "SR3R: Rethinking Super-Resolution 3D Reconstruction With Feed-Forward",
+      "ArticulatedGS: Self-supervised Digital Twin Modeling of Articulated Ob"
+    ],
+    "不透明度激活/重置": [
+      "Splat-LOAM: Gaussian Splatting LiDAR Odometry and Mapping",
+      "Volumetrically Consistent 3D Gaussian Rasterization"
+    ],
+    "分块光栅化": [
+      "Splat-LOAM: Gaussian Splatting LiDAR Odometry and Mapping",
+      "FlexAvatar: Learning Complete 3D Head Avatars with Partial Supervision",
+      "Tile-wise vs. Image-wise: Random-Tile Loss and Training Paradigm for"
+    ],
+    "尺度指数激活": [
+      "HoGS: Unified Near and Far Object Reconstruction"
+    ],
+    "屏幕空间梯度阈值": [
+      "Generative Densification: Learning to Densify Gaussians for High-Fidel"
+    ],
+    "SfM/COLMAP 初始化": [
+      "Joint Optimization of Neural Radiance Fields and Continuous Camera",
+      "Eulerian Gaussian Splatting using Hashed Probability Pyramids",
+      "DroneSplat: 3D Gaussian Splatting for Robust 3D Reconstruction from"
+    ],
+    "低通滤波/屏幕膨胀": []
+  },
+  "phrases": {
+    "heuristic": 155,
+    "in practice, we": 76,
+    "we assume that": 46,
+    "for simplicity,": 45,
+    "handcrafted": 42,
+    "hand-crafted": 37,
+    "we simply ": 33,
+    "empirically set": 28,
+    "ad-hoc": 13,
+    "manually set": 8,
+    "for simplicity ": 7,
+    "a common practice": 4,
+    "empirically determined": 3,
+    "empirically chosen": 3,
+    "manually tuned": 2,
+    "empirically selected": 2,
+    "assuming that there is": 1,
+    "assuming that distant regions requ": 1,
+    "we found that this performs": 1,
+    "require careful tuning": 1,
+    "manually selected": 1,
+    "assuming that the codebook vectors": 1,
+    "assuming that environments are": 1,
+    "sensitive to its initialization an": 1,
+    "assuming that both the object o an": 1,
+    "assuming that most pixels withms(u": 1,
+    "assuming that all measured pixel e": 1,
+    "assuming that the optimal solution": 1,
+    "assuming that featc follows a mult": 1,
+    "sensitive to the choice of the hyp": 1
+  }
+}

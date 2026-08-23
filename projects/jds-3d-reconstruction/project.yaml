@@ -1,14 +1,14 @@
 project_id: jds-3d-reconstruction
-title: 观测受限条件下的驾驶场景行人重建
+title: 双表示互导优化的成立条件
 status: active
 scope: >-
   在驾驶采集条件造成的有效像素分辨率严重不足下重建行人：以观测充分性建模、跨相机与跨时刻
   观测聚合、以及按有效分辨率分层的 human-region 评测为方法主体；SMPL/LBS、衣物分解与
   LHM 类前馈人体先验作为被调用模块，不作为主创新。定位为 OmniRe 人体分支的改进工作。
 created_at: 2026-08-18
-updated_at: 2026-08-23
-current_phase: p0-stratified-human-region-baseline
-current_plan: TODO.md
+updated_at: 2026-08-24
+current_phase: p0-falsify-mutual-guidance
+current_plan: sources/2026-08-24_mutual_guidance_position.md
 primary_inputs:
   - synchronized-multiview-rgb
   - calibrated-cameras

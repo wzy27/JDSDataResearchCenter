@@ -1,0 +1,656 @@
+{
+  "密度控制/加密剪枝": [
+    {
+      "paper": "RayGaussX: Accelerating Gaussian-Based Ray Marching for Real-Time ",
+      "ctx": "oss function is: L = (1−λ)·L1 + λ· DSSIM +λsLs whereλs is a fixed hyperparameter. 3.5. A Novel Densification Criterion RayGauss densification process [5] is inspired by the adap- tive density control heuristic introduced in 3D Gaussian Splatting [16]. This heuristic enables cloning or splitting the Gaussians in the scene by evaluating a criterion everyI iterations. For a Gaussian l with mean position µl, l"
+    },
+    {
+      "paper": "RayGaussX: Accelerating Gaussian-Based Ray Marching for Real-Time ",
+      "ctx": "a fixed hyperparameter. 3.5. A Novel Densification Criterion RayGauss densification process [5] is inspired by the adap- tive density control heuristic introduced in 3D Gaussian Splatting [16]. This heuristic enables cloning or splitting the Gaussians in the scene by evaluating a criterion everyI iterations. For a Gaussian l with mean position µl, let µP l be its projection in normalized device coordinate"
+    },
+    {
+      "paper": "RayGaussX: Accelerating Gaussian-Based Ray Marching for Real-Time ",
+      "ctx": "terations. For a Gaussian l with mean position µl, let µP l be its projection in normalized device coordinates (NDC). If this Gaussian has been observed inIl <I images during re- cent iterations, the heuristic determines whether to densify it by comparing the average norm of the loss gradient with respect toµP l across theseIl images to a given thresholdτ: 1 Il IlX i=1 ∇µP l Li >τ. (10) whereLi is the loss"
+    },
+    {
+      "paper": "OMeGa: Joint Optimization of Explicit Meshes and Gaussian Splats f",
+      "ctx": "To further improve reconstruction accuracy, we integrate mesh constraints and monocular normal supervision into the op- timization, thereby regularizing geometry learning. In ad- dition, we propose a heuristic, iterative mesh-refinement strategy that splits high-error faces and prunes unreliable ones to further improve the detail and accuracy of the re- constructed mesh. OMeGa achieves state-of-the-art per"
+    },
+    {
+      "paper": "DashGaussian: Optimizing 3D Gaussian Splatting in 200 Seconds",
+      "ctx": "• We design an adaptive Gaussian primitive budgeting method to determine the primitive number demanded by the scene, releasing primitive growth scheduling from ap- pointing the final primitive number heuristically. 2. Related Work Novel View Synthesis. Among the vast amount of inves- tigations on novel view synthesis [4, 9, 16, 36, 38], Neu- ral Radiance Fields (NeRF) [33] have achieved particu- lar success, b"
+    },
+    {
+      "paper": "DashGaussian: Optimizing 3D Gaussian Splatting in 200 Seconds",
+      "ctx": "n corporately schedules both rendering resolution and primitive growth in an adaptive manner, which signif- icantly boosts the optimization of 3DGS without predeter- mining the final primitive number heuristically. 3. Preliminary Given a set of posed images capturing a scene and the corresponding point cloud derived from the structure-from- motion algorithm [37], 3DGS optimizes a set of 3D Gaus- sian primitive"
+    },
+    {
+      "paper": "Turbo-GS: Accelerating 3D Gaussian Fitting for High-Resolution Rad",
+      "ctx": ",1}. For each iteration we randomly sample one offset to render a low-resolution image for supervision. 4.2. Convergence-aware Training Schedule Denoting the initial number of Gaussian points asN, we manually set a maximum numberM. The challenge then is how the number of Gaussians grows fromNtoM. A proper budget mechanism to regulate newly added Gaus- sians helps control the growth rate of Gaussian and maxi-"
+    },
+    {
+      "paper": "ContraGS: Codebook-Condensed and Trainable Gaussian Splatting for ",
+      "ctx": "during training. Accelerating 3DGS Training. Prior works propose a range of techniques to accelerate 3DGS training. SpeedyS- plat [17], TurboGS [36], and TamingGS [39] propose den- sification control heuristic strategies to reduce the number of gaussians and thus accelerate both training and render- ing. These approaches reduce the memory consumption during training, however they incur some loss in represe"
+    },
+    {
+      "paper": "Faster-GS: Analyzing and Improving Gaussian Splatting Optimization",
+      "ctx": "vectors ofΣ. Optimization Schedule and Hyperparameters.Starting from a sparse point cloud or random initialization, Kerblet al. [35] introduce adaptive density control (ADC), a set of carefully tuned heuristics for cloning, splitting, and pruning Gaussians during optimization. Specifically, 3DGS tracks the magnitude of the µ2D gradients during training for all Gaussians and clones or splits Gaussians at reg"
+    },
+    {
+      "paper": "Faster-GS: Analyzing and Improving Gaussian Splatting Optimization",
+      "ctx": "ient rendering on HMDs through foveated rendering [17, 77]. Optimization.During optimization, subsequent works im- prove the original algorithm by analyzing and enhancing the underlying densification heuristics [14, 19, 66, 94], distribut- ing Gaussians based on anchor points [50], integrating prob- abilistic models [37], or fully replacing densification in favor of dense initialization [ 41]. An equally im"
+    },
+    {
+      "paper": "PUP 3D-GS: Principled Uncertainty Pruning",
+      "ctx": "age and memory requirements that limit the viability of 3D-GS on devices with limited resources. Current tech- niques for compressing these pretrained models by prun- ing Gaussians rely on combining heuristics to determine which Gaussians to remove. At high compression ratios, these pruned scenes suffer from heavy degradation of vi- sual fidelity and loss of foreground details. In this paper, we propose a"
+    },
+    {
+      "paper": "PUP 3D-GS: Principled Uncertainty Pruning",
+      "ctx": "orage and memory require- ments that limit their viability on devices with limited re- sources. Several recent works propose techniques that reduce the storage requirements of 3D-GS models, including heuristics for pruning Gaussians that have an insignificant contribu- tion to the rendered images [4, 6, 14, 16, 23]. In this work, we propose a more mathematically principled approach for deciding which Gaussi"
+    },
+    {
+      "paper": "PUP 3D-GS: Principled Uncertainty Pruning",
+      "ctx": "ables a second consecutive round of pruning and fine-tuning. As shown in Figure 1, our multi-round pruning approach can remove 90% of the Gaussians in the base 3D-GS scene while surpassing pre- vious heuristics-based methods like LightGaussian in both rendering speed and image quality. Our work is orthogonal to several other methods that modify the training framework of 3D-GS or apply quantization-based tec"
+    },
+    {
+      "paper": "PUP 3D-GS: Principled Uncertainty Pruning",
+      "ctx": "technique, PUP 3D-GS, that can be applied to any pretrained 3D-GS model without chang- ing its training pipeline. 2. A novel spatial sensitivity score that is more effective at pruning Gaussians than heuristics-based approaches. 3. A multi-round prune-refine approach that produces higher fidelity reconstructions than an equivalent single round of prune-refining. 2. Related work Neural Radiance Field (NeRF)"
+    },
+    {
+      "paper": "PUP 3D-GS: Principled Uncertainty Pruning",
+      "ctx": "e resolution to reduce Gaussian densification during training, then quantize several attributes to reduce disk storage. LightGaussian [4] computes a global signif- icance score for each Gaussian with heuristics, uses that score to prune the least significant Gaussians, and finally uses quantization to further reduce storage requirements. 5950 Mini-Splatting [5] and RadSplat [24] are concurrent with our work"
+    },
+    {
+      "paper": "PUP 3D-GS: Principled Uncertainty Pruning",
+      "ctx": "re to prune the least significant Gaussians, and finally uses quantization to further reduce storage requirements. 5950 Mini-Splatting [5] and RadSplat [24] are concurrent with our work and introduce heuristics-based pruning compo- nents. However, they primarily focus on orthogonal com- ponents, such as alternative densification strategies and pre- trained NeRF priors, for 3D-GS instead of pruning. 3. Backg"
+    },
+    {
+      "paper": "3D Convex Splatting: Radiance Field Rendering with 3D Smooth Conve",
+      "ctx": "s is challenging without signiﬁcantly increasing the number of Gaussians, creating a large memory footprint. Moreover , they struggle to represent ﬂat surfaces, as they are diffused in space. Without hand-crafted regularizers, they tend to disperse irregularly around the actual surface. To circum- vent these issues, we introduce a novel method, named 3D Convex Splatting (3DCS), which leverages 3D smooth con-"
+    },
+    {
+      "paper": "3DGS-LM: Faster Gaussian-Splatting Optimization with Levenberg-Mar",
+      "ctx": ". Speed-Up Gaussian Splatting Optimization Obtaining a 3DGS scene reconstruction can be acceler- ated in several ways. One line of work reduces the num- ber of Gaussians by changing the densification heuristics [5, 14, 25, 30–32]. Other methods focus on sparse-view re- construction and train a neural network as data prior, that outputs Gaussians in a single forward pass [6, 8, 9, 13, 29, 46, 54]. In contras"
+    },
+    {
+      "paper": "3D Gaussian Point Encoders",
+      "ctx": "esent volumetric data [5, 8, 14, 17]. Several studies have leveraged the explicit nature of 3D Gaussians to reduce computational costs, em- ploying techniques such as Gaussian pruning [8, 15, 22] and heuristic-based filtering of low-value Gaussian-point pairs [14, 39]. These optimizations significantly accelerate infer- ence compared to per-point coordinate networks. In this work, we propose a novel3D Gaus"
+    },
+    {
+      "paper": "MegaSynth: Scaling Up 3D Scene Reconstruction with Synthesized Dat",
+      "ctx": "losing context and avoiding the near-clipping issue. We randomly sample the field-of-view (FoV) of cameras, due to the diversity of lenses used in real-world image capture. Better scene coverage. We heuristically split the scene into the inner and outer spaces, based on the distance to the scene center. The cameras sampled in outer space always look at the scene center, ensuring better view coverage. Mean- wh"
+    },
+    {
+      "paper": "Time of the Flight of the Gaussians:",
+      "ctx": "l complex light transport. If we only wanted to reconstruct opaque surfaces, we would just derive depth from C-ToF in a closed form. The loss also tends to produce oversmoothed depth reconstructions. Heuristic 1: Occupancy bias. To address this problem, we note that, within the space of reconstruction parameters and mechanisms when trying to reconstruct scenes (reflectivity, position, opacity, densificatio"
+    },
+    {
+      "paper": "Time of the Flight of the Gaussians:",
+      "ctx": "le densification and makes thinand fast-moving objects harder to reconstruct. Longer motion tracks or spacetime rigidity might help [30], and this is left for future work. No universal guarantees.Our heuristics are based on empir- ical observations and may not be suitable for different scenes. Limited indoor scenes. C-ToF imaging may struggle in outdoor scenes, and many motions exist in the real world that"
+    },
+    {
+      "paper": "HoGS: Unified Near and Far Object Reconstruction",
+      "ctx": "e homogeneous representation is capable of converging at a faster speed. for 50, 000 iterations, and we adjusted densification-related hyperparameters to maintain the same as in the original 3DGS. We empirically set the learning rate of w to 0.0002. We assign the initial value of w concerning the distance d of each point from the world origin O by w = 1 d = 1 ∥p∥2 , while we find that the initialization of w doe"
+    },
+    {
+      "paper": "MaskGaussian: Adaptive 3D Gaussian Representation from Probabilist",
+      "ctx": ", the high memory consumption due to the use of millions of Gaussians limits its practicality. To mitigate this issue, improvements have been made by pruning unneces- sary Gaussians, either through a hand-crafted criterion or by using learned masks. However , these methods deter- ministically remove Gaussians based on a snapshot of the pruning moment, leading to sub-optimized reconstruction performance from a"
+    },
+    {
+      "paper": "MaskGaussian: Adaptive 3D Gaussian Representation from Probabilist",
+      "ctx": "ise be faster, but also leads to significant memory con- sumption. Recent methods attempt to address this problem by prun- ing redundant Gaussian points with two main approaches. The first computes a hand-crafted importance score [5, 6, 28] per Gaussian and removes those below a preset thresh- old. The calculation of the importance score typically re- quires a scan of all training images, therefore limiting t"
+    },
+    {
+      "paper": "MaskGaussian: Adaptive 3D Gaussian Representation from Probabilist",
+      "ctx": "measured by LPIPS [36], the number of Gaussians used, and rendering speed in FPS. Compared Baselines. In addition to the origi- nal 3DGS [14], we compare our method with two pruning methods that use hand-crafted importance scores—RadSplat [28] and LightGaussian [5]—and one method that uses learned masks to prune Gaussians, Com- pact3DGS [17]. For a fair evaluation, we focus solely on these methods’ pruning c"
+    },
+    {
+      "paper": "QuickSplat: Fast 3D Surface Reconstruction via Learned Gaussian In",
+      "ctx": "under-observed or textureless areas of a scene. • We employ learned, generalized priors in a densification- optimization loop, that jointly predict 2DGS updates and new densification locations. This heuristic-free optimiza- tion converges significantly faster and obtains more con- sistent geometry for large-scale scene reconstructions. 2. Related Work 2.1. Novel view synthesis Novel view synthesis (NVS) h"
+    },
+    {
+      "paper": "QuickSplat: Fast 3D Surface Reconstruction via Learned Gaussian In",
+      "ctx": "e the number of new vox- els. During test time, we simply select topn(t) voxels from the occupancy prediction. The benefit of this method is that it avoids designing a densification strategy based on heuristics [17, 27, 31, 37]. By training the densifier network end-to-end with the opti- mizer, we instead learn to map the current state of Gaussians and their gradients into new, high-contribution Gaussians."
+    },
+    {
+      "paper": "BA-GS: Bayesian Adaptive Gaussian Splatting for SFM-Free 3D Recons",
+      "ctx": "ting for uncertainty esti- mation, integrating confidence prediction into the rendering pipeline. 3DGS-MCMC [13] reformulates Gaussian splat- ting as a stochastic sampling process via SGLD, replacing heuristic operations like cloning or pruning. PhysGS [5] further leverages Bayesian inference within 3DGS for phys- ical property estimation.Other works exploit confidence and gradient-aware mechanisms to guid"
+    },
+    {
+      "paper": "CoRoGS: Contextual Gaussian Splatting for Robust Large-Deviation V",
+      "ctx": "ns of 3DGS have also been ex- plored, however, existing formulations construct graphs at the object [41] or viewpoint [40] level. SAGS [30] incorpo- rates spatial proximity between Gaussians, but its heuristic growth strategy introduces redundant primitives and fails to capture fine-grained Gaussians dependencies, limiting effi- ciency and scalability. In contrast, we construct a Gaussian- level graph that"
+    },
+    {
+      "paper": "BEA-GS: BEyond RAdiance Supervision in 3DGS",
+      "ctx": "us- sian may contribute to only a single object. ObjectGS [ 55] and COB-GS [ 50] use the rendered probability maps as supervision to reﬁne Gaussian boundaries. Additionally, COB-GS [ 50] introduces a heuristic to detect Gaussians with ambiguous boundaries, those receiving conﬂicting op- timization signals from multiple objects, and splits them ac- cordingly. Similarly, Trace3D [ 38] performs geometry re- ﬁ"
+    },
+    {
+      "paper": "Off The Grid: Detection of Primitives for Feed-Forward 3D Gaussian",
+      "ctx": "and then iteratively optimized to render the input images. Dur- ing this process, the set of primitives is gradually pruned or densified, based one.g. photometric gradient magni- tude [24], or other heuristics [25, 32, 45], aiming to allo- cate primitives efficiently where representation capacity is needed. Despite notable acceleration techniques [7, 33–35], scene-optimization methodologies often still req"
+    },
+    {
+      "paper": "Generative Densification: Learning to Densify Gaussians for High-F",
+      "ctx": "sses, the Gaussians gradually become non-uniformly distributed, with numerous small Gaussians concentrated in detailed ar- eas and a few large Gaussians scattered across smooth re- gions. This simple heuristic algorithm has demonstrated its effectiveness across various real-world scenes and objects. A straightforward approach to extend the densification strategy to the feed-forward Gaussian models is to fi"
+    },
+    {
+      "paper": "Eulerian Gaussian Splatting using Hashed Probability Pyramids",
+      "ctx": "ind 3Google Abstract We introduce a probabilistic splat-based radiance field frame- work that retains the fast rasterization and test-time effi- ciency of 3D Gaussian Splatting (3DGS) while replacing heuristic primitive manipulation with gradient-based opti- mization of a volumetric probability density. Rather than relocating, splitting, or culling Gaussians via hand-tuned densification (e.g., ADC), we tre"
+    },
+    {
+      "paper": "Eulerian Gaussian Splatting using Hashed Probability Pyramids",
+      "ctx": "bility function that governs where Gaussians are allocated. This allows new spatial structures to emerge wherever the loss demands, exploring the volume purely through gradient de- scent, without any hand-crafted procedures for moving, split- ting, or pruning primitives. It bridges the gap between NeRF and 3DGS by producing an efficient 3DGS-style representa- tion at render time, while retaining NeRF-like fle"
+    },
+    {
+      "paper": "Eulerian Gaussian Splatting using Hashed Probability Pyramids",
+      "ctx": "s (INPC) [7] introduces an ex- plicit probability distribution for placing point primitives in a scene. However, their probability field is based on octrees, so its spatial refinement still relies on heuristic subdivision and pruning rules, which can limit flexibility and introduce suboptimal structural decisions. Another adjacent method is Lagrangian Hashing [ 5], which compresses neural fields by replaci"
+    },
+    {
+      "paper": "Sparse Voxels Rasterization: Real-time High-fidelity Radiance Fiel",
+      "ctx": "is≤ (2hlv )3 after initialization. Unbounded scenes. For the unbounded scenes, we first split the space into the main and the unbounded background regions, depicted in Fig. 5b, each with a different heuristic. We use the training camera positions to determine a cuboid for the main region. The cuboid center is set to the average camera positions and the radius is set to the median dis- tance between the cu"
+    },
+    {
+      "paper": "Sparse Voxels Rasterization: Real-time High-fidelity Radiance Fiel",
+      "ctx": "ning. We compute the maximum blending weight (Tiαi) from Eq. (1) of each voxel using all the training cam- eras. We remove voxels with maximum blending weight 16191 lower thanhprune. Subdivision. Our heuristic is that a voxel with a larger training loss gradient indicates that the voxel region requires finer voxels to model. Specifically, we accumulate the sub- division priority as the following: vpriority"
+    },
+    {
+      "paper": "Volumetrically Consistent 3D Gaussian Rasterization",
+      "ctx": "sx + 1 sy + 1 sz \u0013 , (20) where θ ∈ [0, 1]. The reparameterization promotes high density for small Gaussians and discourages it for larger ones, which we have found to benefit view synthesis quality. Heuristics and hyperparameters: We make a few small changes to 3DGS’s adaptive densification process for our method: a) we halve density κ after splitting and cloning; b) we also split points with high density"
+    },
+    {
+      "paper": "SpeeDe3DGS: Speedy Deformable 3D Gaussian Splatting",
+      "ctx": "ructions has moti- vated extensive pruning research to improve efficiency and reduce memory overhead [5, 6, 14, 15, 34]. Most approaches either learn per-Gaussian pruning masks [ 22, 56] or com- pute heuristic importance scores to remove low-contribution Gaussians [1, 2, 5, 6, 12, 26, 30, 34, 35]. Recent extensions adapt these strategies to dynamic scenes by incorporating temporal variation into pruning me"
+    },
+    {
+      "paper": "SpeeDe3DGS: Speedy Deformable 3D Gaussian Splatting",
+      "ctx": "µt i−(Rt j(µ0 i−h0 j)+h0 j +Tt j )∥2, (10) whereµt i is the mean at timet,µ0 i is the mean in the canon- ical frame at time t = 0 , Nj =|Mj| is the number of Gaussians in groupMj, andNmax = 100 is an empirically selected threshold representing the maximum number of means sampled per group. These group-wise motion param- eters{h0 j,Rt j,T t j} represent the shared flow of the meanµi – and thus GaussianGi – within grou"
+    },
+    {
+      "paper": "Prune Wisely, Reconstruct Sharply: Compact 3D Gaussian Splatting v",
+      "ctx": "ian gradients for improved performance. Other works, such as MaskGaussian [27] and LP-3DGS [46], employ Gumbel-Softmax [20] to learn adaptive masks for Gaussian importance estimation. Unlike previous heuristic pruning methods, our approach performs adaptive, reconstruction-aware pruning, leading to more efficient compression without sacrificing quality. 3. Method The diagram of our method is illustrated in"
+    },
+    {
+      "paper": "Steepest Descent Density Control for Compact 3D Gaussian Splatting",
+      "ctx": "po- tentially yield compact Gaussian point clouds for faster ren- dering while simultaneously reducing training costs. Some prior works have attempted to revise the density control al- gorithm using heuristics, such as modifying the splitting criteria [3] or generating new Gaussians by sampling from the opacity distribution [ 14]. However, the densiﬁcation process is not well understood, and as a result, t"
+    },
+    {
+      "paper": "Steepest Descent Density Control for Compact 3D Gaussian Splatting",
+      "ctx": "from the opacity distribution [ 14]. However, the densiﬁcation process is not well understood, and as a result, the existing solutions only achieve very limited improvement as they primarily rely on heuristics. In this paper, we theoretically demystify the density con- trol algorithms for 3DGS through the lens of non-convex optimization. Our analysis characterizes the loss behavior after splitting by intro"
+    },
+    {
+      "paper": "Steepest Descent Density Control for Compact 3D Gaussian Splatting",
+      "ctx": "gradient-based method for optimizing Eq. 4, 3DGS incorporates an Adaptive Density Control (ADC) proce- dure, which dynamically prunes invisible points and intro- duces new primitives using geometric heuristics to more effectively cover the scene. We summarize this densiﬁ- cation process here as it is of this paper’s main interest. (i) ADC ﬁrst identiﬁes a set of points with a large ex- pected gradient norm"
+    },
+    {
+      "paper": "Steepest Descent Density Control for Compact 3D Gaussian Splatting",
+      "ctx": "m the parent density function, and downsizing the scales by a factor of 0.8. 4. Methodology Despite the empirical success of the conventional ADC in 3DGS, it often produces redundant points given its heuristic and somewhat artisanal splitting criteria. In this section, we establish a theoretical framework to investigate densiﬁcation mechanism. By this means, we afﬁrmatively answer three key questions: (i)"
+    },
+    {
+      "paper": "3DGUT: Enabling Distorted Cameras and Secondary Rays in Gaussian S",
+      "ctx": "ty and efﬁciency. Due to its simplicity and ﬂexibility, 3DGS has inspired numer- ous follow-up works focusing on improving memory ef- ﬁciency [ 24, 29, 31], developing better densiﬁcation and pruning heuristics [ 20, 54], enhancing surface representa- tion [ 10, 11], and scaling up to large scenes [ 19, 26, 28]. However, while rasterization is very efﬁcient, it also intro- duces trade-offs, such as being li"
+    },
+    {
+      "paper": "ReLaGS: Relational Language Gaussian Splatting",
+      "ctx": "ggregating ( ... ) View 1: View 2: ... CLIP Features <and> Sec.3.2 Figure 2.ReLaGS Overview. Given a reconstructed Gaussian scene, redundant primitives are first pruned to improve geometric accuracy. Heuristic clustering under multi-level SAM supervision then forms a hierarchical scene structure, where each cluster is assigned a CLIP-based language feature with outlier rejection. Finally, open-vocabulary i"
+    },
+    {
+      "paper": "Stochastic Ray Tracing for the Reconstruction of 3D Gaussian Splat",
+      "ctx": "tion, or structure- aware simplification. SpeedySplats [ 14] further tightens Gaussian–tile localization to lower the per-tile primitive count. Complementary efforts improve densification and pruning heuristics for faster convergence without sacrificing quality [18, 23]. These techniques are largely orthogonal to ours: our method replaces the backward differentiation mod- ule and remains compatible with mos"
+    },
+    {
+      "paper": "Stochastic Ray Tracing for the Reconstruction of 3D Gaussian Splat",
+      "ctx": "Discussion and Conclusion Limitations and future work. Our stochastic formulation introduces variance into the gradient estimates, which we observed affects the behavior of the splitting and pruning heuristics used for Gaussian densification. A more detailed investigation of how the densification scheme interacts with this variance is left to future work. Conclusion. We presented a differentiable, sorting-"
+    },
+    {
+      "paper": "NTR-Gaussian: Nighttime Dynamic Thermal Reconstruction with 4D Gau",
+      "ctx": "there are no abrupt changes in tem- perature within the time interval and to guarantee smooth variations. The overall loss function is given as follows, L =λ1LT emp +λ2LSSIM +λ3LSmooth, (9) where we empirically set λ1 = 0.8 , λ2 = 0.2 and λ3 = 10. LSmooth is defined as: LSmooth = N−1X j=1 1 M MX i=1 | ˆTj+1,i− ˆTj,i| ! , (10) where M represents the number of Gaussian spheres, and N represents the number of diff"
+    },
+    {
+      "paper": "GeoSplatting: Towards Geometry Guided Gaussian Splatting for",
+      "ctx": "matrixRthat charac- terizes the geometric shape of a 3D Gaussian. Beyondµ, SandR, each Gaussian point maintains additional learn- able parameters including Through periodic densification and culling heuristics, 3DGS adaptively controls the distri- bution of Gaussian points during optimization. While ca- pable of high-fidelity rendering, 3D Gaussians inherently lack deterministic geometry boundaries and exp"
+    },
+    {
+      "paper": "GaussianSpa: An “Optimizing-Sparsifying” Simplification Framework ",
+      "ctx": "n IEEE Xplore. 26673 15K 20K 25K 30K 35K 20.5 21.0 21.5 22.0 Iterations PSNR（dB） Importance-basedOriginal 3DGS Our GaussianSpaOpacity-based Remove 85% Gaussians -0.5dB -0.2dB Figure 2. PSNR curves of hand-crafted criteria-based pruning methods. Gaussians are removed by 85% at iteration 25K. faster training and rendering. 3DGS achieves superior vi- sual fidelity [25] compared to NeRF while reducing com- putati"
+    },
+    {
+      "paper": "GaussianSpa: An “Optimizing-Sparsifying” Simplification Framework ",
+      "ctx": "and RadSplat [37], have predominantly focused on mitigating this issue by removing a certain number of Gaussians. Techniques such as pruning and sampling aim to discard unimportant Gaussians based on hand-crafted criteria such as opacity [22, 50], importance score (hit count) [16,17, 37], dominant primitives [28], and binary mask [26, 51]. However, such single-perspective heuristic criteria may lack robustnes"
+    },
+    {
+      "paper": "GaussianSpa: An “Optimizing-Sparsifying” Simplification Framework ",
+      "ctx": "ussians to compress 3DGS models into compact forms, significantly reducing memory costs. Prior approaches [10, 17, 23, 27, 29, 31, 37, 43, 51] mainly focus on pruning redundant Gaussians according to hand-crafted importance criteria. Mini-Splatting [17] addresses over- lapping and reconstruction issues with blur splitting, depth reinitialization, and stochastic sampling. Radsplatting [37] enhances robustness"
+    },
+    {
+      "paper": "Tile-wise vs. Image-wise: Random-Tile Loss and Training Paradigm f",
+      "ctx": "[ 19] has signiﬁcantly enhanced rendering efﬁ- ciency by replacing traditional ray marching with the splat- ting algorithm [ 22]. Numerous studies have focused on op- timizing the Gaussian feature or heuristic split algorithm in 3DGS to improve the appearance quality and geometric ac- curacy [ 6, 24, 31, 51] . However, while the splatting algorithm signiﬁcantly improves rendering speed, its potential for i"
+    },
+    {
+      "paper": "STAvatar: Soft Binding and Temporal Density Control for Monocular ",
+      "ctx": "aussians to balance detail preservation and representation compactness. The vanilla ADC selects primitives for densification based on aver- age positional gradients and Gaussian scales. However, this heuristic often results in underfitting and blurred de- tails, as it neglects texture-related cues and only focus av- erage criterion. To overcome these limitations, some re- cent works [10, 18, 21, 38, 41] re"
+    }
+  ],
+  "掩码/分割": [
+    {
+      "paper": "SkelSplat: Robust Multi-view 3D Human Pose Estimation with Differe",
+      "ctx": "mization is a combination of the masked multi-viewL2 loss and the 3D structural loss: Lopt =L render +λ symLsym, (5) whereλ sym is a weighting factor that balances the influence of the symmetry term, empirically set to 1e-5. Unlike standard Gaussian Splatting, which updates the 3D Gaussians independently for each view after computing the loss, we accumulate gradients across all views, improv- ing stability and c"
+    },
+    {
+      "paper": "RobustSplat: Decoupling Densification and Dynamics for Transient-F",
+      "ctx": "ao Su. Tensorf: Tensorial radiance fields. In ECCV, 2022. 3 [6] Jiahao Chen, Yipeng Qin, Lingjie Liu, Jiangbo Lu, and Guanbin Li. Nerf-hugs: Improved neural radiance fields in non-static scenes using heuristics-guided segmentation. In CVPR, 2024. 3 [7] Xingyu Chen, Qi Zhang, Xiaoyu Li, Yue Chen, Ying Feng, Xuan Wang, and Jue Wang. Hallucinated neural radiance fields in the wild. In CVPR, 2022. 3 [8] Hiba Da"
+    },
+    {
+      "paper": "EMGauss: Continuous Slice-to-3D Reconstruction via Dynamic Gaussia",
+      "ctx": "by masking pixels or exploiting axis re-interpretation. However, they typically assume a known point spread function (PSF), whereas the true degradation in practice is often unknown and deviates from handcrafted models. Alternative strategies such as Cy- cleGAN [6] attempt to learn the degradation process di- rectly from target tissue data. However, adversarial train- ing can introduce instability and artifa"
+    },
+    {
+      "paper": "Joint Modeling of Corruption-Driven and Information-Limited Uncert",
+      "ctx": "[21, 33] or pretrained self-supervised features from DINO/DINOV2 [3, 29]. Mask-based filtering pipelines also emerged, starting with RobustNeRF [36] and extending to models 689 guided by segmentation heuristics [4, 30] or explicit dy- namic/static/shadow tri-fields as in D2-NeRF [42]. 2.3.2. Explicit Approaches (3DGS-based) The 3D Gaussian Splatting (3DGS) framework represents scenes using anisotropic Gauss"
+    },
+    {
+      "paper": "Joint Modeling of Corruption-Driven and Information-Limited Uncert",
+      "ctx": "Emerging properties in self-supervised vision transformers. In ICCV, 2021. 2 [4] Jiahao Chen, Yipeng Qin, and Lingjie et al. Liu. Nerf-hugs: Improved neural radiance fields in non-static scenes using heuristics-guided segmentation. In CVPR, 2024. 3 [5] Xingyu Chen, Qi Zhang, and Xiaoyu et al. Li. Hallucinated neural radiance fields in the wild. In CVPR, 2022. 2 [6] Hiba Dahmani, Moussab Bennehar, and Nathan"
+    },
+    {
+      "paper": "B3-Seg: Camera-Free, Training-Free 3DGS Segmentation via Analytic ",
+      "ctx": "23] and COB-GS have been proposed [ 30]. FlashSplat casts the consistency between 2D masks and 3D labels as a linear program, and COB-GS maintains quality via boundary-aware improvements and texture heuristics. However, these approaches still assume the availability of reconstruction views and semantic masks, and they provide no theoretical guarantees. iSegMan [ 31] presents an inter- active segmentation f"
+    },
+    {
+      "paper": "HybridGS: Decoupling Transients and Statics",
+      "ctx": "nd Pat- tern Recognition (CVPR), pages 19457–19467, 2023. 1 [4] Jiahao Chen, Yipeng Qin, Lingjie Liu, Jiangbo Lu, and Guanbin Li. Nerf-hugs: Improved neural radiance fields in non-static scenes using heuristics-guided segmentation. 2024 IEEE/CVF Conference on Computer Vision and Pat- tern Recognition (CVPR), pages 19436–19446, 2024. 2, 3 [5] Xingyu Chen, Qi Zhang, Xiaoyu Li, Yue Chen, Feng Ying, Xuan Wang,"
+    },
+    {
+      "paper": "OCSplats: Observation Completeness Quantification and Label Noise",
+      "ctx": "l radiance fields. In CVPR, pages 5470– 5479, 2022. 2, 7, 8 [4] Jiahao Chen, Yipeng Qin, Lingjie Liu, Jiangbo Lu, and Guanbin Li. Nerf-hugs: Improved neural radiance fields in non-static scenes using heuristics-guided segmentation. In CVPR, pages 19436–19446, 2024. 1, 7 [5] Wenshuo Gao, Xiaoguang Zhang, Lei Yang, and Huizhong Liu. An improved sobel edge detection. In 2010 3rd In- ternational conference on c"
+    },
+    {
+      "paper": "BEA-GS: BEyond RAdiance Supervision in 3DGS",
+      "ctx": "hare the same fundamental limitation: they operate within the constraints imposed by alpha-blending, and therefore by the radiance absorbed by each Gaussian. Every decision, whether gradient-based or heuristic, is ultimately governed 41056 Figure 3. Multiview Reprojection. First column: original RGB images. Second column: two-stage segmentation masks obtained using SAM2 [ 36]. Third column: improved segmen"
+    },
+    {
+      "paper": "A Constrained Optimization Approach for Gaussian Splatting from",
+      "ctx": "a incremental learning of a relo- calizer. In ECCV, 2024. 6 [4] Jiahao Chen, Yipeng Qin, Lingjie Liu, Jiangbo Lu, and Guanbin Li. Nerf-hugs: Improved neural radiance fields in non-static scenes using heuristics-guided segmentation. In CVPR, 2024. 2 [5] Rui Chen, Songfang Han, Jing Xu, and Hao Su. Point-based multi-view stereo network. In ICCV, 2019. 2 [6] Shin-Fang Chng, Sameera Ramasinghe, Jamie Sherrah, a"
+    },
+    {
+      "paper": "DiSCO-3D : Discovering and segmenting Sub-Concepts from Open-vocab",
+      "ctx": "nv while every other base- lines uses DINO as input. Evaluated methods.Since no NeRF-based unsupervised semantic segmentation (USS) methods exist for direct com- parison with DiSCO-3D, we construct a hand-crafted NeRF baseline where we extract DINO features per point of the evaluated point cloud using the feature field and apply K- Means clustering. Additionally, we evaluate two represen- tative USS methods:"
+    },
+    {
+      "paper": "DroneSplat: 3D Gaussian Splatting for Robust 3D Reconstruction fro",
+      "ctx": "struction and addresses the issue of unconstrained opti- mization in 3DGS under limited viewpoints. • We propose Adaptive Local-Global Masking that har- moniously integrates local-global segmentation heuristics and statistical approaches, combining local and global masking as collaborators to deliver robust and superior performance in dynamic distractor elimination. • We enhance 3DGS with a geometric-aware"
+    },
+    {
+      "paper": "DroneSplat: 3D Gaussian Splatting for Robust 3D Reconstruction fro",
+      "ctx": "olely depend- ing on semantic segmentation may lead to misclassifica- tion static objects as dynamic ones, such as parked cars along the roadside. Recent work NeRF-HuGS [1] en- hances the traditional heuristic design by integrating the strengths of structure-from-motion and color residuals to obtain prompt points for SAM [13], thereby improving dynamic distractor segmentation. However, this approach requir"
+    },
+    {
+      "paper": "DroneSplat: 3D Gaussian Splatting for Robust 3D Reconstruction fro",
+      "ctx": "n strategy achieves the best results (d). 5. Conclusions We present DroneSplat, a novel framework for robust 3D reconstruction from in-the-wild drone imagery. We inte- grate local-global segmentation heuristics and statistical ap- proaches to precisely identify and eliminate dynamic dis- tractors. Furthermore, We enhance 3D Gaussian Splatting through multi-view stereo predictions and a voxel-guided optimiza"
+    },
+    {
+      "paper": "DroneSplat: 3D Gaussian Splatting for Robust 3D Reconstruction fro",
+      "ctx": "Technology for their contribution to this work. References [1] Jiahao Chen, Yipeng Qin, Lingjie Liu, Jiangbo Lu, and Guanbin Li. Nerf-hugs: Improved neural radiance fields in non-static scenes using heuristics-guided segmentation. In Proceedings of the IEEE/CVF Conference on Computer Vi- sion and Pattern Recognition, pages 19436–19446, 2024. 2, 3, 4, 6 [2] Xingyu Chen, Qi Zhang, Xiaoyu Li, Yue Chen, Ying F"
+    },
+    {
+      "paper": "DeGauss: Dynamic-Static Decomposition with Gaussian Splatting for",
+      "ctx": "ision and Pattern Recognition, pages 130–141, 2023. 3, 7 [4] Jiahao Chen, Yipeng Qin, Lingjie Liu, Jiangbo Lu, and Guan- bin Li. Nerf-hugs: Improved neural radiance fields in non- static scenes using heuristics-guided segmentation. CVPR, 2024. 2 [5] Sara Fridovich-Keil, Giacomo Meanti, Frederik Rahbæk War- burg, Benjamin Recht, and Angjoo Kanazawa. K-planes: Explicit radiance fields in space, time, and appe"
+    },
+    {
+      "paper": "DeSplat: Decomposed Gaussian Splatting for Distractor-Free Renderi",
+      "ctx": "nference on Machine Learning, pages 600–609. PMLR, 2018. 8 [4] Jiahao Chen, Yipeng Qin, Lingjie Liu, Jiangbo Lu, and Guan- bin Li. NeRF-HuGS: Improved neural radiance ﬁelds in non-static scenes using heuristics-guided segmentation. In Proceedings of the IEEE/CVF Conference on Computer Vi- sion and Pattern Recognition, pages 19436–19446, 2024. 2, 6 [5] Micka¨el Chen, Thierry Arti `eres, and Ludovic Denoyer."
+    },
+    {
+      "paper": "DecoupledGaussian: Object-Scene Decoupling for Physics-Based Inter",
+      "ctx": "tal- ing under 4 minutes. For LaMa inpainting, masked areas are dilated with a 21 × 21 kernel to reduce boundary artifacts in M GT O [54]. The simulation area and physical parameters (e.g., E, µ) are manually set following [ 38, 89] (see Sup- plementary). Based on Warp [ 58], the simulation runs on an 18-core Intel Xeon Gold 5220 CPU and NVIDIA A40 GPU, achieving ∼10 FPS for 50-frame videos. 5.2. Evaluating O"
+    },
+    {
+      "paper": "DualSplat: Robust 3D Gaussian Splatting via Pseudo-Mask Bootstrapp",
+      "ctx": "lures into object-level pseudo-masks to guide the second reconstruction. This de- couples transient discovery from clean scene optimization and avoids the signal-erasure failure mode of purely online heuristics. Compared in Tab. 1 with online suppression, our key difference is not the type of residual or feature cues, but whenandhowthese cues are used. Table 1. Comparison of paradigms and mechanisms. Item O"
+    },
+    {
+      "paper": "Consistent Instance Field for Dynamic Scene Understanding",
+      "ctx": "improve cross-view consistency, recent works [3, 16, 29, 36, 50, 63, 67] leverage 2D masks or video trackers [5] to constrain Gaussian semantics, but ambiguous boundaries and occlusions still require heuristic filtering. In contrast, we introduce a continuous, temporally consistent instance field, where semantics are grounded in the persis- tence of physical entities, enabling a principled connection with"
+    },
+    {
+      "paper": "GaussianSpa: An “Optimizing-Sparsifying” Simplification Framework ",
+      "ctx": "rtant Gaussians based on hand-crafted criteria such as opacity [22, 50], importance score (hit count) [16,17, 37], dominant primitives [28], and binary mask [26, 51]. However, such single-perspective heuristic criteria may lack robustness in dynamic scenes or varying lighting. Moreover, the sudden one-shot removal may cause permanent loss of Gaussians crucial to visual synthesis, making it challenging to r"
+    },
+    {
+      "paper": "SU-RGS: Relightable 3D Gaussian Splatting from Sparse Views under",
+      "ctx": "er Vision and Pattern Recognition , pages 7517–7527, 2024. [18] Jiahao Chen, Yipeng Qin, Lingjie Liu, Jiangbo Lu, and Guanbin Li. Nerf-hugs: Improved neural radiance fields in non-static scenes using heuristics-guided segmentation. In Proceedings of the IEEE/CVF Conference on Computer Vi- sion and Pattern Recognition, pages 19436–19446, 2024. 2 [19] Hanxin Zhu, Tianyu He, Xin Li, Bingchen Li, and Zhibo Chen"
+    },
+    {
+      "paper": "iSegMan: Interactive Segment-and-Manipulate 3D Gaussians",
+      "ctx": "on the SAM [22], which provides great potential for inter- active 3D segmentation. SA3D [7] segments 3D objects ac- cording to 2D clicks in the initial view by alternating mask inverse rendering and heuristic cross-view self-prompting. [18] adopts the same cross-view self-prompting strategy and introduces a two-stage mask refinement scheme. Both methods require multiple repetitions of inverse rendering an"
+    },
+    {
+      "paper": "Rethinking End-to-End 2D to 3D Scene Segmentation in Gaussian Spla",
+      "ctx": "ntation to obtain pseudo labels as the supervision signal. To improve the per- formance, later works [9, 23, 39] attempt to pre-process the 2D instance segmentations (e.g., using video tracker [4] or heuristic Gaussian matching [23]) to simplify the task and obtain view-consistent labels for supervision. Recent state- of-the-art methods [1, 6, 9, 14, 40, 46] construct 3D consis- tent feature fields and sup"
+    }
+  ],
+  "阈值/超参": [
+    {
+      "paper": "HERA: Hybrid Explicit Representation for Ultra-Realistic Head A va",
+      "ctx": "lish a new rule: if the polygon mesh has a depth value at this pixel and the value is smaller than the depth value of the 3D splat by more than a threshold λ, the splat is placed behind the facet. We empirically set λ to 5 cm. With such a comprehensive design, we are able to achieve stable depth sorting. 3.3. Head A vatar Animation We utilize FLAME [20] to model the head avatar paramet- rically. Following the me"
+    },
+    {
+      "paper": "PR-IQA: Partial-Reference Image Quality Assessment for Diffusion-B",
+      "ctx": "ce regions. This is achieved by thresholding the map at its topτ-percentile. Formally, the mask for a pixeliisM k(i) =1[Q k(i)≥T τ ], where 1[·]is the indicator function andT τ =percentile(Q k,τ). We heuristically setτ= 50. Let ˆIk be the image rendered from the 3D Gaussians at thek-th pose. We employ the pixel-wise adaptiveL 1 loss L3DGS 1,k , which computes the difference betweenI k and ˆIk, 37305 Table 1. Q"
+    },
+    {
+      "paper": "ContraGS: Codebook-Condensed and Trainable Gaussian Splatting for ",
+      "ctx": "ection 5, and we demonstrate that our approach achieves higher or similar compression rates without sacrificing rep- resentation quality.1 Additionally, these approaches require careful tuning of the heuristic hyperparameters that may not generalize well across 3D scenes. EAGLES [15] and Scaffold-GS [37] aim to accelerate training speeds by using a compact representation that leverages neural networks to s"
+    },
+    {
+      "paper": "Towards Realistic Example-based Modeling via 3D Gaussian Stitching",
+      "ctx": "be identiﬁed as a∈ ∂B iff.: 1 K K∑ i |bi− a| < β and o(a) > τ, (4) where o(a) is the opacity of that Gaussian point, |bi− a| is the Euclidean distance between bi and a. τ and β are thresholds and we empirically set τ to 0.95, β to 0. 05×L. L is the size of the composite. (e.g. measured by the bounding box). An additional method for a better boundary condition on real-world data is that we discard outliers in bo"
+    },
+    {
+      "paper": "DCSHARP: 3D Gaussian Splatting with Direction Cosine Spherical Har",
+      "ctx": "odels by trading training efﬁciency for inference sparsity. LightGaussian [ 9] uses a \"pseudo-renderer\" to assess Gaussian importance, adding GPU overhead. Compact-3D [ 22] penalizes opacity, but its heuristic threshold may be suboptimal. Taming 3DGS [ 28] evaluates Gaussian importance with a multi-view metric, though summing views during training is expensive. Motivated by the challenges and imperfections"
+    },
+    {
+      "paper": "3D Gaussian Point Encoders",
+      "ctx": "ently small, we can potentially filter it out and instead assume it to be zero. This requires a heuristic that is sig- nificantly faster to compute than Mahalanobis distance. We experiment with three heuristics: (i)Distance Filtering.We compute the Euclidean distance to each Gaussian’s mean, which only re- quires linear complexity in dimension as opposed to quadratic. We then threshold the distances by 2λg"
+    },
+    {
+      "paper": "DynaMoDe-NeRF: Motion-aware Deblurring Neural Radiance Field",
+      "ctx": "Thus, the over- all loss is given by L = Lphoto+λ1Lkernel+λ2L3dm+λ3L3dd+λ4L2dv+λ5Ltv (12) 4. Experiments Training: Our method adapts HexPlane [2] for estimating latent sharp colors. Following [2], we empirically set λ5 to 0.009 for real data and 0.0005 for synthetic data.We use a learning rate of 0.002 with an exponential decay rate of 0.1 for both the density and feature planes. We adopt a coarse-to-fine scene"
+    },
+    {
+      "paper": "Write Where It Matters: Policy-Guided Watermarks for 3D Gaussian S",
+      "ctx": "n 3D Gaussian Splatting (3DGS) en- able photorealistic real-time rendering but also increase the risks of unauthorized copying and redistribution. Existing 3DGS watermarking methods typically rely on handcrafted thresholds or globally fixed hyperparameters to balance in- visibility and robustness, making their embedding behavior static and scene-agnostic. We instead formulate 3DGS wa- termarking as a goal-di"
+    },
+    {
+      "paper": "BA-GS: Bayesian Adaptive Gaussian Splatting for SFM-Free 3D Recons",
+      "ctx": "ted by incorporating new observations at each optimization stept. By introducing Kalman Filtering, prediction and obser- vation uncertainties are explicitly modeled via covariance matrices instead of manually tuned loss weights, and priors and observations are fused adaptively through Bayesian up- dates rather than heuristic thresholds. These characteristics make Bayesian filtering well-suited for sparse-view 3"
+    },
+    {
+      "paper": "PoseGaussian: 6D Pose Estimation for Unseen Objects via Sparse-Vie",
+      "ctx": "l and the query RGB-D view, respectively. The 3DGS model point cloud is defined as: P G ={µi∈ R3|i∈Gtarget &αi≥ 0.7} (7) whereµi denotes the Gaussian center andαi is the opacity. The threshold 0.7 is empirically chosen since points with low opacity contribute little to rendering and are often out- liers. The query point cloud is constructed via back-projection using the depth information and 2D mask from the query"
+    },
+    {
+      "paper": "DroneSplat: 3D Gaussian Splatting for Robust 3D Reconstruction fro",
+      "ctx": "troduce DroneSplat, a novel framework designed for robust 3D reconstruction from in-the-wild drone imagery. Our method adaptively adjusts masking thresholds by in- tegrating local-global segmentation heuristics with statis- tical approaches, enabling precise identification and elim- ination of dynamic distractors in static scenes. We en- hance 3D Gaussian Splatting with multi-view stereo predic- tions and a"
+    },
+    {
+      "paper": "DroneSplat: 3D Gaussian Splatting for Robust 3D Reconstruction fro",
+      "ctx": "3D gaussian splatting framework tailored for in- the-wild drone imagery. For the issue of scene dynam- ics, we propose Adaptive Local-Global Masking, which in- tegrates the strengths of segmentation heuristics and sta- tistical approaches to enhance distractor identification and elimination. It can autonomously adjust the local masking threshold based on real-time residuals and pixel-level seg- mentation r"
+    },
+    {
+      "paper": "CSGaussian: Progressive Rate-Distortion Compression and Segmentati",
+      "ctx": "p establishes a natural link between compression and segmentation. Formally, we specify a weightw for each anchor accord- ing toqf as follows: w = ( 1, if 1−∥qf∥≥T 1−∥qf∥, otherwise, (3) whereT is an empirically chosen threshold and∥·∥ denotes a normalization operator that maps its input to an interval [0, 1]. As a result, low-quality background anchors with large step sizes are down-weighted, effectively minimizin"
+    },
+    {
+      "paper": "3D Gaussian Head A vatars with Expressive Dynamic Appearances by",
+      "ctx": "ce, hence the offsets in relatively static regions are ideally zero. Therefore, we calculate triangle transla- tions t, i.e., the displacement between the deformed mesh and the neutral face mesh, and empirically set a threshold τ to identify whether the triangle is “static” or “dynamic”. Then opacity offsets of splats bound to “static” triangles are constrained to be close to 0. This penalty helps decouple stati"
+    },
+    {
+      "paper": "GazeGaussian: High-Fidelity Gaze Redirection with 3D Gaussian Spla",
+      "ctx": "ad pose, withλτ = 0. To ensure a smooth transition between these regions (d2≥d≥d1), we defineλτ = (d2−d)/(d2−d1). Consequently, the pose weight is determined asλγ = 1−λτ . The distance thresholds are empirically set tod1 = 0.15 and d2 = 0.25. After that, we develop MLPs {Ef µ,Ef c,Ef κ}∈ Ef for latent codes-conditioned expression and{Pf µ,P f c,P f κ}∈ Pf for head pose-conditioned deformation: µf =µf 0 +λτEf µ(µ"
+    }
+  ],
+  "运动/形变建模": [
+    {
+      "paper": "InteractAvatar: Modeling Hand-Face Interaction in Photorealistic A",
+      "ctx": "[34] to extract the geometric feature F ∈ R1024. However, it is computationally infeasible to consider hundreds of thou- sands of Gaussians in this manner, so we instead propose an efficient sampling heuristic. First, we consider only the Gaussians located at non-rigid facial regions where defor- mation is possible. Next, we sample a single Gaussian from each mesh facet proportional to oi||si||2, since the"
+    },
+    {
+      "paper": "VideoRFSplat: Direct Scene-Level Text-to-3D Gaussian Splatting Gen",
+      "ctx": "n-based inpainting, suf- fering from distortions due to per-view inpainting. Another approach conditions models on predefined camera poses [78] or both images and poses [ 37], but relies on manual or heuristic camera trajectories, limiting flexibility for diverse scene-specific motions. Alternatively, joint modeling meth- ods have recently been proposed to simultaneously gener- ate multi-view images and co"
+    },
+    {
+      "paper": "Learnable Infinite Taylor Gaussian for Dynamic View Rendering",
+      "ctx": "lds. On the other hand, using time-conditioned polynomial func- tions to model Gaussian trajectories and orientations pro- vides a more explicit and interpretable solution, but re- quires significant handcrafted effort and lacks generaliz- ability across diverse scenes. To overcome these limita- tions, this paper introduces a novel approach based on a learnable infinite Taylor Formula to model the temporal e"
+    },
+    {
+      "paper": "Learnable Infinite Taylor Gaussian for Dynamic View Rendering",
+      "ctx": "t representation of Gaussians, time-conditioned polynomial functions for mod- eling trajectories and orientations offer a more explicit ap- proach. However, the disadvantage is that they require more handcrafted effort to define the complexity of the approxi- mating function, making it difficult to develop a generaliz- able model that works across different types of scenes. To address the critical challenges"
+    },
+    {
+      "paper": "GP-4DGS: Probabilistic 4D Gaussian Splatting from Monocular Video",
+      "ctx": "collec- tions of time-varying Gaussian primitives, optimized end- to-end through differentiable rendering. However, these ap- proaches treat motion as a deterministic optimization prob- lem, imposing hand-crafted motion priors, e.g., polynomial deformations [23], rigidity constraints [2], or other ﬁxed parametrizations [20, 46], that are applied uniformly across all primitives without learning from data. When"
+    },
+    {
+      "paper": "ETCH: Generalizing Body Fitting to Clothed Humans via Equivariant ",
+      "ctx": "ouds, provides a common topology sup- porting statistical modeling of body shape and deformation. Traditional optimization-based fitting pipelines (details in Sec. 2.1) are complex, depending on many ad-hoc rules to address corner cases, such as inconsistent 2D keypoints and additional skin-clothing separation. A path forward would leverage 3D scans paired with accurate underlying bodies to train a data"
+    },
+    {
+      "paper": "MAGICIAN: Efficient Long-Term Planning with",
+      "ctx": "indoor and outdoor environments, showcasing robust adaptability to diverse action spaces. 2. Related work Trajectory Planning in Active Mapping.Early ap- proaches mainly relied on carefully designed heuristic cri- teria [1, 5, 21, 29, 40] to guide exploration, such as se- lecting the next-best-view (NBV) [2, 4, 21] or frontiers [3, 13, 23, 43], or combining both strategies [6, 7]. How- ever, these methods"
+    },
+    {
+      "paper": "FinePhys: Fine-grained Human Action Generation by Explicitly Incor",
+      "ctx": "e-trained T2I [ 19, 42]. The latter tries to utilize more structural guidance (e.g., depth [38, 39], skeleton [12, 31, 44, 85], edges [ 12], optical ﬂows [39, 48], and trajectory [76]), combined with ad-hoc feature en- coders [46, 80] to guide the generation process. To dis- tinguish, our FinePhys online estimates 2D pose and trans- forms it into 3D skeletons for enhanced spatial guidance, and incorpora"
+    },
+    {
+      "paper": "Im2Haircut: Single-view Strand-based Hair Reconstruction for Human",
+      "ctx": "c reconstruction of the hairstyle that includes not only densities but also 3D-lifted direction maps modeled throughout an entire hair volume. Hair strands are then extracted as the trajectory of the heuristic-based approaches, which traverse the learned ori- entation ﬁeld. The main limitation of this approach is that it lacks a prior at the level of the strand-based hairstyle, which may result in hairstyl"
+    },
+    {
+      "paper": "UFO: Unifying Feed-Forward and Optimization-based Methods for Larg",
+      "ctx": "namic objects are modeled using 3D bounding boxes and per-Gaussian lifespans, enabling complex motion modeling over time. is implemented as a ViT-style [9] transformer encoder, de- signed to minimize hand-crafted inductive biases and rely on learned reasoning. Update Formulation.When a new frameI t with camera poseP t arrives, we update the scene representation from St−1 toS t. The moduleT update processes th"
+    },
+    {
+      "paper": "SpeeDe3DGS: Speedy Deformable 3D Gaussian Splatting",
+      "ctx": "t j∥), whereSi,j is the trajectory similarity score betweenµi and control pointhj, stdt(·) and meant(·) denote the standard deviation and mean of time-varying residualµt i−ht j∈ R3, andλr = 0.5 is an empirically selected weighting ratio. All means assigned to the control pointhj form a partitioning groupMj onM. Next, we estimate a time-varying rigid transformation for each group to capture its motion across time. For"
+    },
+    {
+      "paper": "RigGS: Rigging of 3D Gaussians for Modeling Articulated Objects in",
+      "ctx": "ed as Td = {Jd,Ed}, where Jd = {Ji} denotes the node positions, andEd represents the connection betweens the nodes. Skeleton Simplification. For a more concise deformation representation, we devise a heuristic algorithm to obtain a sparse skeleton. We start with an empty sparse joint set, denoted asJ , and progressively incorporate probable joint nodes fromJd. Endpoints and junctions are typically more mea"
+    }
+  ],
+  "初始化": [
+    {
+      "paper": "ToF-Splatting: Dense SLAM using Sparse Time-of-Flight Depth",
+      "ctx": "color from the RGB frameIk, and scale initialized with a constant value. Unlike other 3DGS pipelines [22, 41], we prove this approach ef- fective and particularly efficient, replacing any complex 3D heuristics to a simple use of rendered opacity O(·), already a side-product of the rasterization process. Optimization. Firstly, ToF-Splatting smoothly integrates the new information in the global model and sec"
+    },
+    {
+      "paper": "Unraveling the Effects of Synthetic Data on End-to-End Autonomous ",
+      "ctx": "t states, ego vehicle’s states, planned routes and map topology. It leverages con- trol factors for different behavior modes, ensuring smooth and natural interactions in complex driving environments. Heuristic Agent Spawn. The entire scene is initialized based on a configurable world setup W , including vehicle max spawn number, behavior modes and types. Scene Con- troller leverages HD maps derived directl"
+    },
+    {
+      "paper": "Non-Aligned Reference Image Quality Assessment for Novel View Synt",
+      "ctx": "first align coarse similarities and progressively refine semantic alignment. 4.4. Total Loss The final loss function is a weighted combination: Ltotal =λ1Ltriplet1 +λ2Ltriplet2 +λKLLKL, with weights empirically set to λ1 = 1.0, λ2 = 1.0, and λKL = 0.05. 5. Experiments and Results 5.1. Training Details We initialized the model with a LoRA-augmented DI- NOv2 backbone and used a frozen version of the same model to"
+    },
+    {
+      "paper": "GaussianFluent: Gaussian Simulation for Dynamic Scenes with Mixed ",
+      "ctx": "the seed, ﬂesh, and rind of a watermelon. This requires segment- ing both external and internal structures through existing segmentation methods [23, 51], part-aware object genera- tion [52, 56], or heuristics. For example, to realistically model a watermelon fracture, we assign ϱ values based on the color of the GS, i.e., a high ϱ to the black seeds, a low ϱ to the red ﬂesh, and a middle ϱ to the green ri"
+    },
+    {
+      "paper": "BA-GS: Bayesian Adaptive Gaussian Splatting for SFM-Free 3D Recons",
+      "ctx": "er- vation uncertainties are explicitly modeled via covariance matrices instead of manually tuned loss weights, and priors and observations are fused adaptively through Bayesian up- dates rather than heuristic thresholds. These characteristics make Bayesian filtering well-suited for sparse-view 3DGS with noise and complicated scene structures. 4. Methods 4.1. Variational Bayesian Initialization Since 3DGS"
+    },
+    {
+      "paper": "Joint Optimization of Neural Radiance Fields and Continuous Camera",
+      "ctx": "g images, which are usually obtained using Structure-from-Motion meth- ods such as COLMAP [26]. However, this process in- troduces additional computation, lacks differentiability, and is sensitive to hand-crafted features [1, 17]. To remove its reliance on COLMAP, existing meth- This CVPR paper is the Open Access version, provided by the Computer Vision Foundation. Except for this watermark, it is identical t"
+    },
+    {
+      "paper": "Eulerian Gaussian Splatting using Hashed Probability Pyramids",
+      "ctx": "the effectiveness and robustness of our approach: it does not require SfM points for initialization, yet it achieves rendering quality comparable to methods that require them. This enables a simple, heuristic-free, end-to-end training procedure that generalizes across diverse scenes. 6.5. Ablations We validate our design choices and quantify their impact on the final performance of the model in Tab. 2. Th"
+    },
+    {
+      "paper": "LHM: Large Animatable Human Reconstruction Model",
+      "ctx": "ble loss to encourage Gaussian positions to be close to their SMPL-X initialized locations by a hinged distance constraint: LACAP = 1 Npoints NpointsX i=1 max (∥∆pi∥2−d, 0), (8) where d represents an empirically determined threshold (5.25cm) in practice) that permits local adjustments while preventing catastrophic drift. The combined canonical regularization operates as: Lreg = 50LASAP + 10LACAP. (9) In summary, our co"
+    },
+    {
+      "paper": "Volumetrically Consistent 3D Gaussian Rasterization",
+      "ctx": "nsistent primitive sorting and Hou et al. [22] sidestep primitive sorting al- together by using order-independent transparency. Many recent works [7, 28, 29, 34, 50] have improved the densi- fication heuristics in 3DGS and reduced its dependency on initialization. Our method is a drop-in replacement for the alpha computation in 3DGS, making it compatible with all these recent works as well. 2.3. Ray-tracing"
+    },
+    {
+      "paper": "DroneSplat: 3D Gaussian Splatting for Robust 3D Reconstruction fro",
+      "ctx": "uts in lim- ited view constraints, leading to poor rendering quality for novel views. Previous approaches attempt to address this by incorporating additional priors [4, 34, 37, 38, 47] or de- signing hand-crafted heuristics [24, 40, 41]. More recently, InstantSplat [5] propose a novel paradigm that initializes Gaussian primitives from multi-view stereo predictions to overcome sparsity. However, despite incorp"
+    },
+    {
+      "paper": "DroneSplat: 3D Gaussian Splatting for Robust 3D Reconstruction fro",
+      "ctx": "ted view constraints, leading to poor rendering quality for novel views. Previous approaches attempt to address this by incorporating additional priors [4, 34, 37, 38, 47] or de- signing hand-crafted heuristics [24, 40, 41]. More recently, InstantSplat [5] propose a novel paradigm that initializes Gaussian primitives from multi-view stereo predictions to overcome sparsity. However, despite incorporating geo"
+    },
+    {
+      "paper": "DroneSplat: 3D Gaussian Splatting for Robust 3D Reconstruction fro",
+      "ctx": "on constraints [24, 40, 41] or introduce extra priors, such as depth estimation model [4, 34] and diffu- sion model [37, 38, 47]. 3DGS-based work [3, 15, 39, 48] typically integrate depth priors with hand-crafted heuris- tics. Recently, InstantSplat [5] has demonstrated notable achievement by leveraging the dense points predicted by DUSt3R [35] as geometric priors to initialize Gaussian primitives. However, I"
+    },
+    {
+      "paper": "Hierarchical Gaussian Mixture Model Splatting for Efficient and Pa",
+      "ctx": "apenet car. We compare tree scanning with the selective scanning [16] and hand- crafted scanning [58]. Tab. 2 shows that tree scanning is crucial for modeling 3DGS parameters, as both the default and handcrafted scanning algorithms fail to learn 3DGS pat- terns due to their inability to handle disordered spatial struc- tures. Fig. 5 shows that BFS initialization provide leads to better learning for 3DGS para"
+    },
+    {
+      "paper": "RigGS: Rigging of 3D Gaussians for Modeling Articulated Objects in",
+      "ctx": "an, coupled with skeleton-aware node-controlled defor- mation, to begin the 4D reconstruction of the dynamic object. From the resulting skeleton-aware nodes, we then extract a sparse skeleton using a heuristic algorithm. Finally, leveraging the initialized deformation field and 3D Gaussians as starting values, we design learnable skinning weights and optimize a skeleton-driven deformation field. Our RigGS"
+    },
+    {
+      "paper": "TAGA: Self-supervised Learning for Template-free",
+      "ctx": "based on templates and therefore does not include mesh vertices or skinning an- notations. To initialize the positions of 3D Gaussians, TAGA randomly samples points from normal distributions that are heuristically defined at the midpoints of bones. Voxel-based Skinning Field. Due to the dynamic changes in 3D Gaussian positions and quantities, traditional MLP- based skinning fields struggle to converge in the a"
+    }
+  ],
+  "视角/采样选择": [
+    {
+      "paper": "Towards Realistic Example-based Modeling via 3D Gaussian Stitching",
+      "ctx": "imization scheme: the ﬁrst phase involves sampling-based cloning (S-phase), and the second phase involves clustering-based tuning (T-phase). During the S-phase, the target ﬁeld is op- timized using a heuristic sampling strategy that considers the structural characteristics at the boundary. Additionally, an efﬁcient 2D gradient constraint is applied to preserve the original texture content of the target ﬁel"
+    },
+    {
+      "paper": "Splat-LOAM: Gaussian Splatting LiDAR Odometry and Mapping",
+      "ctx": "del Registration Each time a new keyframe is selected, we sample the lo- cal model by back-projecting the rasterized range image D onto a point cloud{pq}W ×H q=1 at its estimated pose. We de- sign an ad-hoc tracking schema to beneﬁt from both geo- metric and photometric consistencies provided by the Li- DAR and the rendered local model. Hence, the total odom- etry loss is composed of the sum of both res"
+    }
+  ],
+  "损失权重/正则": [
+    {
+      "paper": "Vid2Avatar-Pro: Authentic Avatar from Videos in the Wild via Unive",
+      "ctx": "riments show that our approach based on the learned universal prior sets a new state-of-the-art in monoc- ular avatar reconstruction by substantially outperforming existing approaches relying only on heuristic regularization or a shape prior of minimally clothed bodies (e.g., SMPL) on publicly available datasets. *Equal contribution †Equal advisory 1. Introduction Authentic digital humans are widely used f"
+    },
+    {
+      "paper": "PhysHO: Physics-Based Dynamic 3D Gaussian Human and Object from",
+      "ctx": "e); /* One MPM substep with external actuation */ 7x,v,C,F trial←I(x,v,C,F,σ,f ex); /* Plasticity return-mapping via expert + residual (Eqn. 8) */ 8F←P(F trial) +P θ(Ftrial,lp); 9s n+1←{x,v,C,F}; We manually set the densityρ, and jointly optimize per- particleE,ν, the LBS-impact factorsωfrom Eqn. 7, the feature vectors(l e,lp), and the parameters ofE θ(·)and Pθ(·)from Eqn. 8. We further introduce a regulariz"
+    },
+    {
+      "paper": "Disco-GS: Gaussian Splatting in Dynamic Color Lighting",
+      "ctx": "),(G,B),(B,R)}. (7) where ¯Jcan(v)p denotes the mean of channelp. Brightness Regularizer:We apply a uniform blur filter of size11×11toBand constrain it to a value of 0.5. The tar- get value of 0.5 is heuristically chosen to represent a mod- erate brightness level. The intuition is that the two extreme cases, 0 and 1, would correspond to a completely dark and an overly bright scene, respectively. The blurring o"
+    },
+    {
+      "paper": "L2DGS: Low-Light Dynamic Gaussian Splatting",
+      "ctx": "espect the scene’s photometric properties and underly- ing structure, motivating a regularizer that enforces scene- aware transformation. SinceB 1 andB 2 operate onRw and Lw, respectively (Eq. 9), we heuristically encourage their gradients to be similar so that they can effectively capture the underlying structural consistency betweenR w andL w, and transform them accordingly. The BAF values must align with th"
+    },
+    {
+      "paper": "SimAvatar: Simulation-Ready A vatars with Layered Hair and Clothin",
+      "ctx": "rned implicit fields (i.e., Fh ϕ discussed in Sec. 3.3) and add the following regularization: Lhair = 1 NsNl NsX i=1 NlX j=2 (oi,j−1−oi,j) (5) Our final objective isL =LSDS +λhairLhair, whereλhair is empirically set to 1.0 in our experiments. 4. Experiments 4.1. Datasets. To learn the text-based garment diffusion model discussed in Sec. 3.2, we use the Garment Pattern Generator (GPG) dataset [48] and the CLOTH3D"
+    },
+    {
+      "paper": "A vatarPointillist: AutoRegressive 4D Gaussian A vatarization",
+      "ctx": "enhance perceptual quality, and a regularization term applied to constrain the predicted offset. The overall objective is deﬁned as: Ltotal = λL1LL1 + λSSIM LSSIM + λLP IP SLLP IP S + λRegLReg (6) We empirically set the weights to λL1 = 1 , λSSIM = 0.5, λLP IP S = 0.1 and λReg = 0.1. 5. Experiments In this section, we ﬁrst describe our experimental setup, including implementation details, baselines, and evaluati"
+    },
+    {
+      "paper": "Hierarchy UGP: Hierarchy Unified Gaussian Primitive for Large-Scal",
+      "ctx": "ttributes of the l− 1 level UGPs based on elaborately de- signed weightsw [15]: Gl(µ, Σ,o, SH) = NX i wiGl−1(µ, Σ,o, SH) (12) Since dynamic objects generally occupy limited space within the scene, we empirically set them as leaf nodes to achieve a better trade-off between rendering quality and speed. Merging at the Sub-scenes Level After constructing the hierarchy for all sub-scenes, we merge them into the root"
+    },
+    {
+      "paper": "OracleGS: Grounding Generative Priors for Sparse-View Gaussian Spl",
+      "ctx": "on introducing pri- ors through internal regularization. These methods attempt to constrain the solution space using only the informa- tion present in the input views or by applying general- purpose heuristics. Early approaches for NeRF introduced semantic losses from CLIP such as DietNeRF [10], Reg- NeRF [29] uses appearance regularization via normaliz- ing flows, while geometric priors like local depth r"
+    },
+    {
+      "paper": "IR-HGP: Physically-Aware Gaussian Inverse Rendering for High-Illum",
+      "ctx": "D views is ill-posed, leading to non-physical decompo- sitions. (3) Radiance–optimization conflict: extreme lu- minance variations in highlights cause unstable photomet- ric gradients, while existing heuristic regularization or tone mapping breaks physical consistency, as shown in Figure 2. To overcome these challenges, we propose IR-HGP, a Physically-Aware Generative Gaussian Inverse Rendering framework t"
+    },
+    {
+      "paper": "NexusGS: Sparse View Synthesis with Epipolar Depth Priors",
+      "ctx": "pth maps predicted by monocular estimators [3, 27, 28]. These approaches typi- cally impose depth-aware regularizations to address the scale ambiguity inherent in monocular perception. However, these handcrafted constraints often prove inadequate, as they lack explicit metric grounding and merely redistribute rather than eliminate scale errors. In this paper, we introduce NexusGS, a 3DGS-based method for nov"
+    },
+    {
+      "paper": "Taming Video Diffusion Prior with Scene-Grounding Guidance",
+      "ctx": "dense depth prediction associated with gaussian properties. The second line of research leverages regularization techniques for opti- mization, which are applicable to both NeRF and 3DGS, in- cluding hand-crafted constraints [17, 32, 63], and those de- rived from pre-trained models [10, 18, 33, 35, 44, 50, 64]. In this paper, we explore the priors from video diffusion mod- els [7, 12, 51, 57] for sparse-input"
+    }
+  ],
+  "几何先验/深度法向": [
+    {
+      "paper": "Vid2Avatar-Pro: Authentic Avatar from Videos in the Wild via Unive",
+      "ctx": "ws. Existing approaches [15, 22, 29, 52, 61, 78, 88] aim to overcome its limitations by incorporating statistical prior from a minimally-clothed human body model [ 50, 57] or geometric prior based on heuristics (e.g., Laplacian regular- ization [52]). While these priors improve robustness under this ill-posed problem setting, there remains a clear quality This CVPR paper is the Open Access version, provided"
+    },
+    {
+      "paper": "ExploreGS: Explorable 3D Scene Reconstruction",
+      "ctx": "men- tation from the ofﬁcial 3DGS repository [11]. DNGaussians [15] incorporates depth priors during partial optimization of the 3D Gaussian parameters. ViewExtrapolator leverages video diffusion but heuristically selects a single test camera for generating additional viewpoints due to the absence of a dedicated sampling strategy. In our experiments, we follow their protocol and choose the test camera farthest"
+    },
+    {
+      "paper": "TWINGS: Thin Plate Splines Warp-aligned Initialization for Sparse-",
+      "ctx": "ages. 3.2. Geometric Priors Image Matcher.Reconstructing accurate 3D geometry fundamentally relies on establishing pixel-wise correspon- dences between images. This field has evolved from clas- sical hand-crafted local features like SIFT [18] to learned detectors and descriptors [5, 8, 26, 38], and more recently to dense matchers [9, 16, 19, 29, 30, 34]. Our method lever- ages a dense matcher [16] to find mat"
+    },
+    {
+      "paper": "LiDAR Prompted Spatio-Temporal Multi-View Stereo for Autonomous Dr",
+      "ctx": "al variations demonstrates the practical value for scalable, reliable real-world appli- cations. 2. Related Work Monocular Depth Estimation Models.Monocular depth estimation (MDE) has progressed from hand-crafted cues [25, 49] to deep, data-driven approaches [13, 15] and, more recently, to foundation-scale systems that pursue strong zero-shot generalization through large-scale data and diverse training signal"
+    }
+  ],
+  "颜色/外观": [
+    {
+      "paper": "GeoAvatar: Geometrically-Consistent Multi-Person Avatar Reconstruc",
+      "ctx": "of the human template model in the canonical space. We optimize poses and Gaussian splats for every avatar simul- taneously during training. We adaptively control the num- ber of Gaussian splats in a heuristic way [12, 20]. We ob- served that training poses in the earlier stage suffer from quality loss due to incorrectly estimated appearance. We first train the avatar appearance with fixed initial avatar p"
+    },
+    {
+      "paper": "SimAvatar: Simulation-Ready A vatars with Layered Hair and Clothin",
+      "ctx": "L2 loss ( Lgrad) to the gradient at each query point and c) the KL divergence loss ( LKL) to the latent code Z. The full loss for the V AE training is L =Lbce +λgradLgrad +λKLLKL, whereλgrad,λKL are empirically set to 0.0001, 0.1 in our experiments. Text-based garment diffusion model. Given the learned vectorized latent space, we train a text-conditioned latent diffusion model for garment mesh generation. As sh"
+    },
+    {
+      "paper": "UrbanCAD: Towards Highly Controllable and Photorealistic",
+      "ctx": "3D vehicles with photorealistic appearance, ﬁne-grained geometric details, and high controllability, including part-level control, from a single urban image and a collection of free 3D CAD models and handcrafted materials. This framework operates within a retrieval-optimization paradigm, performing both CAD retrieval and retrieval-based material optimization. The key idea is to retain the existing detailed e"
+    },
+    {
+      "paper": "UrbanCAD: Towards Highly Controllable and Photorealistic",
+      "ctx": "uding part-level controllability and complex material physical properties, while reﬁning the appearance to ﬁt the observational data. Speciﬁcally, we ﬁrst retrieve vehicles’ geometries represented by handcrafted CAD models, which offer high controllability due to disentangled designs, par- ticularly part-disentangled geometry for component editing. Existing reconstruction-based methods [ 26, 42, 62] that use"
+    },
+    {
+      "paper": "UrbanCAD: Towards Highly Controllable and Photorealistic",
+      "ctx": "AD models and material graphs as input. Our aim is to create digital twins that match the reference vehicles in the real-world images, both in geometry and appearance. While these free CAD models are handcrafted with animat- able components and detailed geometry, they often lack the high-quality materials required for photorealistic rendering. The process consists of three stages, as illustrated in Fig. 2. F"
+    },
+    {
+      "paper": "SplatTalk: 3D VQA with Gaussian Splatting",
+      "ctx": "c and RGB information. These design choices establish our approach as a funda- mentally novel method for integrating language features into 3DGS, grounded in first-principles observations rather than heuristic adaptations. By addressing the core challenges of multimodal alignment, feature compression, and joint optimization, our approach is not merely a trivial exten- sion of existing works, but a carefull"
+    },
+    {
+      "paper": "FruitNinja: 3D Object Interior Texture Generation with Gaussian Sp",
+      "ctx": "nerating surface textures for mesh UV maps, primarily addressing the object’s external shell and therefore are not applicable for internal modeling in 3DGS. Some recent studies [12, 16] have employed ad-hoc inpainting on newly exposed regions after each editing step to mitigate visual artifacts. However, this per-edit approach can introduce inconsistencies across a series of transforma- tions, and is un"
+    },
+    {
+      "paper": "Perceptually Guided 3DGS Streaming and Rendering for Mixed Reality",
+      "ctx": "s in neural rendering have transformed tra- ditional graphics pipelines, achieving photorealistic visual synthesis while bypassing the need for explicit scene mod- eling, complex lighting setups, and handcrafted assets [43]. A seminal milestone in this area is Neural Radiance Fields (NeRFs), which employ neural networks to implicitly en- code scene geometry and appearance [35]. Building on this framework, nu"
+    },
+    {
+      "paper": "GroomLight: Hybrid Inverse Rendering for",
+      "ctx": "ned cylindrical Gaussians and applying our residual appearance model, i.e., dual-level SH, to the full image. This differs from their hair scattering model, which employs optimized SH base colors and manually tuned material parameters. Evaluation Metrics. We evaluate all methods using the following photometric error metrics: Peak Signal-to-Noise Figure 6. Appearance editing. Top row: decreasing roughness of hai"
+    },
+    {
+      "paper": "AERGS-SLAM: Auto-Exposure-Robust Stereo 3D Gaussian Splatting SLAM",
+      "ctx": "decoupled methods [12, 14, 29, 37, 44], represented by Photo-SLAM [14], leverage traditional SLAM systems (i.e., ORB-SLAM3 [3]) for localization to ensure real-time localization. However, traditional handcrafted feature-based SLAM system lacks robustness to AE-induced illumination variations, leading to reduced localization accuracy and degraded appearance reconstruction quality in exposure-varying scenarios"
+    },
+    {
+      "paper": "AERGS-SLAM: Auto-Exposure-Robust Stereo 3D Gaussian Splatting SLAM",
+      "ctx": "gradeE(k,j), under- mining BA’s pose and landmark estimation, while precise matches ensure robust optimization. Specifically, camera exposure variations induce image appearance changes, and 40931 (a) Handcrafted ORB features [31]. (b) Learning-based illumination-robust features [38]. Figure 3. Feature detection in illumination-varying scene. handcrafted features [3] lack sufficient robustness to such appeara"
+    },
+    {
+      "paper": "AERGS-SLAM: Auto-Exposure-Robust Stereo 3D Gaussian Splatting SLAM",
+      "ctx": "riations induce image appearance changes, and 40931 (a) Handcrafted ORB features [31]. (b) Learning-based illumination-robust features [38]. Figure 3. Feature detection in illumination-varying scene. handcrafted features [3] lack sufficient robustness to such appearance variations, reducing the reliability of residual E(k,j). As shown in Fig. 3a, handcrafted ORB [3] fea- tures are not robust to AE-induced im"
+    },
+    {
+      "paper": "AERGS-SLAM: Auto-Exposure-Robust Stereo 3D Gaussian Splatting SLAM",
+      "ctx": ". Feature detection in illumination-varying scene. handcrafted features [3] lack sufficient robustness to such appearance variations, reducing the reliability of residual E(k,j). As shown in Fig. 3a, handcrafted ORB [3] fea- tures are not robust to AE-induced image appearance vari- ations. By contrast, Fig. 3b adopts learning-based features [38] for illumination-robust feature extraction and match- ing. By i"
+    }
+  ],
+  "不透明度": [
+    {
+      "paper": "FluidGaussian: Propagating Simulation-Based Uncertainty Toward",
+      "ctx": "d- ditional details are available in the Appendix A. Baseline Methods.We compare against two widely used uncertainty-driven NBV baselines: ActiveNeRF [46]; and FisherRF [28]. Their original selection heuristics are kept 15426 Table 2. Training and simulation settings for all datasets. Dataset Blender MipNeRF360 DrivAerNet++ Training Resolution800×800 1600×1040 1600×900 Test views 200 87 100 Opacity (α) thre"
+    },
+    {
+      "paper": "UrbanCAD: Towards Highly Controllable and Photorealistic",
+      "ctx": "ex ma- terial physical properties such as opacity and metallic re- ﬂectance, pose signiﬁcant challenges for differentiable ren- dering, especially in our single-view observation setting. In contrast, handcrafted material libraries like Adobe Material Library [ 1] provide materials with complex physical prop- erties. Motivated by these observations, we seek to push the frontier of the photorealism-controllabi"
+    }
+  ],
+  "LOD/层级": [
+    {
+      "paper": "Toward Real-world BEV Perception: Depth Uncertainty Estimation",
+      "ctx": "mages and BEV labels, following the approach de- scribed in PointBEV [4]. The BEV features rendering is implemented based on the original Gaussian Splatting li- brary [14]. The error coefficient k is empirically set to 0.5, and the number of multi-scale BEV features is set to 3, corresponding to resolutions of 50× 50, 100× 100, and 200× 200. Unless otherwise specified, our experiments are conducted using an Effi"
+    },
+    {
+      "paper": "SGI: Structured 2D Gaussians for Efficient and Compact",
+      "ctx": "ing in achieving effective 2D Gaussian compression. Asλ increases, the storage size reduces due to improved entropy modeling, but overly large values may slightly degrade re- construction quality. We empirically setλ= 0.001. Ablation on Multi-scale Fitting.Table 5 shows the opti- mization efficiency and representation quality of SGI under different numbers of Gaussian pyramid levels. We exclude the model size me"
+    },
+    {
+      "paper": "RigGS: Rigging of 3D Gaussians for Modeling Articulated Objects in",
+      "ctx": "ese terms. 3.2. Coarse-to-Fine 3D Skeleton Construction Referring to the initial dynamic reconstruction acquired in Sec. 3.1, we begin by choosing a fresh canonical shape, fol- lowed by introducing a heuristic algorithm for deriving a sparse skeleton from the skeleton-aware nodes linked to the chosen canonical shape. Selection of Canonical Shape. Since the canonical shape derived in Sec. 3.1 doesn’t corres"
+    }
+  ]
+}

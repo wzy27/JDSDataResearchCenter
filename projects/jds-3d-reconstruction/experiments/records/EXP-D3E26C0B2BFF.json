@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "experiment_id": "EXP-D3E26C0B2BFF",
+  "project_id": "jds-3d-reconstruction",
+  "title": "E-beta 受控误差注入：互导循环纠正误差还是放大误差",
+  "type": "ablation",
+  "status": "planned",
+  "objective": "向已收敛的良好 SDF 注入可控幅度与类型的扰动，运行互导循环，测量扰动随迭代收缩还是增长。直接检验 H1 的机制，且不受场景差异这一混杂因素影响。",
+  "protocol": {
+    "scope": "机制实验，不用于方法优劣结论。扰动类型与幅度须在见到结果前固定。",
+    "success_criteria": [
+      "至少四类扰动（低频形变、局部凹陷、高频噪声、拓扑错误）各有可复现的注入实现",
+      "扰动幅度随迭代的演化曲线可按类型分层给出",
+      "存在至少一类扰动在互导下单调增长"
+    ],
+    "failure_criteria": [
+      "全部扰动类型在互导下单调收缩 —— H1 为假",
+      "扰动幅度的度量与视觉观察不一致，说明度量本身失效"
+    ],
+    "expected_outputs": [
+      "扰动幅度 vs 迭代次数曲线，按类型分层",
+      "与单向引导的同条件对照",
+      "误差增长案例的可视化"
+    ]
+  },
+  "traceability": {
+    "idea_ids": [
+      "IDEA-4DC79F20C0C6"
+    ],
+    "task_ids": [],
+    "lit_ids": [],
+    "claim_ids": [],
+    "parent_experiment_ids": []
+  },
+  "execution": {
+    "executor_id": "wsl2-ubuntu2404-rtx4090",
+    "cwd": {
+      "connection": "gs-octree-code",
+      "relative_path": "."
+    },
+    "command_argv": [],
+    "required_commands": [
+      "python",
+      "nvidia-smi"
+    ],
+    "required_connections": [
+      "gs-octree-code",
+      "nerf-synthetic-data"
+    ],
+    "watchdog_policy": null
+  },
+  "code": {
+    "repository": null,
+    "commit": null,
+    "dirty": null,
+    "patch_uri": null
+  },
+  "data": {
+    "datasets": []
+  },
+  "environment": {
+    "os": "linux",
+    "runtime": "待定",
+    "lockfile": null,
+    "seeds": {}
+  },
+  "resources": {
+    "accelerator": {
+      "vendor": "nvidia",
+      "count": 1,
+      "min_vram_gb": 24,
+      "cuda": "11.8",
+      "driver": "591.86"
+    },
+    "min_disk_gb": 20
+  },
+  "blockers": [
+    {
+      "code": "CODE_UNVERIFIED",
+      "description": "需要能在训练中途替换 SDF 的接口；GS-Octree 代码结构未核实",
+      "resolution": "取得代码并确认可在指定阶段注入扰动"
+    },
+    {
+      "code": "METRIC_UNDEFINED",
+      "description": "扰动幅度的度量方式未定，需保证与视觉退化一致",
+      "resolution": "先在合成扰动上标定度量，确认单调性后再用于实验"
+    }
+  ],
+  "preflight": {
+    "latest_status": "not-run",
+    "reports": []
+  },
+  "results": {
+    "metrics": [],
+    "artifacts": [],
+    "output_validation": "not-run",
+    "conclusion": null,
+    "idea_effects": [],
+    "limitations": [],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  "events": [
+    {
+      "event_id": "EVT-69646F559F",
+      "timestamp": "2026-08-23T16:22:54Z",
+      "type": "created",
+      "from_status": null,
+      "to_status": "planned",
+      "reason": "Created from an experiment specification.",
+      "evidence": null
+    }
+  ],
+  "provenance": {
+    "source": "sources/2026-08-24_mutual_guidance_position.md",
+    "source_sha256": "559ee40ece2157eb1b7372844685d6d32616c88c48d6a1d7e4ca84f0bb36a5fd",
+    "created_by": "Codex"
+  },
+  "created_at": "2026-08-23T16:22:54Z",
+  "updated_at": "2026-08-23T16:22:54Z"
+}

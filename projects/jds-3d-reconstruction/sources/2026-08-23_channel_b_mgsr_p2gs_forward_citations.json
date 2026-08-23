@@ -1,0 +1,129 @@
+﻿{
+    "audit_date":  "2026-08-23",
+    "time_utc":  "2026-08-23T14:19:59.6861678Z",
+    "sources":  [
+                    {
+                        "seed_paper_id":  "ARXIV:2503.05182",
+                        "seed_label":  "MGSR:2D/3D Mutual-boosted Gaussian Splatting",
+                        "query":  "https://api.semanticscholar.org/graph/v1/paper/{id}/citations?fields=citingPaper.title,citingPaper.year,citingPaper.venue,citingPaper.authors\u0026limit=200",
+                        "count":  7,
+                        "citations":  [
+                                          {
+                                              "title":  "RPC-GS: Gaussian Splatting with native RPC Rendering for Satellite Imagery",
+                                              "year":  2026,
+                                              "venue":  "arXiv.org",
+                                              "paperId":  "93144fc3d6194fd30ec43ce9b5e2e1984768db38",
+                                              "authors":  [
+                                                              "Valentin Wagner",
+                                                              "Sebastian Bullinger",
+                                                              "C. Bodensteiner",
+                                                              "Michael Arens"
+                                                          ],
+                                              "url":  "https://www.semanticscholar.org/paper/93144fc3d6194fd30ec43ce9b5e2e1984768db38"
+                                          },
+                                          {
+                                              "title":  "DCRR++: Unsupervised Reflection Removal and Novel View Synthesis via Dual-Pixel Guided 3D Gaussian Splatting",
+                                              "year":  2026,
+                                              "venue":  "International Journal of Computer Vision",
+                                              "paperId":  "155c83310e6d4c69cdbf7f16f4587ff5b49c0fe7",
+                                              "authors":  [
+                                                              "K. Yu",
+                                                              "Mina Han",
+                                                              "Liyuan Pan",
+                                                              "Liu Liu",
+                                                              "Miaomiao Liu",
+                                                              "Wei Liang"
+                                                          ],
+                                              "url":  "https://www.semanticscholar.org/paper/155c83310e6d4c69cdbf7f16f4587ff5b49c0fe7"
+                                          },
+                                          {
+                                              "title":  "Denoising-GS: Gaussian Splatting with Spatial-aware Denoising",
+                                              "year":  2026,
+                                              "venue":  "arXiv.org",
+                                              "paperId":  "c413be3855011981d777c33c3009a33c004e9385",
+                                              "authors":  [
+                                                              "Qingyuan Zhou",
+                                                              "Xinyi Liu",
+                                                              "Weidong Yang",
+                                                              "Ning-Hsu Wang",
+                                                              "Shuquan Ye",
+                                                              "Ben Fei",
+                                                              "Ying He",
+                                                              "Wanli Ouyang"
+                                                          ],
+                                              "url":  "https://www.semanticscholar.org/paper/c413be3855011981d777c33c3009a33c004e9385"
+                                          },
+                                          {
+                                              "title":  "SMDGS: Scale-Aligned Monocular Depth-Guided 3D Gaussian Splatting for Rendering and Surface Reconstruction",
+                                              "year":  2026,
+                                              "venue":  "IEEE Transactions on Visualization and Computer Graphics",
+                                              "paperId":  "ed79d5e140809ef4a9599b0693a62845e9e03b0a",
+                                              "authors":  [
+                                                              "Xiaosong Wei",
+                                                              "Pengwei Zhou",
+                                                              "Annan Zhou",
+                                                              "Li Li",
+                                                              "Jian Li",
+                                                              "Li Wang",
+                                                              "Jian Yao"
+                                                          ],
+                                              "url":  "https://www.semanticscholar.org/paper/ed79d5e140809ef4a9599b0693a62845e9e03b0a"
+                                          },
+                                          {
+                                              "title":  "Benchmarking PhD-Level Coding in 3D Geometric Computer Vision",
+                                              "year":  2026,
+                                              "venue":  "arXiv.org",
+                                              "paperId":  "8e20c6fd4205e031b928cb17a61cf0929416dce8",
+                                              "authors":  [
+                                                              "Wenyi Li",
+                                                              "Renkai Luo",
+                                                              "Yue Yu",
+                                                              "Huan-ang Gao",
+                                                              "M. Gao",
+                                                              "Li Yuan",
+                                                              "Chaoyou Fu",
+                                                              "Hao Zhao"
+                                                          ],
+                                              "url":  "https://www.semanticscholar.org/paper/8e20c6fd4205e031b928cb17a61cf0929416dce8"
+                                          },
+                                          {
+                                              "title":  "High-fidelity 3D reconstruction of cultural heritage via super-resolution and progressive Gaussian splatting",
+                                              "year":  2026,
+                                              "venue":  "npj Heritage Science",
+                                              "paperId":  "88c789f5cb57a030d2113019e2e42fee25b53e10",
+                                              "authors":  [
+                                                              "Qingzheng Jia",
+                                                              "Jialiang He"
+                                                          ],
+                                              "url":  "https://www.semanticscholar.org/paper/88c789f5cb57a030d2113019e2e42fee25b53e10"
+                                          },
+                                          {
+                                              "title":  "Reflections Unlock: Geometry-Aware Reflection Disentanglement in 3D Gaussian Splatting for Photorealistic Scenes Rendering",
+                                              "year":  2025,
+                                              "venue":  "arXiv.org",
+                                              "paperId":  "37da849dd1688c158b9fd39afff31d6de96b81ed",
+                                              "authors":  [
+                                                              "Jiayi Song",
+                                                              "Zihan Ye",
+                                                              "Qingyuan Zhou",
+                                                              "Weidong Yang",
+                                                              "Ben Fei",
+                                                              "Jingyi Xu",
+                                                              "Ying He",
+                                                              "Wanli Ouyang"
+                                                          ],
+                                              "url":  "https://www.semanticscholar.org/paper/37da849dd1688c158b9fd39afff31d6de96b81ed"
+                                          }
+                                      ]
+                    },
+                    {
+                        "seed_paper_id":  "ARXIV:2605.16925",
+                        "seed_label":  "P2GS: Physical Prior-guided Gaussian Splatting",
+                        "query":  "https://api.semanticscholar.org/graph/v1/paper/{id}/citations?fields=citingPaper.title,citingPaper.year,citingPaper.venue,citingPaper.authors\u0026limit=200",
+                        "count":  0,
+                        "citations":  [
+
+                                      ]
+                    }
+                ]
+}

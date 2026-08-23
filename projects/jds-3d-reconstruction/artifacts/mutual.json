@@ -1,0 +1,33 @@
+{
+  "sub": {
+    "初始化敏感/坏极小值": [
+      "Cross-Instance Gaussian Splatting Registration via"
+    ],
+    "双表示混合": [
+      "HERA: Hybrid Explicit Representation for Ultra-Realistic Head A vata",
+      "OMeGa: Joint Optimization of Explicit Meshes and Gaussian Splats for",
+      "Momentum-GS: Momentum Gaussian Self-Distillation for High-Quality",
+      "Self-supervised Learning of Hybrid Part-aware 3D Representations",
+      "Reconstructing Close Human Interaction with Appearance and Proxemics",
+      "MMTL-UniAD: A Unified Framework for Multimodal and Multi-Task Learni",
+      "MaGS: Reconstructing and Simulating Dynamic 3D Objects with",
+      "FHAvatar: Fast and High-Fidelity Reconstruction of Face-and-Hair Com",
+      "Gaussian Splatting with Discretized SDF for Relightable Assets"
+    ],
+    "交替优化": [
+      "GIFSplat: Generative Prior-Guided Iterative Feed-Forward 3D Gaussian",
+      "PoseGaussian: 6D Pose Estimation for Unseen Objects via Sparse-View",
+      "iSplat: Iterative Learning for Fine-Grained Gaussian Splatting",
+      "MGSR: 2D/3D Mutual-boosted Gaussian Splatting for High-fidelity Surf"
+    ],
+    "互导/相互监督": [
+      "PCR-GS: COLMAP-Free 3D Gaussian Splatting via Pose Co-Regularization",
+      "MGSR: 2D/3D Mutual-boosted Gaussian Splatting for High-fidelity Surf"
+    ],
+    "收敛性/稳定性分析": []
+  },
+  "strong": [
+    "MGSR: 2D/3D Mutual-boosted Gaussian Splatting for High-fidelity Surf"
+  ],
+  "both": []
+}
