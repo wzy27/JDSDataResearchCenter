@@ -121,3 +121,43 @@ export PYTHONPATH=$PYTHONPATH:/data/nglm005/zhengyu.wen/LOTree-zhengyu
 ```
 
 注意 `--hessian_eikonal` 在默认脚本中处于注释状态，说明 singular-Hessian 项并非默认开启，而是可选开关。**这对 E-γ 有直接影响**：该项的开关本身即为一个旋钮，且论文中它是被强调的贡献之一，实际默认脚本却未启用——需要与研究者确认论文实验用的是哪一档。
+
+## GS-Octree 的脚本分工与旋钮实际形态
+
+各训练脚本对外部 `LOTree-zhengyu` 的依赖：
+
+| 脚本 | LOTree/svox 依赖 | 行数 | 含 hessian |
+|---|---:|---:|---|
+| `train-origin.py` | 0 | 352 | 否（纯 3DGS 基线） |
+| `train-base.py` | 0 | — | 否 |
+| `train-octree.py` | 1 | 448 | 否 |
+| **`train-big.py`** | **3** | **774** | **是** |
+
+**论文的完整方法在 `train-big.py`**，`hessian_eikonal` 仅在此实现。三个基线脚本不依赖外部仓库，**可在无 `LOTree-zhengyu` 的情况下运行**，这为 E-α 的「仅表示 B（纯 3DGS）」一路提供了可立即执行的对照。
+
+### 旋钮三的实际形态：不是退火曲线，是硬编码常数
+
+`train-big.py` 中 Hessian/Eikonal 的调用：
+
+```python
+octree.SampleGaussianPoints(gaussian_sigma=0.1, max_n_samples=64, gauss_sampling=False)
+...
+scale_hess = 1e-12
+scale_eiko = 1e-6
+octree.VolumePointsHessEikon(
+    hessian_on=True, eikonal_on=True,
+    scale_h=scale_hess, scale_e=scale_eiko,
+    eikon_thres_min=0.8, eikon_thres_max=1.5, ...)
+```
+
+立论文档原先记为「singular-Hessian 退火权重」，依据是 Wang et al. 原文的 annealing 描述。**实际实现中并无退火，而是两个硬编码常数**，且 `scale_hess` 与 `scale_eiko` 相差六个数量级——二者的相对比例直接决定 Hessian 项与 Eikonal 项谁主导优化。
+
+`eikon_thres_min=0.8` / `eikon_thres_max=1.5` 为梯度范数的容许区间，同样硬编码。
+`gaussian_sigma=0.1` 与 `max_n_samples=64` 决定从 Gaussian 采样多少点用于计算高阶导数。
+
+**因此 E-γ 需扫描的是这六个常数，而非一条退火曲线。** 立论文档中该处表述已据此修正。
+
+### 阻塞状态更新
+
+- `train-big.py` 需 `LOctree`、`LOTreeOptGS`、`svox` —— 前两者在未公开的 `LOTree-zhengyu`；`svox` 为 PlenOctrees 开源库，可 pip 安装。
+- `train-origin.py` 等基线脚本无此依赖，**可先行验证**。

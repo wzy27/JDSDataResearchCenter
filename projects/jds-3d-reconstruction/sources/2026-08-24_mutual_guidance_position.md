@@ -46,7 +46,7 @@
 |---|---|---|
 | 八叉树细分层级 | GS-Octree | 正文仅述「according to the data contained in each node」与「progressive refinement guided by the SDF」，Figure 3 展示 level 6–9 的效果，**层级为手工指定的超参**，未给出细分准则 |
 | warm-up 时长 / 切换频率 / auto-stop | MGSR | 无原理，工程选择 |
-| singular-Hessian 退火权重 | Wang et al., SIGGRAPH Asia 2023，被 GS-Octree 借用 | 原文靠「annealing the weight」工作，退火曲线为另一手工旋钮 |
+| singular-Hessian 与 Eikonal 的权重 | Wang et al., SIGGRAPH Asia 2023，被 GS-Octree 借用 | **代码审计修正**：实现中并无退火，而是硬编码常数 `scale_hess=1e-12`、`scale_eiko=1e-6`（相差六个数量级），另有 `eikon_thres_min=0.8`、`eikon_thres_max=1.5`、`gaussian_sigma=0.1`、`max_n_samples=64`。见 `2026-08-24_mgsr_code_audit.md` |
 
 ### 2.4 借用项的适用边界与原猜测不符
 
