@@ -227,3 +227,85 @@ const float* ref_shs,
 `tandt_db.zip`（650 MB，3DGS 官方，无需授权）已下载并解包，含 `tandt/truck`、`tandt/train`、`db/drjohnson`、`db/playroom`，均为 COLMAP 标准格式。
 
 **用于管线验证而非论文对比**——MGSR 的论文实验使用 DTU 与 OmniObject3D，GS-Octree 的默认脚本亦使用 DTU（`scan40`）。两者数据集重合，这对 E-α 的公平对比有利；正式实验须换用 DTU。
+
+---
+
+## 试跑中暴露的两处问题
+
+### 1. `np.byte` 与新版 Pillow 不兼容
+
+`refgs/ref_scene/dataset_readers.py` 与 `geo_scene/dataset_readers.py` 中：
+
+```python
+Image.fromarray(np.array(arr * 255.0, dtype=np.byte), "RGB")
+```
+
+`np.byte` 为**有符号** int8（−128–127），新版 Pillow 收紧类型检查后报
+`TypeError: Cannot handle this data type: (1, 1, 3), |i1`。
+
+该写法源自原版 3DGS，非 MGSR 引入。改为 `np.uint8` 即可，共 7 处。原文件已备份为 `.orig`。
+
+### 2. `ref` 分支强制要求 `masks/` 目录
+
+`refgs/ref_scene/dataset_readers.py` 第 131–135 行读取 `<scene>/masks/<name>.{jpg,png}`，
+无该目录则失败。`clean_image`（去反射图）路径实际指向 `images/` 自身，等同原图。
+
+这不是缺陷，而是**方法设定的体现**：MGSR 面向物体级重建，其论文数据集 DTU 与
+OmniObject3D 均自带前景掩码。用于场景级数据（如 Tanks and Temples）时缺少该目录属预期。
+
+为验证三阶段调度是否按代码执行，已为 `tandt/truck` 生成 251 张全白掩码。
+**该掩码仅用于管线连通性验证，不得用于任何数值结论**——全白掩码等同于不做前景约束，
+与论文设定不符。
+
+### 阶段验证结果
+
+- `geo` 阶段（2DGS 分支 warm-up）：已成功运行，写出 tensorboard 事件、`input.ply`、`cameras.json`。
+- `ref` 阶段（3DGS 分支 warm-up）：修复上述两处后进入。
+- `geo_ref` 阶段（互导）：待验证。
+
+三阶段结构与代码审计的描述一致。
+
+---
+
+## 旋钮四：迭代数被硬编码覆盖，命令行参数失效
+
+`train.py` 主入口：
+
+```python
+op_geo = geo_arguments.OptimizationParams(parser)
+op_geo.iterations = 20_000                  # 覆盖 ArgumentParser 默认值
+...
+args = parser.parse_args(sys.argv[1:])      # 解析命令行
+...
+args.iterations = 20_000                    # geo  阶段，解析之后再次强制覆盖
+args.iterations = 20_000                    # ref  阶段
+args.iterations = 20_000                    # total 阶段（互导）
+```
+
+**`--iterations` 在 `parse_args` 之后被无条件覆盖，用户传入的值被静默丢弃**——不报错、不警告。
+三个阶段一律 20000 步，总计 60000 步。
+
+`checkpoint_iterations` 与 `model_path` 同样在此处硬编码。
+
+### 对本项目的影响
+
+1. **E-γ 需扫描的旋钮增加一项**：各阶段的迭代预算本身是固定的，而 warm-up 的 early-stop
+   只能在 `early_stop_until_iter` 与 20000 之间提前触发，无法延长。这意味着「两支各自训练
+   多久才进入互导」这一自由度被上限锁死，且该上限未被论文讨论。
+2. **实验成本被固定**：任何基于该代码的对比实验，单次运行即 60000 步，无法通过减少迭代
+   数做快速探索。要做旋钮扫描必须先移除这些硬编码。
+3. **管线验证的成本估计需修正**：先前以 1500 步估算试跑时间，实际为 60000 步。
+
+处理：验证阶段改用更小场景；正式实验前需将三处硬编码改为可配置，并把该改动记入实验记录的
+`patch_uri`，因为它改变了默认行为。
+
+### 与前述发现的性质区分
+
+至此在 MGSR 代码中发现四类问题，性质不同，不应混为一谈：
+
+| 发现 | 性质 |
+|---|---|
+| `ref_shs` 死参数致 backward 无法编译 | **真缺陷**，且说明公开代码未被编译验证过 |
+| `np.byte` 与新版 Pillow 不兼容 | **依赖漂移**，源自原版 3DGS，非作者引入 |
+| `ref` 分支要求 `masks/` | **方法设定**，非问题 |
+| `--iterations` 被硬编码覆盖 | **工程选择**，可能为固定实验配置而为，但使参数化实验无法进行 |

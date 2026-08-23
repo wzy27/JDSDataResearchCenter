@@ -1,0 +1,33 @@
+{
+  "cvf_n": 775,
+  "arxiv_n": 63,
+  "counts": {
+    "互导/相互监督": {
+      "cvf": 2,
+      "arxiv": 0
+    },
+    "交替优化": {
+      "cvf": 4,
+      "arxiv": 0
+    },
+    "双表示混合": {
+      "cvf": 9,
+      "arxiv": 2
+    },
+    "收敛性/稳定性分析": {
+      "cvf": 0,
+      "arxiv": 0
+    },
+    "初始化敏感/坏极小值": {
+      "cvf": 1,
+      "arxiv": 0
+    }
+  },
+  "strong": [
+    [
+      "CVF",
+      "MGSR: 2D/3D Mutual-boosted Gaussian Splatting for High-fidelity Surfac"
+    ]
+  ],
+  "cross": []
+}
