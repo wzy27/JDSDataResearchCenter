@@ -1,0 +1,399 @@
+[
+  {
+    "condition": "水下/散射介质",
+    "topic_level": 0,
+    "incidental": 0,
+    "examples": []
+  },
+  {
+    "condition": "显微/浅景深",
+    "topic_level": 0,
+    "incidental": 0,
+    "examples": []
+  },
+  {
+    "condition": "重复/周期结构",
+    "topic_level": 0,
+    "incidental": 0,
+    "examples": []
+  },
+  {
+    "condition": "水下+光照耦合",
+    "topic_level": 0,
+    "incidental": 0,
+    "examples": []
+  },
+  {
+    "condition": "内窥/医学",
+    "topic_level": 1,
+    "incidental": 0,
+    "examples": [
+      "GaussianReg: Rapid 2D/3D Registration for Emergency Surgery"
+    ]
+  },
+  {
+    "condition": "镜面反射间接光",
+    "topic_level": 1,
+    "incidental": 2,
+    "examples": [
+      "GauUpdate: New Object Insertion in 3D Gaussian Fields with Con"
+    ]
+  },
+  {
+    "condition": "复杂拓扑/非流形",
+    "topic_level": 1,
+    "incidental": 3,
+    "examples": [
+      "TagSplat: Topology-Aware Gaussian Splatting for Dynamic Mesh M"
+    ]
+  },
+  {
+    "condition": "半透体积",
+    "topic_level": 1,
+    "incidental": 14,
+    "examples": [
+      "SVG-Head: Hybrid Surface-V olumetric Gaussians for High-Fideli"
+    ]
+  },
+  {
+    "condition": "热成像/多光谱",
+    "topic_level": 2,
+    "incidental": 0,
+    "examples": [
+      "PhysIR-Splat: Physically Consistent Thermal Infrared Radiative",
+      "UnMix-NeRF: Spectral Unmixing Meets Neural Radiance Fields"
+    ]
+  },
+  {
+    "condition": "偏振",
+    "topic_level": 2,
+    "incidental": 0,
+    "examples": [
+      "PolGS: Polarimetric Gaussian Splatting for Fast Reflective",
+      "PolarGuide-GSDR: 3D Gaussian Splatting Driven by Polarization "
+    ]
+  },
+  {
+    "condition": "雾霾/大气",
+    "topic_level": 3,
+    "incidental": 0,
+    "examples": [
+      "Let it Snow! Animating 3D Gaussian Scenes with Dynamic Weather",
+      "NimbusGS: Unified 3D Scene Reconstruction under Hybrid Weather",
+      "SmokeSVD: Smoke Reconstruction from A Single View via Progress"
+    ]
+  },
+  {
+    "condition": "水面/波动",
+    "topic_level": 3,
+    "incidental": 0,
+    "examples": [
+      "UnMix-NeRF: Spectral Unmixing Meets Neural Radiance Fields",
+      "PCR-GS: COLMAP-Free 3D Gaussian Splatting via Pose Co-Regulari",
+      "RF4D:Neural Radar Fields for Novel View Synthesis in Outdoor D"
+    ]
+  },
+  {
+    "condition": "运动模糊/卷帘",
+    "topic_level": 5,
+    "incidental": 0,
+    "examples": [
+      "3D Gaussian splatting From Unposed Spike Streams",
+      "Splat-based 3D Scene Reconstruction with Extreme Motion-blur",
+      "From Sharp to Blur: Unsupervised Domain Adaptation for 2D Huma",
+      "CoMoGaussian: Continuous Motion-Aware Gaussian Splatting",
+      "EvaGaussians: Event Stream Assisted Gaussian Splatting from Bl"
+    ]
+  },
+  {
+    "condition": "高频/薄结构",
+    "topic_level": 5,
+    "incidental": 2,
+    "examples": [
+      "GASL IGHT : Gaussian Splats for Spatially-Varying Lighting in ",
+      "EDGS: Eliminating Densiﬁcation for Efﬁcient Convergence of 3DG",
+      "HeroGS: Hierarchical Guidance for Robust 3D Gaussian Splatting",
+      "PCR-GS: COLMAP-Free 3D Gaussian Splatting via Pose Co-Regulari",
+      "Gaussian Splatting-based Low-rank Tensor Representation"
+    ]
+  },
+  {
+    "condition": "透明/折射",
+    "topic_level": 6,
+    "incidental": 2,
+    "examples": [
+      "2D Gaussian Splatting-based Sparse-view Transparent Object",
+      "GLINT: Modeling Scene-Scale Transparency via Gaussian Radiance",
+      "RT-Splatting: Joint Reflection-Transmission Modeling with Gaus",
+      "CCL-LGS: Contrastive Codebook Learning for 3D Language Gaussia",
+      "Stochastic Ray Tracing for the Reconstruction of 3D Gaussian S",
+      "V oluMe – Authentic 3D Video Calls from Live Gaussian Splat Pr"
+    ]
+  },
+  {
+    "condition": "事件相机",
+    "topic_level": 7,
+    "incidental": 1,
+    "examples": [
+      "E2EGS: Event-to-Edge Gaussian Splatting for Pose-Free 3D Recon",
+      "From Sharp to Blur: Unsupervised Domain Adaptation for 2D Huma",
+      "E-NeMF: Event-based Neural Motion Field for Novel Space-time V",
+      "Continuous-Time Human Motion Field from Event Cameras",
+      "Event-boosted Deformable 3D Gaussians for Dynamic Scene Recons",
+      "EvaGaussians: Event Stream Assisted Gaussian Splatting from Bl",
+      "STD-GS: Exploring Frame-Event Interaction for SpatioTemporal-D"
+    ]
+  },
+  {
+    "condition": "大尺度",
+    "topic_level": 7,
+    "incidental": 2,
+    "examples": [
+      "A View-consistent Sampling Method for Regularized Training of ",
+      "Momentum-GS: Momentum Gaussian Self-Distillation for High-Qual",
+      "CityGS-X : A Scalable Architecture for Efficient and Geometric",
+      "OccluGaussian: Occlusion-Aware Gaussian Splatting",
+      "InﬁniCube: Unbounded and Controllable Dynamic 3D Driving Scene",
+      "GauUpdate: New Object Insertion in 3D Gaussian Fields with Con",
+      "Hierarchy UGP: Hierarchy Unified Gaussian Primitive for Large-"
+    ]
+  },
+  {
+    "condition": "反射/高光",
+    "topic_level": 8,
+    "incidental": 8,
+    "examples": [
+      "GASL IGHT : Gaussian Splats for Spatially-Varying Lighting in ",
+      "GS-ID: Illumination Decomposition on Gaussian Splatting via Ad",
+      "PolGS: Polarimetric Gaussian Splatting for Fast Reflective",
+      "RhythmGuassian: Repurposing Generalizable Gaussian Model For R",
+      "UnMix-NeRF: Spectral Unmixing Meets Neural Radiance Fields",
+      "PolarGuide-GSDR: 3D Gaussian Splatting Driven by Polarization ",
+      "RT-Splatting: Joint Reflection-Transmission Modeling with Gaus",
+      "IR-HGP: Physically-Aware Gaussian Inverse Rendering for High-I"
+    ]
+  },
+  {
+    "condition": "低光/噪声",
+    "topic_level": 9,
+    "incidental": 16,
+    "examples": [
+      "Baking Gaussian Splatting into Diffusion Denoiser for Fast",
+      "Contact-Aware Amodal Completion for Human-Object Interaction v",
+      "OneHOI: Unifying Human-Object Interaction Generation and Editi",
+      "Splat-based 3D Scene Reconstruction with Extreme Motion-blur",
+      "Diffuman4D: 4D Consistent Human View Synthesis from",
+      "From Sharp to Blur: Unsupervised Domain Adaptation for 2D Huma",
+      "Disco-GS: Gaussian Splatting in Dynamic Color Lighting",
+      "A Lesson in Splats: Teacher-Guided Diffusion for 3D Gaussian S",
+      "RecEdit-Drive:3D Reconstruction-Guided Spatiotemporal Video Ed"
+    ]
+  },
+  {
+    "condition": "变化光照",
+    "topic_level": 10,
+    "incidental": 3,
+    "examples": [
+      "GaRe: Relightable 3D Gaussian Splatting for Outdoor Scenes fro",
+      "GS-ID: Illumination Decomposition on Gaussian Splatting via Ad",
+      "LumiMotion: Improving Gaussian Relighting with Scene Dynamics",
+      "From Sharp to Blur: Unsupervised Domain Adaptation for 2D Huma",
+      "HumanOLAT: A Large-Scale Dataset for Full-Body Human Relightin",
+      "GeoSplatting: Towards Geometry Guided Gaussian Splatting for",
+      "IR-HGP: Physically-Aware Gaussian Inverse Rendering for High-I",
+      "SU-RGS: Relightable 3D Gaussian Splatting from Sparse Views un",
+      "MGSR: 2D/3D Mutual-boosted Gaussian Splatting for High-fidelit",
+      "Gaussian Splatting with Discretized SDF for Relightable Assets"
+    ]
+  },
+  {
+    "condition": "稀疏视角",
+    "topic_level": 20,
+    "incidental": 7,
+    "examples": [
+      "RegGS: Unposed Sparse Views Gaussian Splatting with 3DGS Regis",
+      "PR-IQA: Partial-Reference Image Quality Assessment for Diffusi",
+      "SurfaceSplat: Connecting Surface Reconstruction and Gaussian S",
+      "No Pose at All: Self-Supervised Pose-Free 3D Gaussian Splattin",
+      "Diffuman4D: 4D Consistent Human View Synthesis from",
+      "2D Gaussian Splatting-based Sparse-view Transparent Object",
+      "TWINGS: Thin Plate Splines Warp-aligned Initialization for Spa",
+      "HeroGS: Hierarchical Guidance for Robust 3D Gaussian Splatting",
+      "SmokeSVD: Smoke Reconstruction from A Single View via Progress",
+      "DCHM: Depth-Consistent Human Modeling for Multiview Detection",
+      "RI3D: Few-Shot Gaussian Splatting With Repair and Inpainting D",
+      "PoseGaussian: 6D Pose Estimation for Unseen Objects via Sparse",
+      "UniGS: Modeling Unitary 3D Gaussians for Novel View Synthesis ",
+      "Intrinsic Geometry-Appearance Consistency Optimization for",
+      "FreeSplatter: Pose-free Gaussian Splatting for Sparse-view 3D ",
+      "GSRecon: Efficient Generalizable Gaussian Splatting for Surfac",
+      "GS-Occ3D: Scaling Vision-only Occupancy Reconstruction",
+      "SU-RGS: Relightable 3D Gaussian Splatting from Sparse Views un",
+      "SpatialCrafter: Unleashing the Imagination of Video Diffusion ",
+      "Self-Ensembling Gaussian Splatting for Few-Shot Novel View Syn"
+    ]
+  },
+  {
+    "condition": "单视角",
+    "topic_level": 26,
+    "incidental": 13,
+    "examples": [
+      "Baking Gaussian Splatting into Diffusion Denoiser for Fast",
+      "MoGA: 3D Generative A vatar Prior for Monocular Gaussian A vat",
+      "This ICCV paper is the Open Access version, provided by the Co",
+      "CrossHOI: Learning Cross-View Representations for Monocular 3D",
+      "Feed-Forward One-Shot Animatable Textured Mesh Avatar Reconstr",
+      "Human Interaction-Aware 3D Reconstruction from a Single Image",
+      "AudioA vatar: Personalized Audio-driven Whole-body Talking A v",
+      "SmokeSVD: Smoke Reconstruction from A Single View via Progress",
+      "AeroDGS: Physically Consistent Dynamic Gaussian Splatting for",
+      "FISHuman: Fine-grained Single-image 3D Human Reconstruction",
+      "GAS: Generative A vatar Synthesis from a Single Image",
+      "W A VE: Warp-Based View Guidance for Consistent Novel View Syn",
+      "LHM: Large Animatable Human Reconstruction Model",
+      "CA TSplat: Context-Aware Transformer with Spatial Guidance",
+      "SHeaP: Self-Supervised Head Geometry Predictor Learned via 2D ",
+      "PERSONA: Personalized Whole-Body 3D A vatar with Pose-Driven D",
+      "Im2Haircut: Single-view Strand-based Hair Reconstruction for H",
+      "GSV3D: Gaussian Splatting-based Geometric Distillation with St",
+      "VistaDream: Sampling multiview consistent images",
+      "UIKA: Fast Universal Head A vatar from Pose-Free Images",
+      "Expressive Talking Human from Single-Image with Imperfect Prio",
+      "Hi-Gaussian: Hierarchical Gaussians under Normalized Spherical",
+      "SIGMAN: Scaling 3D Human G aussian Generation with M illions o",
+      "FaceCraft4D: Animated 3D Facial A vatar Generation from a Sing",
+      "GUA V A: Generalizable Upper Body 3D Gaussian Avatar",
+      "DepR: Depth Guided Single-view Scene Reconstruction with Insta"
+    ]
+  },
+  {
+    "condition": "动态/非刚体",
+    "topic_level": 43,
+    "incidental": 25,
+    "examples": [
+      "GaussianFlowOcc: Sparse and Weakly Supervised Occupancy Estima",
+      "DASH: 4D Hash Encoding with Self-Supervised Decomposition",
+      "InteractAvatar: Modeling Hand-Face Interaction in Photorealist",
+      "Embodied VideoAgent: Persistent Memory from Egocentric Videos ",
+      "Let it Snow! Animating 3D Gaussian Scenes with Dynamic Weather",
+      "7DGS: Uniﬁed Spatial-Temporal-Angular Gaussian Splatting",
+      "Capturing head avatar with hand contacts from a monocular vide",
+      "DyGS-SLAM: Real-Time Accurate Localization and Gaussian Recons",
+      "SpaceTimePilot: Generative Rendering of Dynamic Scenes Across",
+      "Geo4D: Leveraging Video Generators for Geometric 4D Scene Reco",
+      "TimeFormer: Capturing Temporal Relationships",
+      "LumiMotion: Improving Gaussian Relighting with Scene Dynamics",
+      "TWINGS: Thin Plate Splines Warp-aligned Initialization for Spa",
+      "Mark4D: Temporally-Consistent Watermarking for 4D Gaussian Spl",
+      "MoRGS: Efficient Per-Gaussian Motion Reasoning",
+      "4D Gaussian Splatting SLAM",
+      "TRACE: Learning 3D Gaussian Physical Dynamics from Multi-view ",
+      "SharpTimeGS: Sharp and Stable Dynamic Gaussian Splatting",
+      "AeroDGS: Physically Consistent Dynamic Gaussian Splatting for",
+      "E-NeMF: Event-based Neural Motion Field for Novel Space-time V",
+      "Point4Cast: Streaming Dynamic Scene Reconstruction and Forecas",
+      "MOSAIC-GS: Monocular Scene Reconstruction via Advanced Initial",
+      "SLARM: Streaming and Language-Aligned Reconstruction Model",
+      "PERSONA: Personalized Whole-Body 3D A vatar with Pose-Driven D",
+      "CoDa-4DGS: Dynamic Gaussian Splatting with Context and Deforma",
+      "Hierarchy UGP: Hierarchy Unified Gaussian Primitive for Large-",
+      "V oyaging into Perpetual Dynamic Scenes from a Single View",
+      "Leveraging 2D Priors and SDF Guidance for Dynamic Urban Scene ",
+      "SpeeDe3DGS: Speedy Deformable 3D Gaussian Splatting",
+      "DeGauss: Dynamic-Static Decomposition with Gaussian Splatting ",
+      "RetimeGS: Continuous-Time Reconstruction of 4D Gaussian Splatt",
+      "InterGSEdit: Interactive 3D Gaussian Splatting Editing with",
+      "Consistent Instance Field for Dynamic Scene Understanding",
+      "LocalDyGS: Multi-view Global Dynamic Scene Modeling via",
+      "ObjectMorpher: 3D-Aware Image Editing via Deformable 3DGS",
+      "Event-boosted Deformable 3D Gaussians for Dynamic Scene Recons",
+      "Layered 4D-Rotor Gaussian Splatting: A Compressed",
+      "GS-Occ3D: Scaling Vision-only Occupancy Reconstruction",
+      "Gaussian Mapping for Evolving Scenes",
+      "MEGA: Memory-Efficient 4D Gaussian Splatting for Dynamic Scene",
+      "RF4D:Neural Radar Fields for Novel View Synthesis in Outdoor D",
+      "ReconDreamer++: Harmonizing Generative and Reconstructive Mode",
+      "STD-GS: Exploring Frame-Event Interaction for SpatioTemporal-D"
+    ]
+  },
+  {
+    "condition": "毛发/纤维",
+    "topic_level": 73,
+    "incidental": 69,
+    "examples": [
+      "GS-ID: Illumination Decomposition on Gaussian Splatting via Ad",
+      "Embodied VideoAgent: Persistent Memory from Egocentric Videos ",
+      "NeRF Is a Valuable Assistant for 3D Gaussian Splatting",
+      "3D Gaussian Map with Open-Set Semantic Grouping",
+      "Curve-Aware Gaussian Splatting for 3D Parametric Curve Reconst",
+      "Splat-LOAM: Gaussian Splatting LiDAR Odometry and Mapping",
+      "Faster-GS: Analyzing and Improving Gaussian Splatting Optimiza",
+      "Capturing head avatar with hand contacts from a monocular vide",
+      "Communication-Efficient Multi-Vehicle Collaborative Semantic S",
+      "OpenM3D: Open Vocabulary Multi-view Indoor 3D Object Detection",
+      "DyGS-SLAM: Real-Time Accurate Localization and Gaussian Recons",
+      "Identity-aware Language Gaussian Splatting for Open-vocabulary",
+      "Splat-based 3D Scene Reconstruction with Extreme Motion-blur",
+      "3D Gaussian Splatting for Arbitrary Resolutions with Compact P",
+      "OcRFDet: Object-Centric Radiance Fields for Multi-View 3D Obje",
+      "2D Gaussian Splatting-based Sparse-view Transparent Object",
+      "EDGS: Eliminating Densiﬁcation for Efﬁcient Convergence of 3DG",
+      "RadarSplat: Radar Gaussian Splatting for High-Fidelity Data Sy",
+      "AudioA vatar: Personalized Audio-driven Whole-body Talking A v",
+      "Compression of 3D Gaussian Splatting with Optimized",
+      "4D Gaussian Splatting SLAM",
+      "SceneSplat: Gaussian Splatting-based Scene Understanding",
+      "StreamGS: Online Generalizable Gaussian Splatting Reconstructi",
+      "TokenSplat: Token-aligned 3D Gaussian Splatting for Feed-forwa",
+      "HADES: Human Avatar with Dynamic Explicit Hair Strands",
+      "AeroDGS: Physically Consistent Dynamic Gaussian Splatting for",
+      "Learning Efficient and Generalizable Human Representation",
+      "QuickSplat: Fast 3D Surface Reconstruction via Learned Gaussia",
+      "Speeding Up the Learning of 3D Gaussians with Much Shorter Gau",
+      "3D Gaussian Splatting Driven Multi-View Robust Physical Advers",
+      "MuGS: Multi-Baseline Generalizable Gaussian Splatting Reconstr",
+      "RhythmGuassian: Repurposing Generalizable Gaussian Model For R",
+      "Gau-Occ: Geometry-Completed Gaussians for Multi-Modal 3D Occup",
+      "ResGS: Residual Densification of 3D Gaussian for Efficient Det",
+      "Lightweight Gradient-Aware Upscaling of 3D Gaussian Splatting ",
+      "SLARM: Streaming and Language-Aligned Reconstruction Model",
+      "FastGS: Training 3D Gaussian Splatting in 100 Seconds",
+      "OMG-A vatar: One-shot Multi-LOD Gaussian Head A vatar",
+      "GausSim: Foreseeing Reality by Gaussian Simulator for Elastic ",
+      "Trace3D: Consistent Segmentation Lifting via Gaussian Instance",
+      "GaussianZoom: Progressive Zoom-in Generative 3D Gaussian Splat",
+      "PoseGaussian: 6D Pose Estimation for Unseen Objects via Sparse",
+      "OD-RASE: Ontology-Driven Risk Assessment and Safety Enhancemen",
+      "Im2Haircut: Single-view Strand-based Hair Reconstruction for H",
+      "AAA-Gaussians: Anti-Aliased and Artifact-Free 3D Gaussian Rend",
+      "SVG-Head: Hybrid Surface-V olumetric Gaussians for High-Fideli",
+      "StrandHead: Text to Hair-Disentangled 3D Head Avatars",
+      "HorizonForge: Driving Scene Editing with Any Trajectories and ",
+      "VistaDream: Sampling multiview consistent images",
+      "PCR-GS: COLMAP-Free 3D Gaussian Splatting via Pose Co-Regulari",
+      "Consistent Instance Field for Dynamic Scene Understanding",
+      "Discretized Gaussian Representation for Tomographic Reconstruc",
+      "UIKA: Fast Universal Head A vatar from Pose-Free Images",
+      "AD-GS: Object-Aware B-Spline Gaussian Splatting for Self-Super",
+      "Layered 4D-Rotor Gaussian Splatting: A Compressed",
+      "DRIVE ARENA : A Closed-loop Generative Simulation Platform",
+      "SIGMAN: Scaling 3D Human G aussian Generation with M illions o",
+      "GeoSplatting: Towards Geometry Guided Gaussian Splatting for",
+      "FaceCraft4D: Animated 3D Facial A vatar Generation from a Sing",
+      "Gaussian Mapping for Evolving Scenes",
+      "Gaussian Splatting-based Low-rank Tensor Representation",
+      "Instant GaussianImage: A Generalizable and Self-Adaptive Image",
+      "High-Fidelity Mobile Avatars with Pruned Local Blendshapes",
+      "GUA V A: Generalizable Upper Body 3D Gaussian Avatar",
+      "MEGA: Memory-Efficient 4D Gaussian Splatting for Dynamic Scene",
+      "MindDriver: Introducing Progressive Multimodal Reasoning",
+      "Multi-Scale Gaussian-Language Map for Zero-shot Embodied Navig",
+      "RF4D:Neural Radar Fields for Novel View Synthesis in Outdoor D",
+      "SpatialCrafter: Unleashing the Imagination of Video Diffusion ",
+      "DepR: Depth Guided Single-view Scene Reconstruction with Insta",
+      "STAvatar: Soft Binding and Temporal Density Control for Monocu",
+      "Tune-Y our-Style: Intensity-tunable 3D Style Transfer with Gau",
+      "Dr.Occ: Depth- and Region-Guided 3D Occupancy from Surround-Vi"
+    ]
+  }
+]

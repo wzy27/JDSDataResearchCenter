@@ -1,0 +1,88 @@
+{
+  "a1 重打光/逆渲染": {
+    "topic": [
+      "GaRe: Relightable 3D Gaussian Splatting for Outdoor Scenes from",
+      "GS-ID: Illumination Decomposition on Gaussian Splatting via Adaptive L",
+      "RNG: Relightable Neural Gaussians",
+      "Vid2Avatar-Pro: Authentic Avatar from Videos in the Wild via Universal",
+      "LumiMotion: Improving Gaussian Relighting with Scene Dynamics",
+      "HairCUP: Hair Compositional Universal Prior for 3D Gaussian A vatars",
+      "RadarSplat: Radar Gaussian Splatting for High-Fidelity Data Synthesis ",
+      "Large-scale Codec A vatars:",
+      "UrbanCAD: Towards Highly Controllable and Photorealistic",
+      "GLINT: Modeling Scene-Scale Transparency via Gaussian Radiance Transpo",
+      "SGS-Intrinsic: Semantic-Invariant Gaussian Splatting for Sparse-View",
+      "Relightable Holoported Characters: Capturing and Relighting Dynamic Hu",
+      "HumanOLAT: A Large-Scale Dataset for Full-Body Human Relighting and",
+      "LightCity: An Urban Dataset for Outdoor Inverse Rendering and Reconstr",
+      "PBR-NeRF: Inverse Rendering with Physics-Based Neural Fields",
+      "PhyGaP: Physically-Grounded Gaussians with Polarization Cues",
+      "RelightAnyone: A Generalized Relightable 3D Gaussian Head Model",
+      "Stochastic Ray Tracing for the Reconstruction of 3D Gaussian Splatting",
+      "GeoSplatting: Towards Geometry Guided Gaussian Splatting for",
+      "IR-HGP: Physically-Aware Gaussian Inverse Rendering for High-Illuminat",
+      "SU-RGS: Relightable 3D Gaussian Splatting from Sparse Views under",
+      "Illumination-Consistent Human-Scene Reconstruction from Monocular Vide",
+      "Gaussian Splatting with Discretized SDF for Relightable Assets"
+    ],
+    "mention": 13
+  },
+  "a3 阴影/可见性": {
+    "topic": [
+      "GS-ID: Illumination Decomposition on Gaussian Splatting via Adaptive L",
+      "SGS-Intrinsic: Semantic-Invariant Gaussian Splatting for Sparse-View"
+    ],
+    "mention": 3
+  },
+  "a2 环境光/光照估计": {
+    "topic": [
+      "GS-ID: Illumination Decomposition on Gaussian Splatting via Adaptive L",
+      "Relightable Holoported Characters: Capturing and Relighting Dynamic Hu",
+      "HumanOLAT: A Large-Scale Dataset for Full-Body Human Relighting and",
+      "IR-HGP: Physically-Aware Gaussian Inverse Rendering for High-Illuminat"
+    ],
+    "mention": 6
+  },
+  "b2 曝光/白平衡/相机响应": {
+    "topic": [
+      "Luminance-GS: Adapting 3D Gaussian Splatting to Challenging Lighting",
+      "PPISP: Physically-Plausible Compensation and Control",
+      "3D Gaussian splatting From Unposed Spike Streams",
+      "Splat-based 3D Scene Reconstruction with Extreme Motion-blur",
+      "DynaMoDe-NeRF: Motion-aware Deblurring Neural Radiance Field",
+      "CoMoGaussian: Continuous Motion-Aware Gaussian Splatting",
+      "SEHDR: Single-Exposure HDR Novel View Synthesis via 3D Gaussian",
+      "BARD-GS: Blur-Aware Reconstruction of Dynamic Scenes via Gaussian",
+      "Motion-Aware Animatable Gaussian Avatars Deblurring",
+      "Seeing through Light and Darkness: Sensor-Physics Grounded Deblurring ",
+      "P2GS: Physical Prior-guided Gaussian Splatting for Photometrically Con",
+      "Physically Inspired Gaussian Splatting for HDR Novel View Synthesis",
+      "AERGS-SLAM: Auto-Exposure-Robust Stereo 3D Gaussian Splatting SLAM"
+    ],
+    "mention": 7
+  },
+  "b4 强光/过曝": {
+    "topic": [
+      "Luminance-GS: Adapting 3D Gaussian Splatting to Challenging Lighting",
+      "Seeing through Light and Darkness: Sensor-Physics Grounded Deblurring ",
+      "Physically Inspired Gaussian Splatting for HDR Novel View Synthesis"
+    ],
+    "mention": 2
+  },
+  "b3 低光/夜间": {
+    "topic": [
+      "Luminance-GS: Adapting 3D Gaussian Splatting to Challenging Lighting",
+      "From Sharp to Blur: Unsupervised Domain Adaptation for 2D Human Pose",
+      "L2DGS: Low-Light Dynamic Gaussian Splatting",
+      "RestorGS: Depth-aware Gaussian Splatting for Efﬁcient 3D Scene Restora"
+    ],
+    "mention": 1
+  },
+  "b1 变光照下重建": {
+    "topic": [
+      "AdaHuman: Animatable Detailed 3D Human Generation with Compositional",
+      "Illumination-Consistent Human-Scene Reconstruction from Monocular Vide"
+    ],
+    "mention": 1
+  }
+}

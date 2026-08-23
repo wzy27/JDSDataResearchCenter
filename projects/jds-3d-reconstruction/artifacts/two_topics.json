@@ -1,0 +1,87 @@
+{
+  "辐射-成像纠缠": {
+    "sub": {
+      "曝光/ISP": [
+        "Luminance-GS: Adapting 3D Gaussian Splatting to Challenging Lighting",
+        "PPISP: Physically-Plausible Compensation and Control",
+        "3D Gaussian splatting From Unposed Spike Streams",
+        "Splat-based 3D Scene Reconstruction with Extreme Motion-blur",
+        "DynaMoDe-NeRF: Motion-aware Deblurring Neural Radiance Field",
+        "CoMoGaussian: Continuous Motion-Aware Gaussian Splatting",
+        "SEHDR: Single-Exposure HDR Novel View Synthesis via 3D Gaussian",
+        "BARD-GS: Blur-Aware Reconstruction of Dynamic Scenes via Gaussian",
+        "Motion-Aware Animatable Gaussian Avatars Deblurring",
+        "Seeing through Light and Darkness: Sensor-Physics Grounded Deblurring HD",
+        "P2GS: Physical Prior-guided Gaussian Splatting for Photometrically Consi",
+        "Physically Inspired Gaussian Splatting for HDR Novel View Synthesis",
+        "AERGS-SLAM: Auto-Exposure-Robust Stereo 3D Gaussian Splatting SLAM"
+      ],
+      "相机响应/辐射标定": [
+        "OcRFDet: Object-Centric Radiance Fields for Multi-View 3D Object Detecti",
+        "Seeing through Light and Darkness: Sensor-Physics Grounded Deblurring HD"
+      ],
+      "色调映射/HDR": [
+        "GaussHDR: High Dynamic Range Gaussian Splatting via Learning Unified",
+        "Seeing through Light and Darkness: Sensor-Physics Grounded Deblurring HD",
+        "P2GS: Physical Prior-guided Gaussian Splatting for Photometrically Consi",
+        "Physically Inspired Gaussian Splatting for HDR Novel View Synthesis"
+      ],
+      "外观补偿(隐式)": [],
+      "辐射-颜色解耦": []
+    },
+    "unique_topic": [
+      "3D Gaussian splatting From Unposed Spike Streams",
+      "AERGS-SLAM: Auto-Exposure-Robust Stereo 3D Gaussian Splatting SLAM",
+      "BARD-GS: Blur-Aware Reconstruction of Dynamic Scenes via Gaussian",
+      "CoMoGaussian: Continuous Motion-Aware Gaussian Splatting",
+      "DynaMoDe-NeRF: Motion-aware Deblurring Neural Radiance Field",
+      "GaussHDR: High Dynamic Range Gaussian Splatting via Learning Unified",
+      "Luminance-GS: Adapting 3D Gaussian Splatting to Challenging Lighting",
+      "Motion-Aware Animatable Gaussian Avatars Deblurring",
+      "OcRFDet: Object-Centric Radiance Fields for Multi-View 3D Object Detecti",
+      "P2GS: Physical Prior-guided Gaussian Splatting for Photometrically Consi",
+      "PPISP: Physically-Plausible Compensation and Control",
+      "Physically Inspired Gaussian Splatting for HDR Novel View Synthesis",
+      "SEHDR: Single-Exposure HDR Novel View Synthesis via 3D Gaussian",
+      "Seeing through Light and Darkness: Sensor-Physics Grounded Deblurring HD",
+      "Splat-based 3D Scene Reconstruction with Extreme Motion-blur"
+    ],
+    "strong": [
+      "AERGS-SLAM: Auto-Exposure-Robust Stereo 3D Gaussian Splatting SLAM",
+      "Driving on Registers",
+      "MGSR: 2D/3D Mutual-boosted Gaussian Splatting for High-fidelity Surface",
+      "ODHSR: Online Dense 3D Reconstruction of Humans and Scenes",
+      "P2GS: Physical Prior-guided Gaussian Splatting for Photometrically Consi",
+      "PPISP: Physically-Plausible Compensation and Control",
+      "RHINO: Reconstructing Human Interactions with Novel Objects",
+      "STD-GS: Exploring Frame-Event Interaction for SpatioTemporal-Disentangle",
+      "SpaceTimePilot: Generative Rendering of Dynamic Scenes Across",
+      "TokenSplat: Token-aligned 3D Gaussian Splatting for Feed-forward"
+    ]
+  },
+  "纹理缺失/几何歧义": {
+    "sub": {
+      "无纹理": [
+        "IndoorGS: Geometric Cues Guided Gaussian Splatting for",
+        "NeRFPrior: Learning Neural Radiance Field as a Prior for Indoor Scene"
+      ],
+      "重复/周期": [],
+      "几何歧义": [],
+      "平面/墙面": [],
+      "先验补偿": []
+    },
+    "unique_topic": [
+      "IndoorGS: Geometric Cues Guided Gaussian Splatting for",
+      "NeRFPrior: Learning Neural Radiance Field as a Prior for Indoor Scene"
+    ],
+    "strong": [
+      "Gaussian Splatting Feature Fields for (Privacy-Preserving) Visual Locali",
+      "High-fidelity 3D Object Generation from Single Image with RGBN-Volume",
+      "HoGS: Unified Near and Far Object Reconstruction",
+      "Liberated-GS: 3D Gaussian Splatting Independent from SfM Point Clouds",
+      "ResGS: Residual Densification of 3D Gaussian for Efficient Detail Recove",
+      "SparseSplat: Towards Applicable Feed-Forward 3D Gaussian Splatting",
+      "Turbo-GS: Accelerating 3D Gaussian Fitting for High-Resolution Radiance"
+    ]
+  }
+}

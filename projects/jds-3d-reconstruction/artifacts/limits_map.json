@@ -1,0 +1,104 @@
+{
+  "n_scanned": 705,
+  "n_with_limits": 378,
+  "counts": {
+    "光照变化/重打光": 65,
+    "大尺度/内存": 149,
+    "泛化/跨场景": 111,
+    "语义/编辑可控性": 124,
+    "数据依赖/监督": 63,
+    "反射/透明等非朗伯": 53,
+    "遮挡/不可见区域": 38,
+    "薄结构/高频细节": 149,
+    "动态/非刚体": 163,
+    "训练/推理速度": 121,
+    "位姿误差/标定": 64,
+    "稀疏/少视角": 25,
+    "拓扑/流形": 23,
+    "几何精度/表面质量": 10,
+    "纹理缺失/歧义": 33,
+    "深度/尺度歧义": 3
+  },
+  "examples": {
+    "光照变化/重打光": [
+      "CL-Splats: Continual Learning of Gaussian Splatting with L",
+      "GaRe: Relightable 3D Gaussian Splatting for Outdoor Scenes",
+      "GASL IGHT : Gaussian Splats for Spatially-Varying Lighting"
+    ],
+    "大尺度/内存": [
+      "CL-Splats: Continual Learning of Gaussian Splatting with L",
+      "RayGaussX: Accelerating Gaussian-Based Ray Marching for Re",
+      "EcoSplat: Efficiency-controllable Feed-forward 3D Gaussian"
+    ],
+    "泛化/跨场景": [
+      "CL-Splats: Continual Learning of Gaussian Splatting with L",
+      "ClaraVid: A Holistic Scene Reconstruction Benchmark From A",
+      "Generalized and Efficient 2D Gaussian Splatting for"
+    ],
+    "语义/编辑可控性": [
+      "CL-Splats: Continual Learning of Gaussian Splatting with L",
+      "Mixture of Experts Guided by Gaussian Splatters Matters: A",
+      "GaRe: Relightable 3D Gaussian Splatting for Outdoor Scenes"
+    ],
+    "数据依赖/监督": [
+      "Mixture of Experts Guided by Gaussian Splatters Matters: A",
+      "GaRe: Relightable 3D Gaussian Splatting for Outdoor Scenes",
+      "GaussianVideo: Efficient Video Representation via Hierarch"
+    ],
+    "反射/透明等非朗伯": [
+      "GaRe: Relightable 3D Gaussian Splatting for Outdoor Scenes",
+      "ClaraVid: A Holistic Scene Reconstruction Benchmark From A",
+      "GS-ID: Illumination Decomposition on Gaussian Splatting vi"
+    ],
+    "遮挡/不可见区域": [
+      "GaRe: Relightable 3D Gaussian Splatting for Outdoor Scenes",
+      "Tracking by Predicting 3-D Gaussians Over Time",
+      "SV-GS: Sparse View 4D Reconstruction with Skeleton-Driven "
+    ],
+    "薄结构/高频细节": [
+      "RaGS: Unleashing 3D Gaussian Splatting from 4D Radar and",
+      "Tracking by Predicting 3-D Gaussians Over Time",
+      "RayGaussX: Accelerating Gaussian-Based Ray Marching for Re"
+    ],
+    "动态/非刚体": [
+      "RaGS: Unleashing 3D Gaussian Splatting from 4D Radar and",
+      "ClaraVid: A Holistic Scene Reconstruction Benchmark From A",
+      "GaussianFlowOcc: Sparse and Weakly Supervised Occupancy Es"
+    ],
+    "训练/推理速度": [
+      "RayGaussX: Accelerating Gaussian-Based Ray Marching for Re",
+      "GaussianFlowOcc: Sparse and Weakly Supervised Occupancy Es",
+      "GaussianVideo: Efficient Video Representation via Hierarch"
+    ],
+    "位姿误差/标定": [
+      "Baking Gaussian Splatting into Diffusion Denoiser for Fast",
+      "RegGS: Unposed Sparse Views Gaussian Splatting with 3DGS R",
+      "Humans as a Calibration Pattern: Dynamic 3D Scene Reconstr"
+    ],
+    "稀疏/少视角": [
+      "RegGS: Unposed Sparse Views Gaussian Splatting with 3DGS R",
+      "MoGA: 3D Generative A vatar Prior for Monocular Gaussian A",
+      "Gaussian-based World Model: Gaussian Priors for V oxel-Bas"
+    ],
+    "拓扑/流形": [
+      "RegGS: Unposed Sparse Views Gaussian Splatting with 3DGS R",
+      "An Instance-Centric Panoptic Occupancy Prediction Benchmar",
+      "Curve-Aware Gaussian Splatting for 3D Parametric Curve Rec"
+    ],
+    "几何精度/表面质量": [
+      "PR-IQA: Partial-Reference Image Quality Assessment for Dif",
+      "PPISP: Physically-Plausible Compensation and Control",
+      "ActivePolicy: Active Gaussian Reconstruction and Optimizat"
+    ],
+    "纹理缺失/歧义": [
+      "PhysGS: Bayesian-Inferred Gaussian Splatting for Physical ",
+      "PPISP: Physically-Plausible Compensation and Control",
+      "Turbo-GS: Accelerating 3D Gaussian Fitting for High-Resolu"
+    ],
+    "深度/尺度歧义": [
+      "GeoMan: Temporally Consistent Human Geometry Estimation us",
+      "LiDAR Prompted Spatio-Temporal Multi-View Stereo for Auton",
+      "V oluMe – Authentic 3D Video Calls from Live Gaussian Spla"
+    ]
+  }
+}
