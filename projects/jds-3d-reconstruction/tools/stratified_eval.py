@@ -91,7 +91,10 @@ def psnr_on(pred, gt, mask):
 
 
 def evaluate(scene_dir, pred_dir, strata, frame_ids, cam_ids, W, H,
-             native_W=1600, native_H=900, ssim_full=True):
+             native_W=1600, native_H=900, ssim_full=True, mask_source="coarse"):
+    """mask_source: 'coarse' 用 dynamic_masks/human（3D box 投影，偏大）；
+    'fine' 用 fine_dynamic_masks/human（语义分割 ∩ 粗掩码，边界更准）；
+    'hull' 只用 3D box 凸包，不与任何 human mask 求交。"""
     info = json.load(open(os.path.join(scene_dir, "instances", "instances_info.json")))
     sx, sy = W / float(native_W), H / float(native_H)
     Ks = {c: load_K(os.path.join(scene_dir, "intrinsics", f"{c}.txt"), sx, sy) for c in cam_ids
@@ -110,7 +113,10 @@ def evaluate(scene_dir, pred_dir, strata, frame_ids, cam_ids, W, H,
         for ci, cam in enumerate(cam_ids):
             pp = os.path.join(pred_dir, f"{fi:03d}_{ci:03d}.png")
             gp = os.path.join(scene_dir, "images", f"{f:03d}_{cam}.jpg")
-            hp = os.path.join(scene_dir, "dynamic_masks", "human", f"{f:03d}_{cam}.png")
+            if mask_source == "fine":
+                hp = os.path.join(scene_dir, "fine_dynamic_masks", "human", f"{f:03d}_{cam}.png")
+            else:
+                hp = os.path.join(scene_dir, "dynamic_masks", "human", f"{f:03d}_{cam}.png")
             if not (os.path.exists(pp) and os.path.exists(gp)):
                 missing.append((f, cam))
                 continue
@@ -157,7 +163,8 @@ def evaluate(scene_dir, pred_dir, strata, frame_ids, cam_ids, W, H,
                   "psnr_mean": round(float(np.mean(v["psnr"])), 4),
                   "psnr_std": round(float(np.std(v["psnr"])), 4),
                   "ssim_mean": round(float(np.mean(v["ssim"])), 4) if v["ssim"] else None}
-    return {"cells": out, "n_instances_scored": len(per_instance), "missing_frames": len(missing)}
+    return {"cells": out, "n_instances_scored": len(per_instance),
+            "missing_frames": len(missing), "mask_source": mask_source}
 
 
 def main():
@@ -170,6 +177,8 @@ def main():
     ap.add_argument("--cam-ids", default="0,1,2,3,4,5")
     ap.add_argument("--width", type=int, default=1600)
     ap.add_argument("--height", type=int, default=900)
+    ap.add_argument("--mask-sources", default="coarse,fine",
+                    help="逗号分隔，可选 coarse / fine / hull；多个则同时报告以作对照")
     ap.add_argument("--native-width", type=int, default=1600)
     ap.add_argument("--native-height", type=int, default=900)
     ap.add_argument("--out", required=True)
@@ -182,10 +191,25 @@ def main():
         frames = [int(x) for x in a.frame_ids.split(",")]
     cams = [int(x) for x in a.cam_ids.split(",")]
     strata = json.load(open(a.strata))[a.scene_key]
-    r = evaluate(a.scene_dir, a.pred_dir, strata, frames, cams, a.width, a.height,
-                 a.native_width, a.native_height)
-    json.dump(r, open(a.out, "w"), indent=2)
-    print(json.dumps(r, indent=2))
+    results = {}
+    for src in [x.strip() for x in a.mask_sources.split(",") if x.strip()]:
+        results[src] = evaluate(a.scene_dir, a.pred_dir, strata, frames, cams,
+                                a.width, a.height, a.native_width, a.native_height,
+                                mask_source=src)
+    json.dump(results, open(a.out, "w"), indent=2)
+    # 对照表
+    srcs = list(results)
+    cells = sorted({c for r in results.values() for c in r["cells"]})
+    print("%-26s" % "cell" + "".join("%18s" % s for s in srcs))
+    for c in cells:
+        row = "%-26s" % c
+        for s_ in srcs:
+            v = results[s_]["cells"].get(c)
+            row += "%18s" % (("%.2f dB / %d" % (v["psnr_mean"], v["instances"])) if v else "-")
+        print(row)
+    for s_ in srcs:
+        print("%s: scored=%d missing=%d" % (s_, results[s_]["n_instances_scored"],
+                                            results[s_]["missing_frames"]))
 
 
 if __name__ == "__main__":

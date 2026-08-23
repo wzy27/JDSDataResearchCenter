@@ -15,6 +15,19 @@
       "updated_at": "2026-08-18T08:44:36Z"
     },
     {
+      "experiment_id": "EXP-293A027FDD09",
+      "title": "E5 分辨率控制：退化是信息瓶颈还是训练分辨率设置",
+      "type": "ablation",
+      "status": "planned",
+      "objective": "判定 human-region 随观测条件的退化是否仅由 downscale_when_loading=3 造成。若原生分辨率抹平远距分层的差距，则选题不成立。",
+      "idea_ids": [
+        "IDEA-F1BED52F1B2D"
+      ],
+      "record_path": "records/EXP-293A027FDD09.json",
+      "note_path": "notes/EXP-293A027FDD09.md",
+      "updated_at": "2026-08-23T07:34:45Z"
+    },
+    {
       "experiment_id": "EXP-4C2A9AD4C3D2",
       "title": "P4 全局/空间光照、材质与可见性消融",
       "type": "ablation",

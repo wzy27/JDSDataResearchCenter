@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "experiment_id": "EXP-293A027FDD09",
+  "project_id": "jds-3d-reconstruction",
+  "title": "E5 分辨率控制：退化是信息瓶颈还是训练分辨率设置",
+  "type": "ablation",
+  "status": "planned",
+  "objective": "判定 human-region 随观测条件的退化是否仅由 downscale_when_loading=3 造成。若原生分辨率抹平远距分层的差距，则选题不成立。",
+  "protocol": {
+    "scope": "只做分辨率单因素对照，其余配置与 E1 一致。这是选题的止损判据之一。",
+    "success_criteria": [
+      "同一场景在 533x300 与更高分辨率下各产出一条分层退化曲线",
+      "两条曲线的最差分层与最好分层差距可比较",
+      "除分辨率外无其他配置差异"
+    ],
+    "failure_criteria": [
+      "高分辨率因显存不足需同时改动相机数或迭代数，使其不再是单因素对照",
+      "两次运行的整体 human-region 数值差异无法由分辨率解释"
+    ],
+    "expected_outputs": [
+      "两组分层 human-region 指标",
+      "退化幅度对分辨率的敏感度",
+      "两次运行的 gpu-budget 实测占空比"
+    ]
+  },
+  "traceability": {
+    "idea_ids": [
+      "IDEA-F1BED52F1B2D"
+    ],
+    "task_ids": [],
+    "lit_ids": [
+      "LIT-334F00637EB0"
+    ],
+    "claim_ids": [],
+    "parent_experiment_ids": [
+      "EXP-D364146FE7A6"
+    ]
+  },
+  "execution": {
+    "executor_id": "wsl2-ubuntu2404-rtx4090",
+    "cwd": {
+      "connection": "drivestudio-upstream",
+      "relative_path": "."
+    },
+    "command_argv": [],
+    "required_commands": [
+      "python",
+      "nvidia-smi"
+    ],
+    "required_connections": [
+      "drivestudio-upstream",
+      "nuscenes-mini-data"
+    ],
+    "watchdog_policy": null
+  },
+  "code": {
+    "repository": "https://github.com/ziyc/drivestudio.git",
+    "commit": "e59bda4fa681f829dbb1d65f0de582b0f633c450",
+    "dirty": true,
+    "patch_uri": "tools/train.py 增加可选 GPU 预算包裹，不改变训练数学"
+  },
+  "data": {
+    "datasets": []
+  },
+  "environment": {
+    "os": "linux",
+    "runtime": "conda:drivestudio python 3.9.23 / torch 2.0.0+cu118 / CUDA 11.8",
+    "lockfile": null,
+    "seeds": {}
+  },
+  "resources": {
+    "accelerator": {
+      "vendor": "nvidia",
+      "count": 1,
+      "min_vram_gb": 24,
+      "cuda": "11.8",
+      "driver": "591.86"
+    },
+    "min_disk_gb": 40
+  },
+  "blockers": [
+    {
+      "code": "VRAM_HEADROOM_UNKNOWN",
+      "description": "原生 1600x900 六相机的显存需求未测；本进程显存上限为 14.4 GB",
+      "resolution": "先测显存占用；若不足则降为 downscale 1.5 或减相机数，并记录该折中削弱了单因素对照的强度"
+    }
+  ],
+  "preflight": {
+    "latest_status": "not-run",
+    "reports": []
+  },
+  "results": {
+    "metrics": [],
+    "artifacts": [],
+    "output_validation": "not-run",
+    "conclusion": null,
+    "idea_effects": [],
+    "limitations": [],
+    "reviewed_by": null,
+    "reviewed_at": null
+  },
+  "events": [
+    {
+      "event_id": "EVT-FA09A1DF77",
+      "timestamp": "2026-08-23T07:34:45Z",
+      "type": "created",
+      "from_status": null,
+      "to_status": "planned",
+      "reason": "Created from an experiment specification.",
+      "evidence": null
+    }
+  ],
+  "provenance": {
+    "source": "sources/2026-08-23_render_resolution_and_eval_integration.md",
+    "source_sha256": "a393ec59595f4cf8faa6dacac1c16e1573453448bfce21686c98774685ab2384",
+    "created_by": "Codex"
+  },
+  "created_at": "2026-08-23T07:34:45Z",
+  "updated_at": "2026-08-23T07:34:45Z"
+}
