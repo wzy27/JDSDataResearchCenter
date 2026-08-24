@@ -694,3 +694,49 @@ geo→ref 只有 `depth_loss`，权重 **0.01**——相差 50 倍。
 - **E-γ 的旋钮就地可得**：`w1/w2`、`0.01` 的 depth 权重、`lambda_normal`。
 - 需要注意：三阶段的 `iterations` 在 `parse_args` **之后**被硬编码为 20_000
   （line 503/509/516），命令行改不动，做扫描时必须改源码。
+
+---
+
+## E-ζ 的执行准备（2026-08-25 凌晨）
+
+### train.py 的改造（524 → 556 行，备份 `train.py.orig`）
+
+四处改动，默认值全部与原值相同，**不改变原有行为**：
+
+| 改动 | 环境变量 | 默认 |
+|---|---|---|
+| `depth_loss` 的硬编码权重 `0.01` 变为可配置 | `MGSR_W_DEPTH` | `0.01` |
+| 跳过 geo/ref 两个 warm-up 阶段，复用已有检查点 | `MGSR_ONLY_TOTAL` | `0` |
+| 检查点来源目录 | `MGSR_CKPT_DIR` | 原 `model_path` |
+| 显存上限 | `MGSR_MEM_FRAC` | `0.55` |
+
+加上每 50 步写 `ezeta_trace.tsv`（iter / loss_ref / depth_loss / loss_n / total / w_depth）。
+**记录轨迹而不只是终值**，是为了能画 GEAR 那种训练动力学曲线——
+§11.2 已确认那种呈现方式的信息量远大于比较终值。
+
+复用 2026-08-24 那次跑出的 `geo/chkpnt20000.pth`(214 MB) 与 `ref/chkpnt20000.pth`(1.1 GB)，
+**每个权重点从 60k 步降到 20k 步**，实测 8.5 it/s，约 40 分钟一个点。
+
+### 显存这次是在进程启动时限死的
+
+`AdaptiveBudget.start()` 内部调 `torch.cuda.set_per_process_memory_fraction`。
+实测占用 9 GB / 限额 13.5 GB，对比上一次事后节流时的 24 GB。
+（教训已写入 gpu-budget skill 的更正节。）
+
+### DTU 几何真值：远程 zip 局部抽取
+
+2DGS 包里的 `points.ply` 与 `sparse/0/points3D.ply` 是同一份 31205 点的 COLMAP 稀疏云，
+**不是官方结构光真值**，无法用于 Chamfer 评测。
+
+官方数据 `Points.zip` 与 `SampleSet.zip` 各约 7 GB，但服务器支持 Range 请求（HTTP 206）。
+`tools/zip_partial.py` 读远程 zip 的中央目录（兼容 ZIP64）定位条目，
+只 range-fetch 需要的那一段再就地解压：
+
+| 取得 | 大小 | 整包 |
+|---|---|---|
+| `Points/stl/stl024_total.ply` | 139.6 MB | 7.0 GB |
+| `ObsMask/ObsMask24_10.mat`、`Plane24.mat` | 1.4 MB | 6.9 GB |
+
+**141 MB 换掉 14 GB。** 换场景只需改正则，不必重下。
+
+由此 E-ζ 的几何轴是 **DTU 官方 Chamfer**（配 ObsMask），非自定义代理指标。
