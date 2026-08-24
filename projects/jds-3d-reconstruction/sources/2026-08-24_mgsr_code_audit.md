@@ -309,3 +309,47 @@ args.iterations = 20_000                    # total 阶段（互导）
 | `np.byte` 与新版 Pillow 不兼容 | **依赖漂移**，源自原版 3DGS，非作者引入 |
 | `ref` 分支要求 `masks/` | **方法设定**，非问题 |
 | `--iterations` 被硬编码覆盖 | **工程选择**，可能为固定实验配置而为，但使参数化实验无法进行 |
+
+## LOTree 依赖已取得（2026-08-24）
+
+`github.com/wzy27/LOTree` 为空仓库（clone 后仅含 `.git`，`master` 无任何提交，API 返回
+404）。核心依赖由研究者以本地压缩包提供：
+
+| 包 | 条目 | 关键文件 |
+|---|---:|---|
+| `LOTree-main.zip` | 329 | `LOctree.py`（5765 行）、`LOTreeOptGS.py`、`svox/`、已编译的 `csrc.cpython-38-*.so` |
+| `LOTree-hessian-debug.zip` | 184 | 同上，`LOctree.py` 5758 行 |
+
+两版 `LOTreeOptGS.py` 完全相同；`LOctree.py` 差异 79 行，主要是 `hessian-debug` 为布尔
+开关补了默认值，并将一个函数由射线渲染改为 Gaussian 点驱动。**`main` 为主版本。**
+
+### 修正：Hessian/Eikonal 权重的默认值并非相差六个数量级
+
+`LOctree.VolumePointsHessEikon` 的签名：
+
+```python
+def VolumePointsHessEikon(
+    self, hessian_on, eikonal_on, laplacian_on, dirichlet_on, viscosity_on,
+    scale_h: float = 2e-4,   scale_e: float = 2e-4,
+    scale_l: float = 2e-4,   scale_d: float = 2e-4,   scale_v: float = 2e-4,
+    eikon_thres_min: float = 0.8, eikon_thres_max: float = 1.5,
+    viscosity_thres: float = 0.8, sparse_frac: float = 0.5)
+```
+
+**库的默认值是五项权重一律 `2e-4`（彼此相等）。** GS-Octree 的 `train-big.py` 在调用时
+传入 `scale_h=1e-12`、`scale_e=1e-6`——即**相差六个数量级是调用方的选择，不是库的默认**。
+
+先前审计记为「六个硬编码常数」时未区分这一点。修正后的表述应为：**调用方将 Hessian 项
+的权重压到默认值的一亿分之一、Eikonal 项压到万分之一，且二者比例为 1:10⁶。该选择在论文
+与代码中均无说明。** 这比原表述更具体，也更值得作为 E-γ 的扫描对象。
+
+### 另一发现：三个未被使用的正则项
+
+该函数还支持 `laplacian_on`、`dirichlet_on`、`viscosity_on` 三项（各有独立权重
+`scale_l` / `scale_d` / `scale_v` 与 `viscosity_thres`），**GS-Octree 全部未启用**。
+这为 E-γ 提供了额外的对照维度：这些项是否被评估过、为何未采用，论文未交代。
+
+### 阻塞解除
+
+`train-octree.py` 与 `train-big.py` 的依赖已齐备。`csrc` 为 Python 3.8 编译的 `.so`，
+与当前 MGSR 环境（Python 3.11）不兼容，需另建 Python 3.8 环境或从 `setup.py` 重新编译。

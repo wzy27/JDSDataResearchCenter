@@ -1,0 +1,299 @@
+<title>互导循环的成立条件</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap">
+<style>
+:root{
+  --paper:#FAFAF8; --card:#FFFFFF; --ink:#14171C; --ink-2:#3A4149; --muted:#6B7480;
+  --rule:#E2E1DC; --rule-2:#F0EFEB;
+  --a:#4C5FD5;  --a-soft:#EDEFFB;
+  --b:#C2704A;  --b-soft:#FBF0EA;
+  --neg:#B4453A; --pos:#3E7D5A;
+  --shadow:0 1px 2px rgba(20,23,28,.04),0 10px 30px -18px rgba(20,23,28,.18);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#12151A; --card:#181C22; --ink:#E9EBEE; --ink-2:#C3C8CF; --muted:#8A929C;
+    --rule:#272C34; --rule-2:#1E232A;
+    --a:#8B98EC; --a-soft:#1B2036;
+    --b:#E0996F; --b-soft:#2A1F18;
+    --neg:#EE7C6F; --pos:#5FBE8C;
+    --shadow:0 1px 2px rgba(0,0,0,.5),0 10px 30px -18px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#12151A; --card:#181C22; --ink:#E9EBEE; --ink-2:#C3C8CF; --muted:#8A929C;
+  --rule:#272C34; --rule-2:#1E232A;
+  --a:#8B98EC; --a-soft:#1B2036;
+  --b:#E0996F; --b-soft:#2A1F18;
+  --neg:#EE7C6F; --pos:#5FBE8C;
+  --shadow:0 1px 2px rgba(0,0,0,.5),0 10px 30px -18px rgba(0,0,0,.8);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:Inter,"Noto Sans SC",system-ui,-apple-system,sans-serif;
+  font-size:16px;line-height:1.72;-webkit-font-smoothing:antialiased}
+.mono{font-family:"JetBrains Mono",ui-monospace,Menlo,monospace;font-variant-numeric:tabular-nums}
+.wrap{max-width:820px;margin:0 auto;padding:0 26px}
+h1,h2,h3{font-family:"Source Serif 4","Noto Sans SC",Georgia,serif;text-wrap:balance;margin:0}
+header{padding:74px 0 40px;border-bottom:1px solid var(--rule)}
+.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+  margin-bottom:16px;font-weight:500}
+h1{font-size:42px;line-height:1.16;font-weight:700;letter-spacing:-.015em}
+.lede{margin:20px 0 0;font-size:18.5px;line-height:1.66;color:var(--ink-2);max-width:60ch}
+.meta{margin-top:26px;display:flex;gap:26px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+.meta b{color:var(--ink-2);font-weight:500}
+section{padding:46px 0;border-bottom:1px solid var(--rule-2)}
+section:last-of-type{border-bottom:0}
+h2{font-size:26px;font-weight:600;letter-spacing:-.01em;margin-bottom:6px}
+h2 .num{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--muted);
+  display:block;margin-bottom:8px;letter-spacing:.06em;font-weight:400}
+h3{font-size:17px;font-weight:600;margin:30px 0 10px}
+p{margin:14px 0;max-width:64ch}
+.claim{border-left:3px solid var(--a);background:var(--a-soft);padding:20px 24px;
+  border-radius:0 8px 8px 0;margin:24px 0}
+.claim p{margin:0;font-family:"Source Serif 4",Georgia,serif;font-size:19px;line-height:1.6;
+  max-width:none;color:var(--ink)}
+blockquote{margin:18px 0;padding:14px 20px;border-left:2px solid var(--rule);
+  color:var(--ink-2);font-size:14.5px;line-height:1.66}
+blockquote cite{display:block;margin-top:8px;font-style:normal;font-size:12.5px;color:var(--muted)}
+table{width:100%;border-collapse:collapse;margin:20px 0;font-size:14.5px}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+th{text-align:left;font-weight:500;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--muted);padding:0 12px 9px 0;border-bottom:1px solid var(--rule)}
+td{padding:11px 12px 11px 0;border-bottom:1px solid var(--rule-2);vertical-align:top}
+td.n,th.n{text-align:right;font-family:"JetBrains Mono",monospace;font-variant-numeric:tabular-nums;
+  white-space:nowrap}
+tr.zero td{color:var(--neg);font-weight:500}
+.loop{display:grid;grid-template-columns:1fr auto 1fr;gap:0;align-items:stretch;
+  margin:30px 0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--card)}
+@media(max-width:640px){.loop{grid-template-columns:1fr}}
+.loop .side{padding:22px}
+.loop .side.a{background:var(--a-soft);border-right:1px solid var(--rule)}
+.loop .side.b{background:var(--b-soft);border-left:1px solid var(--rule)}
+@media(max-width:640px){.loop .side.a,.loop .side.b{border:0;border-bottom:1px solid var(--rule)}}
+.loop .tag{font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;margin-bottom:8px}
+.loop .side.a .tag{color:var(--a)} .loop .side.b .tag{color:var(--b)}
+.loop .name{font-family:"Source Serif 4",serif;font-size:19px;font-weight:600;margin-bottom:6px}
+.loop .desc{font-size:13.5px;color:var(--ink-2);line-height:1.55}
+.loop .mid{display:flex;flex-direction:column;justify-content:center;align-items:center;
+  padding:0 18px;gap:6px;background:var(--card);min-width:96px}
+.loop .arrow{font-size:20px;line-height:1}
+.loop .arrow.top{color:var(--a)} .loop .arrow.bot{color:var(--b)}
+.loop .mid small{font-size:10.5px;color:var(--muted);letter-spacing:.05em;text-align:center}
+.knobs{display:grid;gap:12px;margin:22px 0}
+.knob{border:1px solid var(--rule);border-radius:8px;padding:16px 18px;background:var(--card);
+  box-shadow:var(--shadow)}
+.knob .kh{display:flex;justify-content:space-between;gap:14px;align-items:baseline;flex-wrap:wrap}
+.knob .kn{font-weight:600;font-size:15px}
+.knob .src{font-size:11.5px;color:var(--muted);font-family:"JetBrains Mono",monospace}
+.knob .kd{font-size:13.5px;color:var(--ink-2);margin-top:7px;line-height:1.6}
+.knob code{font-family:"JetBrains Mono",monospace;font-size:12.5px;background:var(--rule-2);
+  padding:1px 5px;border-radius:3px}
+.hyp{display:grid;gap:12px;margin:20px 0}
+.hyp .row{display:grid;grid-template-columns:52px 1fr;gap:16px;border:1px solid var(--rule);
+  border-radius:8px;padding:16px 18px;background:var(--card)}
+.hyp .hid{font-family:"JetBrains Mono",monospace;font-size:20px;font-weight:500;color:var(--a)}
+.hyp .htxt{font-size:14.5px;line-height:1.62}
+.hyp .kill{margin-top:8px;font-size:13px;color:var(--neg)}
+.hyp .kill b{font-weight:500}
+.risk{border:1px solid var(--neg);border-radius:8px;padding:18px 20px;margin:18px 0;background:var(--card)}
+.risk h3{margin:0 0 8px;color:var(--neg);font-size:15px}
+.risk p{margin:6px 0;font-size:14px;color:var(--ink-2)}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:20px 0}
+@media(max-width:640px){.split{grid-template-columns:1fr}}
+.pane{border:1px solid var(--rule);border-radius:8px;padding:18px 20px;background:var(--card)}
+.pane h3{margin:0 0 10px;font-size:15px}
+.pane ul{margin:0;padding-left:18px;font-size:14px;color:var(--ink-2);line-height:1.68}
+.pane.you{border-top:3px solid var(--a)} .pane.them{border-top:3px solid var(--b)}
+ul,ol{max-width:64ch}
+li{margin:6px 0}
+footer{padding:36px 0 70px;color:var(--muted);font-size:13px;border-top:1px solid var(--rule)}
+footer p{max-width:70ch;margin:8px 0}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<header><div class="wrap">
+  <div class="eyebrow">研究方向提案 · 2026-08-24</div>
+  <h1>互导循环的成立条件</h1>
+  <p class="lede">SDF 与 Gaussians、2DGS 与 3DGS——「A 引导 B，B 反过来精化 A」这个模式已被多篇工作采用并取得效果。但没有任何工作研究它什么时候收敛，什么时候把一方的误差放大后喂给另一方。</p>
+  <div class="meta">
+    <span><b>语料</b> 968 篇会议全文</span>
+    <span><b>覆盖</b> ICCV·CVPR·WACV·arXiv cs.GR</span>
+    <span><b>状态</b> 论点已通过证伪，实验未开始</span>
+  </div>
+</div></header>
+
+<section class="wrap">
+  <h2><span class="num">01</span>这个模式是什么</h2>
+  <p>两种表示各有所长：隐式表示（SDF、2DGS）几何准，显式表示（3D Gaussians）渲染快、细节好。近两年出现的一批工作让它们互相监督——一方提供几何约束，另一方提供外观细节，交替优化。</p>
+
+  <div class="loop">
+    <div class="side a">
+      <div class="tag">表示 A</div>
+      <div class="name">SDF / 2DGS</div>
+      <div class="desc">几何精确、表面连续，但渲染质量与速度受限</div>
+    </div>
+    <div class="mid">
+      <div class="arrow top">⟶</div>
+      <small>几何约束</small>
+      <small>外观细节</small>
+      <div class="arrow bot">⟵</div>
+    </div>
+    <div class="side b">
+      <div class="tag">表示 B</div>
+      <div class="name">3D Gaussians</div>
+      <div class="desc">渲染实时、细节丰富，但缺乏几何约束</div>
+    </div>
+  </div>
+
+  <p>两篇代表性工作：<strong>GS-Octree</strong>（八叉树 SDF ↔ 3DGS，强光下的物体级重建）与 <strong>MGSR</strong>（2DGS ↔ 3DGS，ICCV 2025）。两篇都建立在这个循环上，两篇都取得了效果。</p>
+  <p>两篇也都没有回答同一个问题。GS-Octree 的结论原文是：</p>
+  <blockquote>
+    "confirms the possibility that Gaussians can guide geometric optimization, and <strong>good geometry</strong> can further optimize Gaussian points."
+    <cite>GS-Octree, arXiv:2406.18199</cite>
+  </blockquote>
+  <p>「good」这个词承担了全部重量。如果几何一开始就是错的呢？循环会自我纠正，还是互相强化错误？</p>
+</section>
+
+<section class="wrap">
+  <h2><span class="num">02</span>论点</h2>
+  <div class="claim"><p>双表示互导优化已被多篇工作采用并取得效果，但无人研究该循环的成立条件——何时收敛，何时把一方的误差放大后喂给另一方，warm-up 与切换时机依据什么确定。</p></div>
+</section>
+
+<section class="wrap">
+  <h2><span class="num">03</span>证据</h2>
+  <p>建立了一套会议全文正查工具：枚举整届论文标题 → 宽松粗筛 → 下载 PDF 抽全文 → 精确探针词计分。覆盖 ICCV 2025、CVPR 2025/2026、WACV 2026 的全量论文，以及 arXiv <span class="mono">cs.GR</span> 分类（补 SIGGRAPH/TOG/TVCG 的盲区——这些不在 CVF 开放获取上）。</p>
+
+  <div class="scroll"><table>
+    <thead><tr><th>在全文中出现</th><th class="n">CVF</th><th class="n">arXiv</th><th class="n">合计</th></tr></thead>
+    <tbody>
+      <tr><td>双表示混合</td><td class="n">9</td><td class="n">3</td><td class="n">12</td></tr>
+      <tr><td>交替优化</td><td class="n">4</td><td class="n">0</td><td class="n">4</td></tr>
+      <tr><td>互导 / 相互监督</td><td class="n">2</td><td class="n">0</td><td class="n">2</td></tr>
+      <tr class="zero"><td>收敛性 / 稳定性分析</td><td class="n">0</td><td class="n">0</td><td class="n">0</td></tr>
+      <tr class="zero"><td>「互导或交替」与「收敛或稳定性」交叉</td><td class="n">0</td><td class="n">0</td><td class="n">0</td></tr>
+    </tbody>
+  </table></div>
+
+  <p>968 篇几何上下文论文中，12 篇在<strong>使用</strong>双表示混合，<strong>0 篇</strong>在研究它的收敛性。唯一的强信号命中是 MGSR 自身——而它自述为该方向的首篇。</p>
+
+  <p style="font-size:14px;color:var(--muted)">工具的验收标准是必须命中一篇已知被遗漏的论文（Hierarchy UGP, ICCV 2025）。在通过该验收前，其「未发现相关工作」的结论不予采信——一个从未验证过召回能力的检索流程，阴性结果没有证据价值。</p>
+</section>
+
+<section class="wrap">
+  <h2><span class="num">04</span>三个没有依据的旋钮</h2>
+  <p>代码审计把「启发式」从论文表述落实到了具体行号。这些不是猜测，是读源码得到的。</p>
+
+  <div class="knobs">
+    <div class="knob">
+      <div class="kh"><span class="kn">warm-up 何时结束</span><span class="src">MGSR train.py</span></div>
+      <div class="kd">两支各自训练至 <code>max(loss_window) − min(loss_window) &lt; threshold</code> 即判定收敛并停止。<strong>这是纯损失域的代理，完全不看几何。</strong>若一支停得过早、带着未收敛的几何进入互导，另一支就会去拟合那个错误几何。</div>
+    </div>
+    <div class="knob">
+      <div class="kh"><span class="kn">损失权重的启用点</span><span class="src">MGSR train.py</span></div>
+      <div class="kd"><code>iteration &gt; 7000</code> 与 <code>&gt; 3000</code> 为硬编码魔数，继承自 2DGS，未作调整或讨论。</div>
+    </div>
+    <div class="knob">
+      <div class="kh"><span class="kn">Hessian 与 Eikonal 的权重</span><span class="src">GS-Octree train-big.py</span></div>
+      <div class="kd">底层库 <code>VolumePointsHessEikon</code> 的默认权重是五项一律 <code>2e-4</code>。调用方传入 <code>scale_h=1e-12</code>、<code>scale_e=1e-6</code>——<strong>把 Hessian 项压到默认值的一亿分之一，二者比例 1:10⁶</strong>。该选择在论文与代码中均无说明。</div>
+    </div>
+    <div class="knob">
+      <div class="kh"><span class="kn">三个从未启用的正则项</span><span class="src">LOctree.py</span></div>
+      <div class="kd">同一函数还支持 <code>laplacian</code>、<code>dirichlet</code>、<code>viscosity</code> 三项约束，各有独立权重。<strong>全部未启用</strong>，是否评估过、为何不用，论文未交代。</div>
+    </div>
+  </div>
+
+  <p>此外发现各阶段迭代数被硬编码覆盖：<code>--iterations</code> 在 <code>parse_args</code> 之后被无条件重置为 20000，用户传入值被静默丢弃。这意味着「两支各训练多久才进互导」这一自由度本身被锁死，且未被讨论。</p>
+</section>
+
+<section class="wrap">
+  <h2><span class="num">05</span>可证伪的假设</h2>
+  <p>这份提案的写法是刻意的：先定义什么实验能推翻它，再设计实验，最后才谈方法。</p>
+
+  <div class="hyp">
+    <div class="row">
+      <div class="hid">H1</div>
+      <div class="htxt">存在可构造的初始条件或场景，使互导优化的结果<strong>劣于</strong>单向引导或单一表示。
+        <div class="kill"><b>推翻条件：</b>互导在所有条件下稳健更优 → 不存在失效区域，整个论点崩塌，立即放弃。</div></div>
+    </div>
+    <div class="row">
+      <div class="hid">H2</div>
+      <div class="htxt">上述旋钮的取值对最终几何精度的影响<strong>显著超出随机种子波动</strong>。
+        <div class="kill"><b>推翻条件：</b>效应量与种子波动同量级 → 当前启发式取值已足够，无改进空间。</div></div>
+    </div>
+    <div class="row">
+      <div class="hid">H3</div>
+      <div class="htxt">循环的成败在优化<strong>早期</strong>即可由某个可测信号预示。
+        <div class="kill"><b>推翻条件：</b>无任何早期量与最终结果相关 → 只能事后判断，方法价值大减。</div></div>
+    </div>
+  </div>
+  <p><strong>H1 是根基。</strong>两个检验 H1 的实验都没推翻它之前，不进入方法设计。</p>
+</section>
+
+<section class="wrap">
+  <h2><span class="num">06</span>实验</h2>
+  <h3>E-α 循环消融 · 检验 H1</h3>
+  <p>同一批场景上跑四种配置：仅 A、仅 B、单向 A→B、双向 A↔B。若双向在所有场景稳健更优，H1 为假。</p>
+  <h3>E-β 受控误差注入 · 核心实验</h3>
+  <p>取已收敛的良好 SDF，注入可控幅度与类型的扰动（低频形变、局部凹陷、高频噪声、拓扑错误），运行互导循环，测量扰动随迭代<strong>收缩还是增长</strong>。它直接测量误差被纠正还是被放大，且不受场景差异这一混杂因素影响。</p>
+  <h3>E-γ 旋钮敏感性 · 检验 H2</h3>
+  <p>扫描上述常数，同时以三个随机种子建立波动基线。判据为两者的 95% 置信区间是否重叠。</p>
+  <h3>E-δ 早期可预测性 · 检验 H3</h3>
+  <p>仅在 H1 成立后进行。从训练轨迹中寻找早期即与最终成败相关的可测量。</p>
+  <p style="font-size:14px;color:var(--muted)">数据集：DTU 与 OmniObject3D。两篇工作的论文实验数据集重合，对公平对比有利。算力：单张 4090 足够——物体级小场景，非大规模训练。</p>
+</section>
+
+<section class="wrap">
+  <h2><span class="num">07</span>合作怎么分</h2>
+  <div class="split">
+    <div class="pane you">
+      <h3>3DGS / 优化侧</h3>
+      <ul>
+        <li>互导循环的实现与改造</li>
+        <li>误差注入机制与扰动度量</li>
+        <li>旋钮扫描与统计设计</li>
+        <li>训练系统与实验基础设施</li>
+      </ul>
+    </div>
+    <div class="pane them">
+      <h3>几何 / 表示侧</h3>
+      <ul>
+        <li>SDF 正则项的理论边界</li>
+        <li>Hessian / Eikonal 约束的适用条件</li>
+        <li>拓扑与流形层面的失效分析</li>
+        <li>几何度量的选择与验证</li>
+      </ul>
+    </div>
+  </div>
+  <p>两侧的交界处正是这个课题的核心：<strong>损失域的收敛判据</strong>（优化侧）能否保证<strong>几何域的可靠性</strong>（几何侧）。现有实现假设可以，但没有验证过。</p>
+</section>
+
+<section class="wrap">
+  <h2><span class="num">08</span>风险</h2>
+
+  <div class="risk">
+    <h3>论点可能被推翻</h3>
+    <p>若 E-α 与 E-β 都显示互导稳健有效，这个方向就不成立。已预先约定：不再寻找第三个实验来挽救，直接放弃。</p>
+  </div>
+
+  <div class="risk">
+    <h3>检索仍有盲区</h3>
+    <p>语料覆盖 ICCV/CVPR/WACV 全量与 arXiv cs.GR，但未走引文图谱通道，也未覆盖 ACM DL 中未挂 arXiv 的论文。这是当前证据链最薄弱的一环。</p>
+  </div>
+
+  <div class="risk">
+    <h3>代码可复现性未验证</h3>
+    <p>MGSR 公开代码的 2DGS 分支存在一处导致编译失败的死参数，说明该版本未经编译验证。在确认公开代码与论文实验版本一致之前，基于它的分析结论未必适用于论文数值。GS-Octree 的依赖已补齐，但其中已编译的扩展针对 Python 3.8，需重新编译。</p>
+  </div>
+
+  <div class="risk">
+    <h3>结果可能只够支撑「正面支持」而非「方法论文」</h3>
+    <p>若结论是「循环在多数条件下稳健」，那是对该模式的正面支持，但不足以支撑一篇方法论文。这一点须在投入前认清，不得在结果出来后重新定义成功标准。</p>
+  </div>
+</section>
+
+<footer><div class="wrap">
+  <p><strong>当前状态</strong>：论点已通过多轮证伪；MGSR 代码环境搭建完成、三阶段结构验证一致；GS-Octree 基线可运行，完整方法待补齐依赖；实验尚未开始。</p>
+  <p><strong>本报告的所有数字</strong>均来自可复现的语料扫描（968 篇会议全文）与源码审计，非文献综述式的印象判断。检索工具、语料统计与代码审计记录均已归档。</p>
+</div></footer>
