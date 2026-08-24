@@ -621,3 +621,76 @@ t.LOTSave(path=os.path.join(output_dir, "SDF_512_{}.npz".format(FLAGS.data_dir1)
 
 **需要研究者提供**：`pretrain/SDF_512_scan*.npz` 与 `dict_512_scan*.npy`，
 或第一阶段的确切运行命令。
+
+---
+
+## 互导环的完整结构（`training_geo_ref`，train.py 305–355）
+
+E-α/E-β 的注入点必须落在这里，故逐行确定。**两条通道都只有一处，且都由一次
+`.detach()` 实现——这意味着 MGSR 消融表里的 Model K（双向 BP）只是删掉这两行。**
+
+### 通道一：ref → geo（外观引导几何）
+
+```python
+trans_color_nograd = trans_color.detach()                       # line 329  ← 切断点
+trans_color_nograd = torch.where(black_mask, 1.0, trans_color_nograd)
+Ll1_n  = opt.w2*l1_loss(image_n, trans_color_nograd) + opt.w1*l1_loss(image_n, gt_image_geo)
+SSIM_n = opt.w2*(1-ssim(image_n, trans_color_nograd)) + opt.w1*(1-ssim(image_n, gt_image_geo))
+```
+
+ref 支的**透射色**（去掉高光后的漫反射分量）当作 geo 支的伪 GT，与真 GT 加权混合。
+默认 `w1 = 0.8`（真 GT）、`w2 = 0.2`（伪 GT）。
+
+`trans_color_nograd` 还额外充当两个**边缘感知平滑项的引导图**：
+
+```python
+depth_tv_loss  = lambda_normal * get_tv_loss(trans_color_nograd, surf_depth, ...)
+normal_tv_loss =                 get_tv_loss(trans_color_nograd, rend_normal, ...)
+```
+
+`get_tv_loss` 用引导图的梯度做 `exp(-|∇I|)` 权重——**引导图错了，平滑就会加在错误的位置**。
+即 ref 支的误差有三条路径进入 geo 支，不止伪 GT 一条。
+
+### 通道二：geo → ref（几何引导外观）
+
+```python
+surf_depth_fixed = surf_depth.detach()                          # line 347  ← 切断点
+out_depth_ref    = out_depth_ref    / out_depth_ref.max()
+surf_depth_fixed = surf_depth_fixed / surf_depth_fixed.max()
+depth_loss = l2_loss(out_depth_ref, surf_depth_fixed)
+```
+
+### 总损失
+
+```python
+total_loss = 0.5 * loss_ref + 0.01 * depth_loss + 0.5 * loss_n
+```
+
+### 三处值得追问的设计
+
+**（1）两条通道强度极不对称。** ref→geo 走 `loss_n`，权重 0.5；
+geo→ref 只有 `depth_loss`，权重 **0.01**——相差 50 倍。
+再算上 `w2 = 0.2`，ref→geo 的有效权重是 `0.5 × 0.2 = 0.1`，仍是 geo→ref 的 10 倍。
+**「互导」在实现上高度不对称，几何对外观的反馈极弱。**
+这与 §9.2 观察到的「渲染增益 +2.59 dB、几何增益近零」互相印证：
+增益流向哪一支，与耦合强度的方向一致。
+
+**（2）深度比较前各自做 max 归一化。** `d / d.max()` 对**单个离群像素**敏感：
+任一支深度图里出现一个异常大的值，整幅图的尺度就被改变，
+`l2_loss` 比的就不再是同一个量。这是一个有明确失效模式的脆弱点，
+且论文未讨论。**E-β 的第一个注入类型就应该是「向 max 附近注入离群值」**——
+如果这个猜测成立，那是一个能直接改进的具体缺陷，而不只是现象描述。
+
+**（3）`depth_tv_loss` 用 `lambda_normal` 当权重。** 与先前记录的
+`lambda_dist` 相关问题一致（`geo_arguments` 里 `lambda_dist = 0.0`，
+且有一行被注释掉的 `lambda_dist = 100.0`）。`lambda_normal = 0.05`。
+
+### 对 E-α / E-β 的直接后果
+
+- **E-α 可执行**：删掉 line 329 与 347 的 `.detach()` 即得 Model K 配置；
+  单独删其一即得两种「半双向」配置——**这两种 MGSR 没测过**，是我们可加的格点。
+- **E-β 可执行**：扰动直接加在 `trans_color_nograd` 与 `surf_depth_fixed` 上，
+  幅度与类型完全可控，不需要改动任何渲染器。
+- **E-γ 的旋钮就地可得**：`w1/w2`、`0.01` 的 depth 权重、`lambda_normal`。
+- 需要注意：三阶段的 `iterations` 在 `parse_args` **之后**被硬编码为 20_000
+  （line 503/509/516），命令行改不动，做扫描时必须改源码。
