@@ -459,3 +459,39 @@ scene  gaussian_renderer  arguments  svox  svox2
 | 双向 A↔B | `train-big.py` 完整配置 |
 
 **尚未验证的是它们能否实际跑通并复现论文数值**——这仍是 P0 的前置任务。
+
+## 更正：`--hessian_eikonal` 的作用范围
+
+先前记「`--hessian_eikonal` 在默认训练脚本中被注释，singular-Hessian 并非默认开启」，
+并据此推测论文实验可能未启用该项。**该推测不成立，且混淆了两个脚本。**
+
+被注释的那一行位于 `octree_train.sh`，对应 `train-octree.py`；而论文的完整方法在
+`train-big.py`，其启动方式不同。
+
+由代码结构可确定其真实作用范围：
+
+| 行 | 内容 |
+|---|---|
+| 206 | `for iteration in range(first_iter, first_iter + opt.iterations + 1)` — 主循环（× `args.epochs`） |
+| 395 | `if dataset.hessian_eikonal:` — Gaussian 点采样 |
+| 445 | `if dataset.hessian_eikonal:` — 调用 `VolumePointsHessEikon` |
+| 484 | `if dataset.hessian_eikonal:` — 进度显示 |
+| **526** | `# final stage, add gaussians back` |
+| 531 | `for iteration in range(first_iter, first_iter + opt.final_iterations + 1)` — final 阶段 |
+
+**Hessian/Eikonal 项只作用于主循环（SDF 光滑化阶段），final 阶段不使用。**
+
+研究者的回忆与此一致：「产生光滑曲面时用了，后面优化时没用」。该结论由代码结构确认，
+不依赖记忆。
+
+### 对论点的影响
+
+这使互导循环的阶段划分更清楚：
+
+1. **主循环**：SDF 与 Gaussian 互导，Hessian/Eikonal 约束 SDF 的正则性；
+2. **final 阶段**：把 Gaussian 加回来做最终优化，**不再有 Hessian 约束**。
+
+因此第三个旋钮（`scale_h` / `scale_e`）只在阶段 1 生效，而阶段 1 的输出正是阶段 2 的
+输入——**若阶段 1 的 SDF 因权重设置不当而过度平滑或欠约束，误差会直接传入阶段 2 且不再
+有正则项纠正**。这恰好是假设 H1 所指的误差传播路径在 GS-Octree 侧的具体形态，
+且比先前的表述更具体、更可实验。

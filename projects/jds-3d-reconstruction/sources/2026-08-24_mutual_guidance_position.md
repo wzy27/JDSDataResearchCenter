@@ -46,7 +46,19 @@
 |---|---|---|
 | 八叉树细分层级 | GS-Octree | 正文仅述「according to the data contained in each node」与「progressive refinement guided by the SDF」，Figure 3 展示 level 6–9 的效果，**层级为手工指定的超参**，未给出细分准则 |
 | warm-up 时长 / 切换频率 / auto-stop | MGSR | 无原理，工程选择 |
-| singular-Hessian 与 Eikonal 的权重 | Wang et al., SIGGRAPH Asia 2023，被 GS-Octree 借用 | **代码审计修正**：实现中并无退火，而是硬编码常数 `scale_hess=1e-12`、`scale_eiko=1e-6`（相差六个数量级），另有 `eikon_thres_min=0.8`、`eikon_thres_max=1.5`、`gaussian_sigma=0.1`、`max_n_samples=64`。见 `2026-08-24_mgsr_code_audit.md` |
+| singular-Hessian 与 Eikonal 的权重 | Wang et al., SIGGRAPH Asia 2023，被 GS-Octree 借用 | **两次代码审计修正**：(1) 实现中并无退火，底层库 `VolumePointsHessEikon` 的默认权重是五项一律 `2e-4`，而 `train-big.py` 传入 `scale_h=1e-12`、`scale_e=1e-6`——把 Hessian 项压到默认值的一亿分之一、比例 1:10⁶，论文与代码均无说明；(2) 该约束**只作用于主循环（SDF 光滑化阶段），final 阶段不使用**。见 `2026-08-24_mgsr_code_audit.md` |
+
+### GS-Octree 侧的误差传播路径（由代码结构确定）
+
+`train-big.py` 分两段：主循环（第 206 行起，SDF 与 Gaussian 互导，Hessian/Eikonal 约束
+SDF 的正则性）与 final 阶段（第 531 行起，把 Gaussian 加回来做最终优化，**不再有 Hessian
+约束**）。
+
+因此第三个旋钮只在第一段生效，而**第一段的输出正是第二段的输入**。若第一段的 SDF 因权重
+设置不当而过度平滑或欠约束，误差将直接传入第二段，且不再有正则项能够纠正。
+
+这是假设 H1 所指的误差传播路径在 GS-Octree 侧的具体形态，比原先的笼统表述更具体、更可实验：
+**E-β 的扰动注入点可直接选在两段的交界处。**
 
 ### 2.4 借用项的适用边界与原猜测不符
 
