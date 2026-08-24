@@ -495,3 +495,58 @@ scene  gaussian_renderer  arguments  svox  svox2
 输入——**若阶段 1 的 SDF 因权重设置不当而过度平滑或欠约束，误差会直接传入阶段 2 且不再
 有正则项纠正**。这恰好是假设 H1 所指的误差传播路径在 GS-Octree 侧的具体形态，
 且比先前的表述更具体、更可实验。
+
+---
+
+## DTU 数据准备与第二处代码不完整（2026-08-24）
+
+### 数据来源
+
+2DGS 官方预处理的 DTU（`dtu.tar.gz`，3.4 GB，经 gdown 从 Google Drive 取得；
+HuggingFace 镜像 `dylanebert/2DGS` 需登录，返回 401）。含 16 个场景与 `eval_dtu` 评测脚本。
+
+单场景结构（`scan24`）：
+
+```
+images/   49 张 PNG，RGBA 1554x1162  —— mask 存于 alpha 通道
+mask/     49 张 PNG，RGB  1600x1200
+sparse/0/ cameras.bin  images.bin  points3D.bin  （及 .txt / .ply）
+cameras.npz  database.db  depths/  points.ply
+```
+
+图像为 RGBA 且 mask 在 alpha 通道，与 MGSR 代码中 `convert("RGBA")` 后取
+`norm_data[:,:,3:4]` 的前景合成逻辑吻合，格式正确。
+
+### 两处必要的数据适配
+
+| 问题 | 处理 |
+|---|---|
+| MGSR 读取 `<scene>/masks/`，数据集目录名为 `mask/` | 建立 `masks/` 目录 |
+| 图像名为 4 位 `0000.png`，mask 名为 3 位 `000.png`，MGSR 按 basename 匹配将全部找不到 | 按排序重命名为 4 位对齐 |
+
+两项均为格式适配，不改变数据内容。
+
+### 公开代码的第二处不完整
+
+`scripts/run_DTU.sh` 的内容：
+
+```bash
+python train_DTU.py -s Data/DTU/scan${i} -m Output/DTU/scan${i} --depth_ratio 0 -r 2
+```
+
+**`train_DTU.py` 在仓库中不存在**，仓库内仅有 `train.py`。
+
+因此本次 DTU 实验使用 `train.py` 运行。**该脚本未必等同于论文所用的 `train_DTU.py`**
+——例如 DTU 特有的分辨率、掩码处理或评测划分可能存在差异。
+
+这是继 `backward.cu` 中 `ref_shs` 死参数之后，公开代码的第二处不完整。两者共同指向同一
+结论：**在与作者确认之前，不能假定公开代码等同于论文实验版本**，因此也不能将本次运行的
+数值直接与论文报告值比较。该限制须写入 E-α 与 E-β 的实验记录。
+
+### 首次 DTU 运行的观测
+
+`scan24`，`-r 2`，初始点 31205。稳定速度 7.35 it/s，单阶段 20000 步约 45 分钟，
+三阶段合计约 2 小时 15 分（`early_stop` 可能使前两阶段提前结束）。
+
+前 500 步内 `Points` 恒为 31205、`normal=0.00000`——与代码审计一致：`lambda_normal`
+需 `iteration > 7000` 才启用（硬编码魔数），此前法向损失不参与优化。
