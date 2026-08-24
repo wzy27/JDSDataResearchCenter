@@ -137,3 +137,21 @@ Throttling to 0.6 cut our contribution above baseline from +12.9 points to +2.6.
 9. 外部 SIGSTOP/SIGCONT 可以在不改代码的情况下对已在运行的进程做占空比节流
    （`scripts/extern_throttle.py`），但**注意 SIGSTOP 状态下的进程收不到 SIGTERM**，
    要先 SIGCONT 再终止，否则会以为杀掉了其实没有。
+
+### 规则 6 的补充：这个坑我犯了两次
+
+`wsl -e bash -lc 'nohup ... &'` 里启动的进程会随那个 shell 退出被杀，
+**且症状具有欺骗性**：
+
+- `pgrep -af <name>` 可能因为匹配到自己的 shell 命令行而**假阳性**，
+  看起来「仍在运行」；
+- 重定向的日志文件干脆不存在，而不是存在但为空——
+  若只 `tail` 日志看不到内容，很容易误判为「刚启动还没输出」。
+
+判定是否真的在跑，用**产物的时间戳**而不是 pgrep：
+
+```bash
+ls -lt <输出目录>/* | head -3      # 最近产物的时间就是进程最后活着的时间
+```
+
+正确做法始终是 harness 跟踪的后台任务（Bash 工具的 `run_in_background: true`）。
