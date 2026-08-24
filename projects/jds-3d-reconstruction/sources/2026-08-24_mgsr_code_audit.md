@@ -550,3 +550,74 @@ python train_DTU.py -s Data/DTU/scan${i} -m Output/DTU/scan${i} --depth_ratio 0 
 
 前 500 步内 `Points` 恒为 31205、`normal=0.00000`——与代码审计一致：`lambda_normal`
 需 `iteration > 7000` 才启用（硬编码魔数），此前法向损失不参与优化。
+
+---
+
+## 首次 DTU 运行结果（2026-08-24 夜）
+
+### MGSR：完整跑通
+
+`scan24`，`-r 2`，三阶段全部完成，输出 `Training complete`。
+
+| 阶段 | 产物 |
+|---|---|
+| `geo`（2DGS warm-up） | `dtu_scan24/geo/point_cloud/` |
+| `ref`（3DGS warm-up） | `dtu_scan24/ref/point_cloud/` |
+| `total`（互导） | `dtu_scan24/total/point_cloud/` |
+
+耗时约 2 小时 7 分（21:15 → 23:22）。日志中可见 `Loading Geo_ckpt`、`Loading Ref_ckpt`，
+与三阶段结构一致。互导阶段起始点数 315770。
+
+**注意**：本次以 `train.py` 运行，而 `scripts/run_DTU.sh` 指定的是仓库中并不存在的
+`train_DTU.py`。因此该结果不可与论文报告值直接比较。
+
+### GS-Octree：受阻于缺失的预训练 SDF
+
+`train-big.py` 启动后立即失败：
+
+```
+File "train-big.py", line 108, in training
+    octree = LOctreeA.LOTLoad(
+FileNotFoundError: '/data/nglm005/zhengyu.wen/pretrain/SDF_512_scan24.npz'
+```
+
+对应代码：
+
+```python
+octree = LOctreeA.LOTLoad(
+    path=os.path.join(pretrain_dir, "SDF_512_{}.npz".format(instance)),
+    path_d=os.path.join(pretrain_dir, "dict_512_{}.npy".format(instance)),
+)
+```
+
+**这不是配置问题，而是方法本身的阶段依赖。** `train-big.py` 对应论文四阶段中的后续阶段，
+它要求先有一个由体渲染重建得到的初始 SDF。
+
+该 npz 由 `LOTree-main/LOTreeOptGaussVolSDF.py` 生成——其中 `epoch_id == 6` 时调用：
+
+```python
+t.LOTSave(path=os.path.join(output_dir, "SDF_512_{}.npz".format(FLAGS.data_dir1)),
+          path_d=os.path.join(output_dir, "dict_512_{}.npy".format(FLAGS.data_dir1)),
+          out_full=True)
+```
+
+即**论文的第一阶段（八叉树 SDF 的体渲染重建）需先单独运行**，产出 `SDF_512_<scene>.npz`
+与 `dict_512_<scene>.npy`，`train-big.py` 才能接续。
+
+### 阻塞的性质
+
+这是本项目遇到的第四处「公开产物不足以直接复现」的情形，且与前三处性质不同：
+
+| # | 情形 | 性质 |
+|---|---|---|
+| 1 | MGSR `backward.cu` 的 `ref_shs` 死参数 | 代码缺陷 |
+| 2 | MGSR `run_DTU.sh` 引用不存在的 `train_DTU.py` | 脚本缺失 |
+| 3 | GS-Octree 无任何 `.sh` 调用 `train-big.py` | 脚本缺失 |
+| 4 | `train-big.py` 依赖未提供的预训练 SDF | **阶段产物缺失** |
+
+第 4 项无法通过阅读代码绕过——要么取得研究者当时生成的 `pretrain/` 目录，要么先跑通
+`LOTreeOptGaussVolSDF.py` 自行生成（该脚本用 `FLAGS`/`ArgumentParser`，参数与数据组织
+方式尚未确认）。
+
+**需要研究者提供**：`pretrain/SDF_512_scan*.npz` 与 `dict_512_scan*.npy`，
+或第一阶段的确切运行命令。
