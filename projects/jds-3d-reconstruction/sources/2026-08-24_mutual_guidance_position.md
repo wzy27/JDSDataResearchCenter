@@ -245,3 +245,52 @@ MGSR 的处理是把 20k 定为超参。但**饱和本身是个信号**：
   —— 又一个互导系统在某类场景上不收敛，同样只是顺带一提，无分析。
 - 未解析：GSDF、GSurf、两篇 survey、SplatlessDF、Gaussian-Voxel Duet
   （Semantic Scholar 检索未命中，需换检索式重试）。**这些尚未排除。**
+
+---
+
+## 10. Survey 通道核验（2026-08-25）
+
+综述是检验「无人研究 X」这类断言最省力的地方：若某条线上确有人做过条件分析，
+专门的综述几乎不可能漏掉。引文图找出两篇引用了 GS-Octree 的表面重建综述。
+
+### 10.1 PeerJ CS 2025（已取得全文，自行量测）
+
+《A survey on surface reconstruction based on 3D Gaussian splatting》，
+PeerJ Computer Science, 2025, DOI 10.7717/peerj-cs.3034。
+经 Europe PMC 取得全文 XML（216 KB，正文 90269 字符），用与 position paper
+一致的探针词自行量测：
+
+| 探针 | 命中 |
+|---|---|
+| 收敛性论述 | **0** |
+| 失败条件 | **0** |
+| 误差传播 | **0** |
+| 稳定性/发散 | 2 |
+| 互导措辞 | 3 |
+
+仅有的 2 处「稳定性」命中都在讲别的事：一处是高光区的深度-法向一致性项，
+一处是 Poisson 重建在镜面区不稳定。3 处「互导措辞」全是编目式的 "jointly optimize"，
+没有任何分析。
+
+该综述点名的双表示方法及出现次数：
+GSDF 5、NeuSG 4、3DGSR 4、**GS-Octree / Octree-GS 共 4**、SuGaR 2、2DGS 6；
+MGSR 0、GS-ROR 0（两者发表晚于该综述）。
+
+**即：一篇专门综述表面重建的文章，把双表示耦合方法逐一编目，
+却对它们的收敛性、稳定性、误差传播只字未提。** 这是对核心论点最直接的支持。
+
+（另经 WebFetch 读该综述的 Challenges 节，答复为三项——数据集质量、大场景批量提取、
+几何细节质量——均不涉及优化可靠性。此项为模型摘读，非本人量测，强度低于上表。）
+
+### 10.2 Expert Systems with Applications 2026（**未能核验**）
+
+《3D Gaussian splatting for reconstruction: Methods, datasets, and comparisons》，
+Expert Systems with Applications, 2026。Elsevier 付费墙，全文取不到。
+
+**此项标记为未核验，不计入支持证据。** 若日后能通过学校订阅取得，应优先补验——
+它是目前唯一一篇可能推翻 10.1 结论的综述。
+
+### 10.3 对研究者本人的一条事实
+
+两篇综述均引用 GS-Octree。在 10.1 中它与 GSDF、NeuSG、3DGSR 同级被列为
+双表示耦合的代表方法。谈合作时这比「我做过一篇相关工作」有力得多。
