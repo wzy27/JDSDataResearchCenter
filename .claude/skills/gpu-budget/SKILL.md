@@ -102,3 +102,38 @@ Throttling to 0.6 cut our contribution above baseline from +12.9 points to +2.6.
 ## Interpreting nvidia-smi
 
 `utilization.gpu` is the fraction of sampled time during which *any* kernel was resident — not SM occupancy. An 85% reading does not mean the card is 85% full, and two processes can each observe high utilization at once. Never present this number as a capacity share.
+
+## 更正（2026-08-25）：显存才是硬约束，占空比节流对它无能为力
+
+上表「0.6 占空比 → 总利用率 87.9%」是在**显存宽裕**的条件下测的。
+2026-08-25 在 LOTree 阶段一训练上照搬，失败：
+
+| 观测 | 数值 |
+|---|---|
+| 进程级实测占空比 | 0.525 / 0.578（目标 0.60）—— 节流本身生效 |
+| 我们**停止窗口内**采样的总利用率 | 中位数 100.0，最大 100.0 |
+| 停止前显存 | 24060 / 24564 MiB |
+| 杀掉我们全部进程后 | 利用率仍 98%，显存 4810 MiB |
+
+三条结论：
+
+1. **占空比节流让不出显存。** 进程活着就一直占着那 20 GB。用户体感到的
+   「GPU 占用太高」在显存吃紧时主要来自显存，不是 SM 时间片。
+   要限显存只有 `torch.cuda.set_per_process_memory_fraction`，
+   **必须在进程启动时设定**——已经在跑的进程改不了，只能重启。
+2. **卡已经被前台打满时，我们让出时间片也看不出效果。** 停止窗口内仍读到 100%，
+   而杀光我们的进程后仍是 98%——那 98% 本来就不是我们的。
+   此时唯一有意义的动作是**让出显存**或**整个停掉**。
+3. **`utilization.gpu` 在这种场合没有诊断价值。** 它读 100% 既可能是我们，
+   也可能是别人，还可能是残留 kernel。判断我们自己的贡献要看
+   `memory.used` 在杀掉进程前后的差值——本次是 24060 → 4810 MiB。
+
+### 追加规则
+
+7. 启动长任务前先读一次 `memory.used`。若空闲显存不足 8 GB，**不要启动**，
+   或以 `MemoryCap` 显式限额启动。
+8. 报告节流效果时必须同时给出**杀掉进程前后的 `memory.used` 差值**，
+   只报占空比是不够的——占空比达标而用户依然卡顿，本次就是实例。
+9. 外部 SIGSTOP/SIGCONT 可以在不改代码的情况下对已在运行的进程做占空比节流
+   （`scripts/extern_throttle.py`），但**注意 SIGSTOP 状态下的进程收不到 SIGTERM**，
+   要先 SIGCONT 再终止，否则会以为杀掉了其实没有。
