@@ -353,3 +353,109 @@ def VolumePointsHessEikon(
 
 `train-octree.py` 与 `train-big.py` 的依赖已齐备。`csrc` 为 Python 3.8 编译的 `.so`，
 与当前 MGSR 环境（Python 3.11）不兼容，需另建 Python 3.8 环境或从 `setup.py` 重新编译。
+
+## GS-Octree 完整依赖链的搭建（2026-08-24）
+
+由于 LOTree 的预编译扩展针对 Python 3.8，与 MGSR 环境（3.11）不兼容，另建独立环境 `lotree`。
+
+| 项 | 值 |
+|---|---|
+| Python | 3.8 |
+| torch | 2.0.1+cu118 |
+| CUDA 工具链 | 复用 `drivestudio` 环境的 nvcc 11.8 + gcc 11 |
+| `TORCH_CUDA_ARCH_LIST` | 8.9 |
+
+### 需要重新编译的扩展
+
+`setup.py` 只构建 `svox2.csrc`（Plenoxels 的 CUDA 扩展）。以 `pip install -e .` 重新编译通过，
+`import svox2.csrc` 成功。
+
+另有 `svox/csrc/`（`svox.cpp`、`svox_kernel.cu`、`rt_kernel.cu`、`quantizer.cpp`）无独立
+构建脚本，导入时报 `CUDA extension svox.csrc could not be loaded`。`LOTreeOptGS.py` 导入
+`svox`，但 `LOctreeA` 在缺该扩展的情况下仍可导入——**是否影响运行须在实跑时确认**。
+
+### Python 依赖的版本约束
+
+Python 3.8 使若干包被迫降级，须记录以便复现：
+
+| 包 | 约束 | 原因 |
+|---|---|---|
+| `PyMCubes` | `==0.1.4` | 新版要求 numpy ≥ 2，Python 3.8 无法满足 |
+| `matplotlib` | `<3.8` | 3.8+ 要求 Python ≥ 3.9 |
+| `scikit-image` | `<0.22` | 同上 |
+| `numpy` | `<2` | torch 2.0.1 针对 numpy 1.x 编译 |
+| `mitsuba` | 任意 | `LOctree.py` 直接导入 |
+
+### 验证结果
+
+```
+LOctreeA 导入成功
+关键方法: ['SampleGaussianPoints', 'VolumePointsHessEikon',
+           'VolumeRenderGaussHessVolSDF', 'VolumeRenderHessEikon',
+           'VolumeRenderHessianVolSDF']
+```
+
+五个 Hessian/Eikonal 相关方法全部可见，与 `train-big.py` 的调用对应。
+
+### 三套环境的分工
+
+| 环境 | Python | 用途 |
+|---|---|---|
+| `drivestudio` | 3.9 | 提供 CUDA 工具链（nvcc 11.8、gcc 11）；驾驶场景遗留 |
+| `MGSR` | 3.11 | MGSR 的 2DGS/3DGS 互导 |
+| `lotree` | 3.8 | GS-Octree 完整方法（八叉树 SDF ↔ 3DGS） |
+
+两个待验证方法运行在不同 Python 版本上，这对 E-α 的公平对比是一个需要注意的变量——
+**比较时应以各自复现的论文数值为基准，而非跨环境直接比较绝对数值。**
+
+### 依赖链打通（结果）
+
+`lotree` 环境下 9/9 模块导入成功：
+
+```
+diff_gaussian_rasterization  simple_knn  LOctree  LOTreeOptGS
+scene  gaussian_renderer  arguments  svox  svox2
+```
+
+`train-big.py --help` 正常输出，**论文的完整方法可加载**。
+
+补齐的 Python 依赖（Python 3.8 造成的版本约束）：
+
+| 包 | 版本 | 原因 |
+|---|---|---|
+| `PyMCubes` | 0.1.4 | 新版要求 numpy ≥ 2 |
+| `matplotlib` | < 3.8 | 3.8+ 要求 Python ≥ 3.9 |
+| `scikit-image` | < 0.22 | 同上 |
+| `open3d` | 0.16.0 | 0.17+ 无 Python 3.8 wheel |
+| `numpy` | < 2 | torch 2.0.1 针对 numpy 1.x 编译 |
+| `mitsuba`, `pyyaml`, `natsort` | 任意 | 直接依赖 |
+
+`svox.csrc` 的 CUDA 扩展仍未编译（`setup.py` 只构建 `svox2`），导入时有警告但不影响
+模块加载。**是否影响运行须在实跑时确认。**
+
+### `train-big.py` 暴露的开关
+
+参数表中与互导循环直接相关的开关：
+
+```
+--hessian_eikonal      Hessian/Eikonal 正则（默认脚本中被注释）
+--gaussian_smooth      Gaussian 平滑
+--gauss_splat_corr     Gaussian-splat 校正
+--mesh_init            网格初始化
+--iterations / --final_iterations   分阶段迭代数
+```
+
+`--final_iterations` 的存在说明该方法也分阶段，且与 `--iterations` 分离——
+**这是 E-γ 中「两支各训练多久才进入互导」的 GS-Octree 侧对应物**，且与 MGSR 不同的是，
+此处未被硬编码覆盖，可直接从命令行扫描。
+
+至此 E-α 所需的四路配置在代码层面均可达：
+
+| 配置 | 实现路径 |
+|---|---|
+| 仅表示 B（纯 3DGS） | `train-origin.py` |
+| 仅表示 A（八叉树 SDF） | `train-big.py` 关闭 Gaussian 相关开关 |
+| 单向 A→B | `train-octree.py` |
+| 双向 A↔B | `train-big.py` 完整配置 |
+
+**尚未验证的是它们能否实际跑通并复现论文数值**——这仍是 P0 的前置任务。
