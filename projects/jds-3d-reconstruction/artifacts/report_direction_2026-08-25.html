@@ -1,0 +1,988 @@
+<title>互导耦合强度</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  --ink:#16202B; --ink-2:#3D4A5A; --muted:#6B7785;
+  --paper:#F6F7F9; --surface:#FFFFFF; --surface-2:#EFF2F5;
+  --rule:#DCE1E7; --rule-strong:#C3CBD4;
+  --accent:#2D4A7C;
+  --geo:#1F6F5C; --geo-soft:#E4F0EC;
+  --ref:#A8442A; --ref-soft:#F8E9E4;
+  --amber:#8A6D1F; --amber-soft:#F6EFDC;
+  --ok:#1F6F5C; --warn:#8A6D1F; --dead:#8B93A0;
+
+  --serif:"Noto Serif SC",Songti SC,SimSun,Georgia,serif;
+  --sans:"Noto Sans SC",-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Consolas,monospace;
+
+  --measure:66ch;
+  --s1:.4rem; --s2:.75rem; --s3:1.25rem; --s4:2rem; --s5:3.25rem; --s6:5rem;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ink:#E4E9EF; --ink-2:#B4BECB; --muted:#8894A3;
+    --paper:#12171E; --surface:#181F28; --surface-2:#202833;
+    --rule:#2C3642; --rule-strong:#3D4956;
+    --accent:#8FB0DF;
+    --geo:#63C4A8; --geo-soft:#17302A;
+    --ref:#E28C6E; --ref-soft:#33211B;
+    --amber:#D6B75F; --amber-soft:#2E2717;
+    --ok:#63C4A8; --warn:#D6B75F; --dead:#6C7684;
+  }
+}
+:root[data-theme="dark"]{
+  --ink:#E4E9EF; --ink-2:#B4BECB; --muted:#8894A3;
+  --paper:#12171E; --surface:#181F28; --surface-2:#202833;
+  --rule:#2C3642; --rule-strong:#3D4956;
+  --accent:#8FB0DF;
+  --geo:#63C4A8; --geo-soft:#17302A;
+  --ref:#E28C6E; --ref-soft:#33211B;
+  --amber:#D6B75F; --amber-soft:#2E2717;
+  --ok:#63C4A8; --warn:#D6B75F; --dead:#6C7684;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--sans); font-weight:400; font-size:16px; line-height:1.78;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:960px; margin:0 auto; padding:0 var(--s3) var(--s6)}
+
+/* ---------- 页眉 ---------- */
+header.masthead{
+  border-bottom:2px solid var(--ink); margin-bottom:var(--s5);
+  padding:var(--s5) 0 var(--s3);
+}
+.eyebrow{
+  font-family:var(--mono); font-size:.72rem; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--muted); margin:0 0 var(--s2);
+}
+h1{
+  font-family:var(--serif); font-weight:700; font-size:clamp(1.9rem,4.6vw,3rem);
+  line-height:1.24; letter-spacing:-.01em; margin:0 0 var(--s3); text-wrap:balance;
+}
+.standfirst{
+  font-size:1.06rem; color:var(--ink-2); max-width:var(--measure);
+  margin:0 0 var(--s4);
+}
+.meta{
+  display:flex; flex-wrap:wrap; gap:var(--s2) var(--s4);
+  font-family:var(--mono); font-size:.78rem; color:var(--muted);
+  border-top:1px solid var(--rule); padding-top:var(--s3);
+}
+.meta b{color:var(--ink-2); font-weight:500}
+
+/* ---------- 章节 ---------- */
+section{margin:0 0 var(--s6); scroll-margin-top:1rem}
+h2{
+  font-family:var(--serif); font-weight:700; font-size:1.55rem; line-height:1.3;
+  margin:0 0 var(--s3); padding-bottom:var(--s2);
+  border-bottom:1px solid var(--rule-strong); text-wrap:balance;
+  display:flex; align-items:baseline; gap:var(--s3);
+}
+h2 .num{
+  font-family:var(--mono); font-size:.85rem; font-weight:600;
+  color:var(--accent); flex:none;
+}
+h3{
+  font-family:var(--sans); font-weight:700; font-size:1.06rem;
+  margin:var(--s4) 0 var(--s2); color:var(--ink);
+}
+h4{
+  font-family:var(--mono); font-weight:600; font-size:.82rem; letter-spacing:.06em;
+  text-transform:uppercase; color:var(--muted);
+  margin:var(--s3) 0 var(--s2);
+}
+p{max-width:var(--measure); margin:0 0 var(--s3)}
+strong{font-weight:700}
+a{color:var(--accent)}
+code,.mono{font-family:var(--mono); font-size:.88em}
+code{background:var(--surface-2); padding:.1em .35em; border-radius:3px}
+
+/* ---------- 证据分级 ---------- */
+.grade{
+  display:inline-flex; align-items:center; gap:.4em;
+  font-family:var(--mono); font-size:.7rem; font-weight:600;
+  letter-spacing:.05em; padding:.18em .6em; border-radius:2px;
+  border:1px solid currentColor; white-space:nowrap; vertical-align:.08em;
+}
+.g-ok{color:var(--ok); background:var(--geo-soft)}
+.g-pend{color:var(--warn); background:var(--amber-soft)}
+.g-un{color:var(--muted); background:var(--surface-2)}
+.g-dead{color:var(--dead); background:var(--surface-2)}
+
+.legend{
+  display:grid; gap:var(--s2); background:var(--surface);
+  border:1px solid var(--rule); border-left:3px solid var(--accent);
+  padding:var(--s3); margin:0 0 var(--s4);
+}
+.legend div{display:flex; gap:var(--s3); align-items:baseline; font-size:.92rem}
+.legend .grade{flex:none; min-width:5.6rem; justify-content:center}
+
+/* ---------- 主张块 ---------- */
+.claim{
+  background:var(--surface); border:1px solid var(--rule);
+  border-left:3px solid var(--rule-strong);
+  padding:var(--s3); margin:0 0 var(--s3);
+}
+.claim.ok{border-left-color:var(--ok)}
+.claim.pend{border-left-color:var(--warn)}
+.claim.un{border-left-color:var(--muted)}
+.claim.dead{border-left-color:var(--dead); background:var(--surface-2)}
+.claim-head{
+  display:flex; flex-wrap:wrap; gap:var(--s2) var(--s3);
+  align-items:baseline; margin-bottom:var(--s2);
+}
+.claim-head .t{font-weight:700; font-size:1rem; flex:1 1 22ch; min-width:0}
+.claim p:last-child{margin-bottom:0}
+.claim p{font-size:.95rem}
+.src{
+  font-family:var(--mono); font-size:.74rem; color:var(--muted);
+  border-top:1px dashed var(--rule); padding-top:var(--s2); margin-top:var(--s2);
+}
+.src b{color:var(--ink-2); font-weight:500}
+
+/* ---------- 表 ---------- */
+.tw{overflow-x:auto; margin:0 0 var(--s3); border:1px solid var(--rule); background:var(--surface)}
+table{border-collapse:collapse; width:100%; font-size:.9rem; min-width:min(100%,520px)}
+th,td{padding:.55em .8em; text-align:left; border-bottom:1px solid var(--rule); vertical-align:top}
+thead th{
+  background:var(--surface-2); font-family:var(--mono); font-weight:600;
+  font-size:.74rem; letter-spacing:.05em; text-transform:uppercase; color:var(--muted);
+  border-bottom:1px solid var(--rule-strong); white-space:nowrap;
+}
+tbody tr:last-child td{border-bottom:none}
+td.n,th.n{text-align:right; font-family:var(--mono); font-variant-numeric:tabular-nums; white-space:nowrap}
+.geo{color:var(--geo); font-weight:600}
+.ref{color:var(--ref); font-weight:600}
+.dim{color:var(--muted)}
+del{color:var(--muted); text-decoration-color:var(--dead)}
+
+/* ---------- 时间线 ---------- */
+.timeline{border-left:2px solid var(--rule-strong); margin:0 0 var(--s4); padding-left:var(--s4)}
+.station{position:relative; margin-bottom:var(--s4)}
+.station:last-child{margin-bottom:0}
+.station::before{
+  content:""; position:absolute; left:calc(-1 * var(--s4) - 6px); top:.55em;
+  width:10px; height:10px; border-radius:50%;
+  background:var(--paper); border:2px solid var(--rule-strong);
+}
+.station.live::before{background:var(--accent); border-color:var(--accent)}
+.station.dead::before{background:var(--paper); border-color:var(--dead)}
+.station .when{
+  font-family:var(--mono); font-size:.74rem; letter-spacing:.05em;
+  color:var(--muted); display:block; margin-bottom:.15em;
+}
+.station .what{font-weight:700; font-size:1.02rem; margin-bottom:var(--s1)}
+.station p{font-size:.94rem; margin-bottom:var(--s2)}
+.verdict{
+  font-size:.9rem; padding:.5em .8em; border-radius:2px;
+  background:var(--surface-2); border-left:2px solid var(--dead);
+}
+.verdict.kill{background:var(--ref-soft); border-left-color:var(--ref)}
+.verdict.keep{background:var(--geo-soft); border-left-color:var(--geo)}
+
+/* ---------- 数据强调 ---------- */
+.figs{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:1px; background:var(--rule); border:1px solid var(--rule); margin:0 0 var(--s3);
+}
+.fig{background:var(--surface); padding:var(--s3)}
+.fig .v{
+  font-family:var(--mono); font-size:1.7rem; font-weight:600; line-height:1.1;
+  font-variant-numeric:tabular-nums; display:block; margin-bottom:.2em;
+}
+.fig .k{font-size:.8rem; color:var(--muted); line-height:1.45; display:block}
+.fig.g .v{color:var(--geo)} .fig.r .v{color:var(--ref)}
+
+/* ---------- 排期甘特 ---------- */
+.gantt{border:1px solid var(--rule); background:var(--surface); margin:0 0 var(--s3); overflow-x:auto}
+.gantt-inner{min-width:640px}
+.gantt-head,.gantt-row{display:grid; grid-template-columns:15rem repeat(12,1fr); align-items:center}
+.gantt-head{
+  background:var(--surface-2); border-bottom:1px solid var(--rule-strong);
+  font-family:var(--mono); font-size:.68rem; color:var(--muted); letter-spacing:.04em;
+}
+.gantt-head div{padding:.5em .3em; text-align:center}
+.gantt-head div:first-child{text-align:left; padding-left:.8em}
+.gantt-row{border-bottom:1px solid var(--rule); font-size:.86rem}
+.gantt-row:last-child{border-bottom:none}
+.gantt-row .task{padding:.6em .8em; line-height:1.4}
+.gantt-row .task .id{font-family:var(--mono); font-size:.68rem; color:var(--muted); display:block}
+.cell{height:100%; min-height:2.6em; border-left:1px solid var(--rule); position:relative}
+.bar{
+  position:absolute; inset:.75em 1px; border-radius:2px;
+  background:var(--accent); opacity:.85;
+}
+.bar.g{background:var(--geo)} .bar.r{background:var(--ref)} .bar.a{background:var(--amber)}
+.bar.hollow{background:transparent; border:1.5px dashed var(--accent); opacity:.7}
+.milestone{
+  position:absolute; left:50%; top:50%; width:9px; height:9px;
+  transform:translate(-50%,-50%) rotate(45deg); background:var(--ink);
+}
+.gk{display:flex; flex-wrap:wrap; gap:var(--s3); font-size:.8rem; color:var(--muted); margin-bottom:var(--s4)}
+.gk span{display:flex; align-items:center; gap:.4em}
+.gk i{width:14px; height:8px; border-radius:2px; display:inline-block}
+
+/* ---------- 提示条 ---------- */
+.note{
+  border:1px solid var(--rule); border-left:3px solid var(--accent);
+  background:var(--surface); padding:var(--s3); margin:0 0 var(--s3); font-size:.94rem;
+}
+.note.warn{border-left-color:var(--amber); background:var(--amber-soft)}
+.note.stop{border-left-color:var(--ref); background:var(--ref-soft)}
+.note p:last-child{margin-bottom:0}
+.note .lbl{
+  font-family:var(--mono); font-size:.7rem; font-weight:600; letter-spacing:.08em;
+  text-transform:uppercase; color:var(--muted); display:block; margin-bottom:var(--s1);
+}
+
+ul,ol{max-width:var(--measure); padding-left:1.3em; margin:0 0 var(--s3)}
+li{margin-bottom:var(--s2)}
+li::marker{color:var(--muted)}
+
+footer{
+  border-top:2px solid var(--ink); margin-top:var(--s6); padding-top:var(--s3);
+  font-family:var(--mono); font-size:.76rem; color:var(--muted);
+}
+@media (max-width:640px){
+  body{font-size:15px}
+  h2{flex-direction:column; gap:var(--s1)}
+  .gantt-head,.gantt-row{grid-template-columns:9rem repeat(12,1fr)}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important; transition:none!important}}
+</style>
+
+<div class="wrap">
+
+<header class="masthead">
+  <p class="eyebrow">研究方向报告 · 内部讨论稿</p>
+  <h1>两种表示互相引导时，耦合强度决定了什么</h1>
+  <p class="standfirst">
+    从 GS-Octree 与 MGSR 的同源性出发，经三轮收窄，落到一个代码里就摆着、论文未讨论、
+    且实测有效应的自由度：<strong>两条耦合通道的强度比</strong>。
+    本报告给出完整证据链、已确立与未确立的边界，以及三个月的实验排期。
+  </p>
+  <div class="meta">
+    <span><b>日期</b> 2026-08-25</span>
+    <span><b>数据</b> DTU scan24 · n=3 种子</span>
+    <span><b>算力</b> 单卡 RTX 4090</span>
+    <span><b>代码</b> MGSR 可完整运行 / GS-Octree 受阻</span>
+  </div>
+</header>
+
+<section id="tldr">
+  <h2><span class="num">00</span> 一页结论</h2>
+
+  <div class="legend">
+    <div><span class="grade g-ok">已确立</span><span>有重复实验支持，效应量远超噪声，可写入论文。</span></div>
+    <div><span class="grade g-pend">待确认</span><span>方向明确但样本不足，判据已预先写下，正在补。</span></div>
+    <div><span class="grade g-un">未验证</span><span>有明确假设与验证方案，尚未执行。</span></div>
+    <div><span class="grade g-dead">已作废</span><span>曾经相信、已被证据推翻。就地保留不删除。</span></div>
+  </div>
+
+  <div class="figs">
+    <div class="fig r"><span class="v">+5.40%</span><span class="k">加强 geo→ref 耦合后，<strong>被引导支</strong>几何劣化（30 σ）</span></div>
+    <div class="fig g"><span class="v">−0.91%</span><span class="k">同时，<strong>引导支</strong>几何改善（2.3 σ）</span></div>
+    <div class="fig"><span class="v">0.18%</span><span class="k">噪声地板，同权重跨三种子标准差</span></div>
+    <div class="fig"><span class="v">188</span><span class="k">引文图全文核查篇数，无一分析该问题</span></div>
+  </div>
+
+  <p>
+    MGSR 把两条耦合通道的权重定为 <code>0.5 : 0.01</code>，相差 50 倍，论文未讨论也未消融。
+    我们扫描这个比值，发现<strong>两支的响应方向相反</strong>：加强 geo→ref 耦合会让
+    <span class="ref">被引导的外观支变差</span>，同时让<span class="geo">引导的几何支变好</span>。
+    这不是「引导失效」，而是两支之间可测的此消彼长。
+  </p>
+
+  <div class="note stop">
+    <span class="lbl">最大的未解除风险</span>
+    <p>
+      全部结果来自<strong>单一场景</strong>（DTU scan24）。跨场景不成立则方向需重估。
+      这是三个月计划里第一优先级的任务。
+    </p>
+  </div>
+</section>
+
+<section id="pivot">
+  <h2><span class="num">01</span> 思维脉络：两次放弃与一次收敛</h2>
+
+  <p>
+    这条线索的价值在于每一步都有明确的证否依据，而不是兴趣转移。以下四站按时间排列，
+    被推翻的判断就地保留。
+  </p>
+
+  <div class="timeline">
+    <div class="station dead">
+      <span class="when">2026-08-18 → 08-23 · 已终止</span>
+      <div class="what">FastRelight：可编辑、可重打光的 4D 驾驶场景</div>
+      <p>
+        原计划做驾驶场景的联合重建与重打光。逐条检索后发现整体框架与各个子模块均已被占据。
+      </p>
+      <div class="verdict kill">
+        <strong>终止依据：</strong>整体方向已被 LightSim、DrivingGaussian++、MADrive、HorizonForge 占据；
+        共享环境光加空间光照残差被 CVPR 2026 的人体—场景联合重建占据；
+        动态作为逆渲染监督被 LumiMotion 占据；驾驶场景 BRDF 分解被 Nighttime PBR-GS 占据；
+        自建 CARLA paired-light 基准被 ReLumix 占据。
+        <strong>且导师要求成果落在重建方向，重打光属渲染贡献。</strong>
+      </div>
+    </div>
+
+    <div class="station dead">
+      <span class="when">2026-08-23 → 08-24 · 已终止</span>
+      <div class="what">观测受限条件下的驾驶场景行人重建</div>
+      <p>
+        收缩为「远距离、低分辨率、强遮挡下把行人重建出来」。这一站投入最大——
+        建了分层评测器、跑了训练、做了目视核验。详见 <a href="#driving">第 02 节</a>。
+      </p>
+      <div class="verdict kill">
+        <strong>终止依据（两条独立）：</strong>
+        其一，Hierarchy UGP（ICCV 2025）已在行人区域取得 <span class="mono">+8.04 dB</span>，
+        且不使用 SMPL 模板——我们识别的「姿态门」已被拆掉。
+        其二，目视核验 53 个实例后确认，<strong>被丢弃的行人绝大多数确属信息不足</strong>，
+        明确的模型失败仅 1 例。「本可重建却被丢弃」这一前提不成立。
+      </div>
+    </div>
+
+    <div class="station dead">
+      <span class="when">2026-08-24 · 七个候选连续证伪</span>
+      <div class="what">在拥挤领域里找空位</div>
+      <p>
+        密度控制、薄结构、几何有偏、训练可预测性、行人资产库、观测不确定性、
+        纹理缺失与辐射—成像纠缠，七个候选依次被证伪。工具建成后单个候选成本降到小时级。
+      </p>
+      <div class="verdict kill">
+        <strong>策略层面的结论：</strong>「寻找无人涉足的空位」在拥挤领域是高风险赌博。
+        三次遇到<strong>词汇假象</strong>——我们说「薄结构」，别人说 <code>high-frequency</code>；
+        我们说「变光照」，别人说 <code>in-the-wild</code>；换词后命中数从个位数变为密集。
+      </div>
+    </div>
+
+    <div class="station live">
+      <span class="when">2026-08-24 至今 · 当前方向</span>
+      <div class="what">双表示互导优化的耦合强度</div>
+      <p>
+        策略转向：<strong>不再找空位，改为检视被普遍采用却未被质疑的基础模式。</strong>
+        双表示互导（SDF 与 Gaussians、2DGS 与 3DGS）在语料中被 9 篇采用，
+        而收敛性/稳定性分析主题级为 0。
+      </p>
+      <div class="verdict keep">
+        <strong>为何选它：</strong>本人的 GS-Octree 与导师的 MGSR 方法同源，且
+        <strong>MGSR 明确引用了 GS-Octree</strong>——不是事后归纳的相似性，是有引用关系的。
+        两篇表面重建综述均把 GS-Octree 与 GSDF、NeuSG、3DGSR 同级列为双表示代表方法。
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="driving">
+  <h2><span class="num">02</span> 为什么自动驾驶方向不宜继续</h2>
+
+  <p>
+    这一节单列，因为它是投入最大、也最需要向合作者讲清楚的一次放弃。
+    结论不是「做不动」，而是<strong>剩余空间已被两侧夹住，且我们赖以立论的前提被自己的实验推翻</strong>。
+  </p>
+
+  <h3>2.1 竞争格局：主干与相邻方向都已被占据</h3>
+
+  <div class="tw"><table>
+    <thead><tr><th>层面</th><th>占据者</th><th>后果</th></tr></thead>
+    <tbody>
+      <tr><td>驾驶场景整体重建</td><td>Street Gaussians / NSG → OmniRe（ICLR 2025 Spotlight）→ DriveSplat</td><td>主干谱系密集，迭代周期以月计</td></tr>
+      <tr><td>行人这一子问题</td><td><strong>Hierarchy UGP</strong>（ICCV 2025，浙大 + 理想）、UGSDF（ICCV 2025）</td><td>统一形变基元，<strong>不用 SMPL 模板</strong>，行人区域 +8.04 dB</td></tr>
+      <tr><td>衣物与人体解耦</td><td>CLOTH-HUGS（2026-04）、ReLoo、MonoCloth、DressRecon 等</td><td>把衣物解耦当主创新，等于在驾驶数据上重做 CLOTH-HUGS</td></tr>
+      <tr><td>可重打光 / 逆渲染</td><td>LightSim、MADrive、Nighttime PBR-GS、LumiMotion、ReLumix</td><td>逐个子模块被占据；且属渲染贡献，不满足导师要求</td></tr>
+      <tr><td>前馈 4D 重建</td><td>ReconDrive、DGGT、FRUC、DrivingRecon</td><td>不对人体专门建模，但整体性能持续抬高基线</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>2.2 我们赖以立论的三个前提，两个被推翻</h3>
+
+  <div class="claim dead">
+    <div class="claim-head">
+      <span class="t"><del>前提一：human-region 存在度量空白</del></span>
+      <span class="grade g-dead">已作废</span>
+    </div>
+    <p>
+      原判断：OmniRe 的 28.15 / 24.36 PSNR 至今未被超越，因为后续方法只报整场景聚合指标，
+      行人像素被稀释（全图 37.26 与 human-region 28.15 之间有约 9 dB 落差）。
+    </p>
+    <p>
+      <strong>推翻它的证据：</strong>Hierarchy UGP 的 Table 2 明确报告了行人区域指标，
+      场景 014 重建 PSNR 从 OmniRe 的 22.16 提到 <strong>30.20</strong>，场景 023 从 29.23 提到 <strong>34.10</strong>。
+      这是我们自己的检索漏掉的——过度偏重 arXiv 与 2026，忽略了 2025 年的会议论文集。
+    </p>
+    <div class="src"><b>来源</b> sources/2026-08-23_correction_hierarchy_ugp.md · Hierarchy UGP Table 2</div>
+  </div>
+
+  <div class="claim dead">
+    <div class="claim-head">
+      <span class="t"><del>前提二：被丢弃的行人「本可重建」，是模型的失败</del></span>
+      <span class="grade g-dead">已作废</span>
+    </div>
+    <p>
+      原判断：OmniRe 丢弃大量行人，说明其 SMPL 分支存在可利用的 headroom。
+    </p>
+    <p>
+      <strong>推翻它的证据：</strong>我们做了分层评测并把 13 个零增益实例挂成网页逐个目视核验。
+      结论是<strong>被丢弃的行人绝大多数确属观测信息不足</strong>（在图像中只有几十像素高），
+      9 个较大目标中 8 个已获 +2.1~+3.8 dB 增益，<strong>明确的模型失败仅 1 例（实例 40）</strong>。
+    </p>
+    <p class="dim">
+      这一条是研究者本人在核验界面上直接判定的，不是我们的推断。
+    </p>
+    <div class="src"><b>来源</b> plans/CHANGELOG.md · 2026-08-24 条目 · 目视核验 53 实例</div>
+  </div>
+
+  <div class="claim ok">
+    <div class="claim-head">
+      <span class="t">前提三：无人做诊断——这条仍然成立，但不足以支撑一篇论文</span>
+      <span class="grade g-ok">仍成立</span>
+    </div>
+    <p>
+      Hierarchy UGP 指出 OmniRe「受限于 SMPL」，但未量化为什么失败、失败多少、边界在哪。
+      我们已有的诊断数据：105/105 漏检发生在检测/关联阶段而非姿态拟合、43 倍的二值化容量差、
+      覆盖率随分辨率非单调、993 px 完全无遮挡的行人仍被漏。
+    </p>
+    <p>
+      <strong>但这只是诊断，不是方法。</strong>而且我们连续三次尝试为「可重建性」构造判据
+      （M3 v1/v2/v3）<strong>全部失败</strong>——v1 与输入无关，v2 存在偏置排除与退化阈值，
+      v3 的方向是反的（低方差意味着塌陷到均值，不是可靠）。三次都是被我们自己的健全性检查抓出来的。
+    </p>
+    <div class="src"><b>来源</b> sources/2026-08-23_m3_failure_record.md</div>
+  </div>
+
+  <h3>2.3 还有两个结构性不利因素</h3>
+
+  <ul>
+    <li>
+      <strong>Hierarchy UGP 未开源。</strong>仓库仅含 README 与图片，最后一次 push 为 2024-12-20，
+      论文称 "We plan to release" 但至今未发。<strong>无法作为可运行基线</strong>，
+      任何比较只能用 component-level proxy，这在评审时是硬伤。
+    </li>
+    <li>
+      <strong>算力与数据门槛不对称。</strong>该方向的竞争者多有车厂背景（理想汽车等），
+      Waymo/nuScenes 全量训练与多场景消融的成本，与单卡 4090 不在一个量级。
+      而当前方向在 DTU 单场景上跑一个实验点只需 40 分钟。
+    </li>
+  </ul>
+
+  <div class="note">
+    <span class="lbl">保留复用的资产</span>
+    <p>
+      观测充分性分析、分层评测器（LPIPS/SSIM/PSNR 分层，含实例级掩膜与内参缩放修正）、
+      <code>gpu-budget</code> skill、以及会议全文正查工具链——后者正是当前方向调研的基础设施。
+      这一站的投入并未浪费。
+    </p>
+  </div>
+</section>
+
+<section id="method">
+  <h2><span class="num">03</span> 调研方法：把证伪成本降到小时级</h2>
+
+  <p>
+    七次证伪能在一天内完成，靠的是四条并行检索通道加上一条硬性验收标准。
+    这套方法本身可以复用，也是这份报告可被审计的基础。
+  </p>
+
+  <div class="tw"><table>
+    <thead><tr><th>通道</th><th>做什么</th><th>本次规模</th><th>它能抓到什么</th></tr></thead>
+    <tbody>
+      <tr><td><b>A</b> 会议全量枚举</td><td>CVF open access 逐篇下载全文，探针词正查</td><td class="n">968 篇</td><td>避免只看标题摘要造成的漏检</td></tr>
+      <tr><td><b>B</b> 引文图遍历</td><td>Semantic Scholar 前向引用，逐篇取全文</td><td class="n">1674 → 188 篇</td><td><strong>抓「用词完全不同但引用同一批奠基工作」的论文</strong></td></tr>
+      <tr><td><b>C</b> 同义词扩展</td><td>把我们的说法翻译成别人的说法再检索</td><td>—</td><td>词汇假象，本次出现三次</td></tr>
+      <tr><td><b>D</b> 负向检索</td><td>专门找能推翻自己论点的证据</td><td>—</td><td>防止确认偏误</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="note warn">
+    <span class="lbl">工具的验收标准</span>
+    <p>
+      检索工具建成后，必须能<strong>召回我们已知漏掉的那篇</strong>（Hierarchy UGP）才算可用。
+      实测召回得分 123，通过。没有这条标准，工具只会重复产生同样的盲区。
+    </p>
+  </div>
+
+  <h3>三条来之不易的教训</h3>
+
+  <ul>
+    <li><strong>局限地图只能证否，不能证成。</strong>别人论文里写的 future work 不是空位——
+      写下来往往意味着已经有人在做。</li>
+    <li><strong>输入假设才是划界的关键。</strong>方法层面的相似性容易被绕开，
+      而「假设有 SMPL 模板」「假设观测充分」这类前提才真正决定两篇工作是否冲突。</li>
+    <li><strong>证伪成本在下降是唯一的正向信号。</strong>从两轮对话、到数小时加一次训练、
+      到约 20 分钟——这意味着策略应从「谨慎选一个候选深入」转为「快速证伪大量候选」。</li>
+  </ul>
+</section>
+
+<section id="position">
+  <h2><span class="num">04</span> 当前论点：三次收窄后的表述</h2>
+
+  <p>
+    论点被自己的调研推翻过两次。保留演化过程，是因为最终版本的可信度来自它经受过的收窄。
+  </p>
+
+  <div class="claim dead">
+    <div class="claim-head"><span class="t"><del>第一版：双表示互导的成立条件无人研究</del></span><span class="grade g-dead">已作废</span></div>
+    <p>
+      <strong>被 MGSR 自己的消融推翻。</strong>Table 4 的 Model K（双向 BP）全面劣于 Model M（单向）：
+      PSNR <span class="mono">36.64 vs 37.69</span>、SSIM <span class="mono">0.9813 vs 0.9850</span>。
+      论文解释只有一句 “bidirectional BP influences optimization of the branch which provides supervision”，
+      随后用 stop-gradient 绕过。<strong>现象已被报告，只是未被解释。</strong>
+    </p>
+  </div>
+
+  <div class="claim dead">
+    <div class="claim-head"><span class="t"><del>第二版：失效已观测但无人刻画条件</del></span><span class="grade g-dead">已作废</span></div>
+    <p>
+      <strong>被引文图找出的两篇收窄。</strong>CarGS 已解释了目标冲突的机制
+      （一条光线上，渲染正则要远离表面的高斯贡献增大，几何正则要它减小，此消彼长）；
+      GEAR 已实证刻画了联合/分阶段/交替三者的差异，并命名了「误差归属歧义」。
+    </p>
+  </div>
+
+  <div class="claim ok">
+    <div class="claim-head"><span class="t">第三版（当前）</span><span class="grade g-ok">已核验</span></div>
+    <p>
+      <strong>双表示互导中，耦合的强度与方向是未经研究的自由度。</strong>
+      目标冲突的机制已被解释（CarGS，单模型内两个损失之间），
+      交替与联合的差异已被实证刻画（GEAR，几何与运动之间），
+      但没有任何工作研究过：<strong>当两条耦合通道强度相差 50 倍时，增益为何流向强通道那一侧，
+      以及这个比值是否可调。</strong>
+    </p>
+    <p class="dim">
+      这一版不依赖「无人研究」这类全称断言，而指向一个具体的、代码里就摆着的、可测量的量。
+    </p>
+  </div>
+
+  <h3>文献位置：最接近的四篇各差一步</h3>
+
+  <div class="tw"><table>
+    <thead><tr><th>论文</th><th>它做了什么</th><th>与本方向的距离</th></tr></thead>
+    <tbody>
+      <tr><td><b>GEAR</b><br><span class="mono dim">arXiv:2604.07728</span></td>
+          <td>联合 / 分阶段 / 交替三者的训练动力学曲线对比；命名「误差归属歧义」</td>
+          <td>耦合的是<strong>几何与运动</strong>，非同一几何的两种表示；且论证「交替更好」而非「交替何时失败」</td></tr>
+      <tr><td><b>CarGS</b><br><span class="mono dim">arXiv:2503.00881</span></td>
+          <td>几何正则与渲染之间的<strong>贡献权重冲突</strong>机制</td>
+          <td><strong>单模型内两个损失</strong>的冲突，非两个表示交换监督的环路动力学</td></tr>
+      <tr><td><b>MooMIns</b><br><span class="mono dim">arXiv:2606.14389</span></td>
+          <td>扫描位姿噪声幅度直到方法不收敛，报告阈值 150 mm</td>
+          <td>扰动的是<strong>位姿</strong>，非表示间的监督信号。<strong>但给了我们受控扰动实验的方法学先例</strong></td></tr>
+      <tr><td><b>Beyond Heuristics</b><br><span class="mono dim">arXiv:2605.00408</span></td>
+          <td>密度控制的收敛性证明（TRPO 单调改进下界）</td>
+          <td>对象是<strong>密度控制策略</strong>。<strong>但证明该领域接受带收敛性分析的论文</strong></td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="figs">
+    <div class="fig"><span class="v">188</span><span class="k">引文图取得全文篇数</span></div>
+    <div class="fig"><span class="v">104</span><span class="k">五类探针命中全为 0</span></div>
+    <div class="fig"><span class="v">0</span><span class="k">专门综述全文 90,269 字符中的<br>「收敛性论述」命中数</span></div>
+    <div class="fig"><span class="v">0</span><span class="k">分析双表示互导成立条件的论文数</span></div>
+  </div>
+
+  <div class="note warn">
+    <span class="lbl">口径缺口，如实列出</span>
+    <p>
+      引文图种子中 2DGS(1000)、SuGaR(915) 触顶截断，非全量；1674 篇引用者中 524 篇无 arXiv id
+      取不到全文；Expert Systems with Applications 2026 的那篇综述因付费墙<strong>未能核验</strong>——
+      它是目前唯一可能推翻上述结论的综述。
+    </p>
+  </div>
+</section>
+
+<section id="audit">
+  <h2><span class="num">05</span> 代码审计：耦合就是两行 detach</h2>
+
+  <p>
+    实验之所以能直接开跑，是因为逐行确定了互导环的结构。
+    <strong>两条通道各只有一处耦合，都由一次 <code>.detach()</code> 实现。</strong>
+  </p>
+
+  <div class="tw"><table>
+    <thead><tr><th>方向</th><th>位置</th><th>载体</th><th class="n">有效强度</th></tr></thead>
+    <tbody>
+      <tr><td class="ref">ref → geo</td><td class="mono">train.py:329</td>
+          <td><code>trans_color</code>（透射色）作 geo 支伪 GT，另充当两个边缘感知平滑项的引导图</td>
+          <td class="n">0.5 × 0.2 = <b>0.1</b></td></tr>
+      <tr><td class="geo">geo → ref</td><td class="mono">train.py:347</td>
+          <td><code>surf_depth</code> 经 max 归一化后 L2 约束 ref 深度</td>
+          <td class="n"><b>0.01</b></td></tr>
+    </tbody>
+  </table></div>
+
+  <ul>
+    <li><strong>两条通道强度相差 10 倍</strong>，方向与 MGSR 自己报告的「渲染 +2.59 dB、几何近零」一致——
+      增益流向与耦合强度方向相同。</li>
+    <li><strong>ref 支的误差有三条路径进入 geo 支</strong>，不止伪 GT 一条：
+      <code>trans_color</code> 还是 <code>depth_tv</code> 与 <code>normal_tv</code> 的引导图，
+      走 <code>exp(-|∇I|)</code> 权重——引导图错了，平滑就加在错误的位置。</li>
+    <li><strong>MGSR 消融表的 Model K（双向 BP）就是删掉这两行。</strong>
+      单独删其一可得两种半双向配置，<strong>MGSR 未测过</strong>，是我们可直接补的格点。</li>
+  </ul>
+
+  <div class="note stop">
+    <span class="lbl">在看到任何实验结果之前提出的机制假设</span>
+    <p>
+      深度比较前两侧<strong>各按自身 max 归一化</strong>：
+      <code>out_depth_ref / out_depth_ref.max()</code> 与 <code>surf_depth / surf_depth.max()</code>。
+      任一支出现一个离群深度，整幅图尺度即被改变，L2 比的就不是同一个量——
+      它在强迫 ref 支拟合一个被错误缩放的目标。
+    </p>
+    <p>
+      <strong>这个嫌疑是代码审计时独立标出的，早于实验结果，非事后编造。</strong>
+      若经 E-β′ 确认，贡献即从「发现现象」升为「给出原因并给出修法」。
+    </p>
+  </div>
+
+  <h3>可复现性：六处不完整</h3>
+
+  <p>
+    公开产物存在六处不完整，<strong>其中三处直接改变数值结果</strong>：
+    缺预训练 SDF（GS-Octree 的 <code>train-big.py</code> 依赖论文第一阶段产物，未提供）、
+    脚本与库版本错配（<code>VolumeRenderGaussVolSDF</code> 的必填参数调用方没传）、
+    数据集读取器默认值错误（<code>InitialFlags</code> 空参解析，DTU 上会调 NeRF-synthetic 读取器）。
+  </p>
+
+  <div class="note">
+    <span class="lbl">由此产生的硬约束</span>
+    <p>
+      <strong>论文数字无法复现，因此所有对照组必须是我们自己跑出的基线。</strong>
+      这一点必须在论文中明确声明，也需要向 MGSR 作者索取 <code>pretrain/</code> 目录与第一阶段的确切命令。
+    </p>
+  </div>
+</section>
+
+<section id="results">
+  <h2><span class="num">06</span> 实验结果与证据分级</h2>
+
+  <p>
+    DTU scan24，复用同一组 geo/ref 检查点，仅跑互导阶段 20k 步。
+    几何度量为 DTU 官方协议（0.2 mm 体素下采样 + ObsMask + 地面剔除 + 20 mm 截断），
+    真值为官方结构光点云 <code>stl024_total.ply</code>。
+  </p>
+
+  <h4>噪声地板（同权重跨三种子）</h4>
+  <div class="tw"><table>
+    <thead><tr><th>分支</th><th class="n">均值</th><th class="n">标准差</th><th class="n">极差</th></tr></thead>
+    <tbody>
+      <tr><td class="ref">ref（外观支）</td><td class="n">1.2363</td><td class="n"><b>0.0022 (0.18%)</b></td><td class="n">0.0044 (0.36%)</td></tr>
+      <tr><td class="geo">geo（几何支，重建输出）</td><td class="n">0.9148</td><td class="n"><b>0.0035 (0.39%)</b></td><td class="n">0.0067 (0.73%)</td></tr>
+    </tbody>
+  </table></div>
+
+  <h4>权重扫描（Chamfer overall，单位 mm，越小越好）</h4>
+  <div class="tw"><table>
+    <thead><tr><th>w_depth</th><th class="n">geo 支</th><th class="n">ref 支</th><th>种子</th></tr></thead>
+    <tbody>
+      <tr><td class="mono">0.001</td><td class="n">0.9218</td><td class="n">1.2381</td><td class="dim">n=1</td></tr>
+      <tr><td class="mono"><b>0.01</b> <span class="dim">MGSR 原值</span></td><td class="n">0.9148 ±.0035</td><td class="n">1.2363 ±.0022</td><td>n=3</td></tr>
+      <tr><td class="mono">0.05</td><td class="n">0.9242</td><td class="n"><b>1.1919</b> <span class="dim">最好</span></td><td class="dim">n=1</td></tr>
+      <tr><td class="mono">0.5</td><td class="n"><b>0.9065</b> ±.0024</td><td class="n">1.3031 ±.0108 <span class="dim">最差</span></td><td>n=3</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="claim ok">
+    <div class="claim-head">
+      <span class="t">加强 geo→ref 耦合使被引导的 ref 支几何劣化 5.40%</span>
+      <span class="grade g-ok">已确立</span>
+    </div>
+    <p>
+      三个种子全部劣化（+6.6% / +4.8% / +4.8%），效应量为基线标准差的 <strong>30.0 倍</strong>，
+      两组区间完全不重叠。
+    </p>
+    <div class="src"><b>证据</b> n=3 种子 · DTU 官方评测 · tools/dtu_eval.py（含坐标系自检）</div>
+  </div>
+
+  <div class="claim pend">
+    <div class="claim-head">
+      <span class="t">同时，引导的 geo 支几何改善 0.91%</span>
+      <span class="grade g-pend">方向可信，强度不足</span>
+    </div>
+    <p>
+      三个种子方向一致且区间不重叠，但效应量仅 <strong>2.3 倍</strong>基线标准差。
+      <strong>需加种子至 n≥5 才能确立。</strong>
+    </p>
+    <p class="dim">
+      此处更正本报告早期版本：曾将这一条与上一条一并标为「已确立」，
+      以 2.3 σ 的强度而言属过度声称。
+    </p>
+  </div>
+
+  <div class="claim pend">
+    <div class="claim-head">
+      <span class="t">存在内部最优点：w=0.05 比 MGSR 取值好 3.6%</span>
+      <span class="grade g-pend">待确认 · 复现中</span>
+    </div>
+    <p>
+      单种子下 ref 支 Chamfer 为 1.1919，比基线均值低 3.6%，约 20 倍标准差。
+      <strong>但只有一个种子。</strong>seed 1 已跑到 <span class="mono">6470/20000</span>，seed 2 与 w=0.1 排队中。
+    </p>
+    <p>
+      <strong>预注册判据（写于看到结果之前）：</strong>三种子均优于 w=0.01 且幅度 ≥2% → 成立，
+      即「MGSR 的取值不是最优」可写入论文；出现劣于基线者 → 不成立，需查该次运行是否异常。
+    </p>
+  </div>
+
+  <div class="claim un">
+    <div class="claim-head">
+      <span class="t">劣化机制是 depth 的 max 归一化</span>
+      <span class="grade g-un">未验证</span>
+    </div>
+    <p>
+      验证方案 E-β′：固定 <code>w_depth=0.5</code>，<strong>只替换归一化方式</strong>
+      （改为中位数比值或最小二乘 scale+shift），其余不动。
+      若 ref 支不再劣化 → 机制确认且修法随之得到；若仍劣化 → 机制被证伪，
+      但上面两条此消彼长的发现仍然有效。
+    </p>
+  </div>
+
+  <h3>两支方向相反，这是核心发现</h3>
+  <p>
+    <code>depth_loss</code> 中 <code>surf_depth</code> 已 detach，梯度只流向 ref 支，
+    因此 <code>w_depth</code> 对 geo 支的作用是<strong>经环路的二阶效应</strong>。
+    该效应虽小（0.91%）但方向明确且区间不重叠——
+    <strong>这个「互导」环在几何结果上是高度不对称的</strong>。
+  </p>
+</section>
+
+<section id="plan">
+  <h2><span class="num">07</span> 三个月实验计划</h2>
+
+  <p>
+    按「先解除最大风险、再验证机制、最后扩展」排序。
+    单卡 4090，一个实验点 40 分钟（复用检查点只跑互导 20k 步），可估算总量。
+  </p>
+
+  <div class="gk">
+    <span><i style="background:var(--ref)"></i>解除风险</span>
+    <span><i style="background:var(--accent)"></i>核心验证</span>
+    <span><i style="background:var(--geo)"></i>扩展与方法</span>
+    <span><i style="background:var(--amber)"></i>写作与投稿</span>
+    <span><i style="background:transparent;border:1.5px dashed var(--accent)"></i>机动</span>
+  </div>
+
+  <div class="gantt"><div class="gantt-inner">
+    <div class="gantt-head">
+      <div>任务</div>
+      <div>W1</div><div>W2</div><div>W3</div><div>W4</div>
+      <div>W5</div><div>W6</div><div>W7</div><div>W8</div>
+      <div>W9</div><div>W10</div><div>W11</div><div>W12</div>
+    </div>
+
+    <div class="gantt-row">
+      <div class="task">内部最优点确认（n=3）<span class="id">TASK-C81E4B60D9</span></div>
+      <div class="cell"><span class="bar r"></span></div>
+      <div class="cell"></div><div class="cell"></div><div class="cell"></div>
+      <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+      <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+    </div>
+
+    <div class="gantt-row">
+      <div class="task">跨场景验证 scan37/55/65/105<span class="id">TASK-A5D3E17C42</span></div>
+      <div class="cell"><span class="bar r"></span></div>
+      <div class="cell"><span class="bar r"></span></div>
+      <div class="cell"><span class="bar r"></span></div>
+      <div class="cell"></div>
+      <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+      <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+    </div>
+
+    <div class="gantt-row">
+      <div class="task">TSDF 网格重评，出可比数字<span class="id">TASK-2E6A9D4F03</span></div>
+      <div class="cell"></div>
+      <div class="cell"><span class="bar r"></span></div>
+      <div class="cell"></div><div class="cell"></div>
+      <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+      <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+    </div>
+
+    <div class="gantt-row">
+      <div class="task">E-β′ 机制验证：替换 max 归一化<span class="id">TASK-91BD7E2A45</span></div>
+      <div class="cell"></div><div class="cell"></div>
+      <div class="cell"><span class="bar"></span></div>
+      <div class="cell"><span class="bar"></span></div>
+      <div class="cell"><span class="bar"></span></div>
+      <div class="cell"></div><div class="cell"></div><div class="cell"></div>
+      <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+    </div>
+
+    <div class="gantt-row">
+      <div class="task">w2 通道扫描（ref→geo）<span class="id">TASK-7B04FE9C81</span></div>
+      <div class="cell"></div><div class="cell"></div><div class="cell"></div>
+      <div class="cell"><span class="bar"></span></div>
+      <div class="cell"><span class="bar"></span></div>
+      <div class="cell"></div><div class="cell"></div><div class="cell"></div>
+      <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+    </div>
+
+    <div class="gantt-row">
+      <div class="task">两种半双向配置（MGSR 未测格点）<span class="id">TASK-4A8E1FC603</span></div>
+      <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+      <div class="cell"><span class="bar"></span></div>
+      <div class="cell"><span class="bar"></span></div>
+      <div class="cell"></div><div class="cell"></div>
+      <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+    </div>
+
+    <div class="gantt-row">
+      <div class="task">自适应耦合强度：方法设计与实现<span class="id">待建</span></div>
+      <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"><span class="bar g"></span></div>
+      <div class="cell"><span class="bar g"></span></div>
+      <div class="cell"><span class="bar g"></span></div>
+      <div class="cell"><span class="bar g"></span></div>
+      <div class="cell"></div><div class="cell"></div><div class="cell"></div>
+    </div>
+
+    <div class="gantt-row">
+      <div class="task">在 GS-Octree 上复核（若取得 pretrain）<span class="id">TASK-7E31A0C5D9</span></div>
+      <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+      <div class="cell"></div><div class="cell"></div>
+      <div class="cell"><span class="bar hollow"></span></div>
+      <div class="cell"><span class="bar hollow"></span></div>
+      <div class="cell"><span class="bar hollow"></span></div>
+      <div class="cell"></div><div class="cell"></div><div class="cell"></div>
+    </div>
+
+    <div class="gantt-row">
+      <div class="task">全量消融与对比实验<span class="id">待建</span></div>
+      <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+      <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+      <div class="cell"><span class="bar g"></span></div>
+      <div class="cell"><span class="bar g"></span></div>
+      <div class="cell"></div><div class="cell"></div>
+    </div>
+
+    <div class="gantt-row">
+      <div class="task">论文写作与图表<span class="id">待建</span></div>
+      <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+      <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"><span class="bar a"></span></div>
+      <div class="cell"><span class="bar a"></span></div>
+      <div class="cell"><span class="bar a"></span><span class="milestone"></span></div>
+    </div>
+  </div></div>
+
+  <h3>三个阶段门</h3>
+
+  <div class="tw"><table>
+    <thead><tr><th>时点</th><th>门</th><th>通过判据</th><th>不通过怎么办</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="mono">W3 末</td>
+        <td><b>G1 效应跨场景成立</b></td>
+        <td>至少 3/4 场景上，w=0.5 对 w=0.01 的 ref 支劣化 ≥3% 且方向一致</td>
+        <td><strong>方向重估。</strong>若效应仅在 scan24 出现，说明是场景特性而非机制，需回到调研</td>
+      </tr>
+      <tr>
+        <td class="mono">W5 末</td>
+        <td><b>G2 机制确认</b></td>
+        <td>替换归一化后，w=0.5 下 ref 支劣化幅度降至 ≤1.5%</td>
+        <td>机制被证伪。<strong>此时仍有「此消彼长 + 内部最优」两个发现</strong>，改为经验性论文，但强度下降</td>
+      </tr>
+      <tr>
+        <td class="mono">W9 末</td>
+        <td><b>G3 方法有效</b></td>
+        <td>自适应耦合在 ≥4 个场景上同时不劣于两支各自的最优固定值</td>
+        <td>降级为分析型论文（条件刻画 + 诊断），不提方法贡献</td>
+      </tr>
+    </tbody>
+  </table></div>
+
+  <div class="note warn">
+    <span class="lbl">排期的现实性说明</span>
+    <p>
+      计算量不是瓶颈：一个实验点 40 分钟，跨场景 4 场景 × 4 权重 × 3 种子 = 48 个点 ≈ 32 GPU 小时，
+      单卡两三天可完成。<strong>瓶颈在 GS-Octree 那条线</strong>——它依赖向作者索取 <code>pretrain/</code>，
+      时间不可控，因此在甘特图中标为机动（虚线），不作为主线依赖。
+    </p>
+  </div>
+</section>
+
+<section id="risk">
+  <h2><span class="num">08</span> 风险与止损</h2>
+
+  <div class="tw"><table>
+    <thead><tr><th>风险</th><th>严重度</th><th>现状</th><th>处置</th></tr></thead>
+    <tbody>
+      <tr><td><b>单场景</b>——全部结果来自 DTU scan24</td><td class="ref">高</td>
+          <td>未解除</td><td>W1–W3 跨场景验证，设为 G1 阶段门</td></tr>
+      <tr><td><b>数字不可与论文比较</b>——用高斯中心而非 TSDF 网格</td><td>中</td>
+          <td>已知</td><td>W2 用 <code>extract_mesh_tsdf.py</code> 重评</td></tr>
+      <tr><td><b>论文数字无法复现</b>——公开产物六处不完整</td><td>中</td>
+          <td>已确认</td><td>所有对照组自建基线，并在论文中明确声明</td></tr>
+      <tr><td><b>效应幅度偏小</b>——geo 支仅 2.3 σ</td><td>中</td>
+          <td>待补种子</td><td>加至 n≥5；若仍不足则只报 ref 支</td></tr>
+      <tr><td><b>CarGS 是正面竞争框架</b>——主张统一网络替代双模型</td><td>中</td>
+          <td>已识别</td><td>必须引用并正面回应；我们的差异在「环路动力学」而非「损失冲突」</td></tr>
+      <tr><td><b>未核验的综述</b>——ESWA 2026 付费墙</td><td>低</td>
+          <td>未解除</td><td>通过学校订阅取得；它是唯一可能推翻文献位置的综述</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="note stop">
+    <span class="lbl">明确的止损线</span>
+    <p>
+      <strong>若 G1 不通过（效应不跨场景），立即停止本方向，不再寻找第四个实验来挽救。</strong>
+      这条写在前面，是为了避免在拿到不利数据后临时寻找解释——
+      前一个方向的教训正是如此：三次为「可重建性」构造判据全部失败后，
+      我们仍试图从诊断数据里救出一个方向。
+    </p>
+  </div>
+</section>
+
+<section id="ask">
+  <h2><span class="num">09</span> 需要的支持</h2>
+
+  <h3>给导师</h3>
+  <ol>
+    <li>
+      <strong>向 MGSR 作者索取 <code>pretrain/</code> 目录与 GS-Octree 第一阶段的确切命令。</strong>
+      这是 GS-Octree 那条线唯一的阻塞点，且无法通过读代码绕过。
+    </li>
+    <li>
+      <strong>核对 MGSR 论文正文与 Table 4 的模型编号。</strong>
+      正文把 auto-stop 记为 Models G–J、iterations 记为 Models L and M，
+      而表格与表题显示恰好相反。可能是 PDF 抽取问题，也可能是笔误——
+      <strong>我们引用这些数字前需要确认。</strong>
+    </li>
+    <li>
+      确认公开代码是否等于论文实验版本（六处不完整使这一点存疑）。
+    </li>
+  </ol>
+
+  <h3>给潜在合作者</h3>
+  <p>
+    本方向的表示层工作（2DGS/3DGS/八叉树 SDF）已经就位且可运行，
+    合作空间在<strong>把耦合强度的结论迁移到人体与衣物的双表示场景</strong>——
+    人体重建同样普遍使用「模板引导 + 自由形变」的双表示互导，
+    而那里的耦合强度同样是拍脑袋定的。
+  </p>
+  <p>
+    我们能提供的现成资产：DTU 官方评测实现（含坐标系自检）、
+    远程大 zip 局部抽取工具（取 DTU 真值用 141 MB 换掉 14 GB 下载）、
+    引文图全文核查工具链、以及一套已验证的耦合强度扫描流程。
+  </p>
+</section>
+
+<footer>
+  <p>
+    本报告的每一条结论均可追溯到仓库中的源文档与可复现脚本。
+    被推翻的判断就地保留、不删除，以便审计推理链本身。
+  </p>
+  <p>
+    JDSDataResearchCenter / projects/jds-3d-reconstruction ·
+    现状入口 STATUS.md · 立论与三次修正 sources/2026-08-24_mutual_guidance_position.md ·
+    代码审计 sources/2026-08-24_mgsr_code_audit.md
+  </p>
+</footer>
+
+</div>
